@@ -1,6 +1,6 @@
 import React from 'react'
 
-const productCard = () => {
+const signUpForm = () => {
   return (
     <div>
       
@@ -8,4 +8,4 @@ const productCard = () => {
   )
 }
 
-export default productCard
+export default signUpForm
