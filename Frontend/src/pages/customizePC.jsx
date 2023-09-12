@@ -1,11 +1,16 @@
-import React from 'react'
+import React from 'react';
+import CustList from '../components/custList';
+import CustBG from '../components/custBG';
 
 const customizePC = () => {
   return (
-    <div>
-     
+    <div style={{ position: 'relative'}}>
+      <CustBG />
+      <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 1, }}>
+        <CustList />
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default customizePC
+export default customizePC;
