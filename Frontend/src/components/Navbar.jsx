@@ -68,25 +68,25 @@ function Navbar() {
               }}
             >
               <List>
-                <ListItem ListItemButton component={Link} to="/" onClick={handleDrawerClose}>
+                <ListItem ListItemButton component={Link} to="/" style={{ color: 'inherit', textDecoration: 'none'}} onClick={handleDrawerClose}>
                   <ListItemText primary="Home" />
                 </ListItem>
 
-                <ListItem ListItemButton  component={Link} to="/prebuiltPC" onClick={handleDrawerClose}>
+                <ListItem ListItemButton  component={Link} to="/prebuiltPC " style={{ color: 'inherit', textDecoration: 'none'}} onClick={handleDrawerClose}>
                   <ListItemText primary="Pre Built PC's" />
                 </ListItem>
 
-                <ListItem component={Link} to="/customizePC" onClick={handleDrawerClose}>
+                <ListItem component={Link} to="/customizePC" style={{ color: 'inherit', textDecoration: 'none'}} onClick={handleDrawerClose}>
                   <ListItemText primary="Build PC" />
                 </ListItem>
 
 
-                <ListItem ListItemButton  component={Link} to="/About" onClick={handleDrawerClose}>
+                <ListItem ListItemButton  component={Link} to="/About" style={{ color: 'inherit', textDecoration: 'none'}} onClick={handleDrawerClose}>
                   <ListItemText primary="About Us" />
                 </ListItem>
                
 
-                <ListItem ListItemButton component={Link} to="/contactUs" onClick={handleDrawerClose}>
+                <ListItem ListItemButton component={Link} to="/contactUs" style={{ color: 'inherit', textDecoration: 'none'}} onClick={handleDrawerClose}>
                   <ListItemText primary="Contact Us" />
                 </ListItem>
               </List>
