@@ -45,7 +45,7 @@ function Navbar() {
 
   return (
     <div>
-      <AppBar position="static" sx={{ backgroundColor: 'black', borderRadius: '20px' }}>
+      <AppBar position="static" sx={{ backgroundColor: '#373538', borderRadius: '20px' }}>
         <Toolbar>
           <IconButton edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }} onClick={handleDrawerOpen}>
             <MenuIcon />
@@ -54,7 +54,7 @@ function Navbar() {
           <Drawer anchor="left" open={open} onClose={handleDrawerClose}
             PaperProps={{
               sx: {
-                backgroundColor: 'black', // Set the background color of the drawer's Paper component
+                backgroundColor: '#373538', // Set the background color of the drawer's Paper component
                 color: '#BB84EC' // Optional: If you want text inside the drawer to be white
               }
             }}>
