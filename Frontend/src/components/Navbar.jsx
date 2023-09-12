@@ -21,6 +21,8 @@ import ListItemText from '@mui/material/ListItemText';
 import ButtonBase from '@mui/material/ButtonBase';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import { Link } from 'react-router-dom';
+
 
 function Navbar() {
   const [open, setOpen] = React.useState(false);
@@ -66,24 +68,25 @@ function Navbar() {
               }}
             >
               <List>
-                <ListItem component={ButtonBase} onClick={handleDrawerClose}>
+                <ListItem ListItemButton component={Link} to="/" onClick={handleDrawerClose}>
                   <ListItemText primary="Home" />
                 </ListItem>
 
-                <ListItem component={ButtonBase} onClick={handleDrawerClose}>
+                <ListItem ListItemButton  component={Link} to="/prebuiltPC" onClick={handleDrawerClose}>
                   <ListItemText primary="Pre Built PC's" />
                 </ListItem>
 
-                <ListItem component={ButtonBase} onClick={handleDrawerClose}>
+                <ListItem component={Link} to="/customizePC" onClick={handleDrawerClose}>
                   <ListItemText primary="Build PC" />
                 </ListItem>
 
 
-                <ListItem component={ButtonBase} onClick={handleDrawerClose}>
+                <ListItem ListItemButton  component={Link} to="/About" onClick={handleDrawerClose}>
                   <ListItemText primary="About Us" />
                 </ListItem>
+               
 
-                <ListItem component={ButtonBase} onClick={handleDrawerClose}>
+                <ListItem ListItemButton component={Link} to="/contactUs" onClick={handleDrawerClose}>
                   <ListItemText primary="Contact Us" />
                 </ListItem>
               </List>
@@ -97,7 +100,7 @@ function Navbar() {
           {/* Centered Box containing both the logo and the text */}
           <Box display="flex" justifyContent="center" alignItems="center" flexGrow={1}>
             <img src={Logo} alt="Virtue Tech Logo" style={{ height: '70px', marginRight: '0px' }} />
-            <Typography variant="h6" component="div" sx={{ color: 'violet', fontFamily: "'Dancing Script', cursive" }}>
+            <Typography variant="h6" component="div" sx={{ color: 'violet', fontFamily: "poppins" }}>
               VirtuTech
             </Typography>
           </Box>

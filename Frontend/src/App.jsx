@@ -1,14 +1,26 @@
-import { useState } from 'react'
-import Button from '@mui/material/Button';
-import { DatePicker } from 'antd';
+import { React, useState } from 'react'
+import routes from './routes/routes';
+import Navbar from './components/Navbar';
+
 import './App.css'
-import Home from './pages/Home';
+
+
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+
+//const liksArray = ["Home", "Prebuild Pc", "Build Pc", "About","contactUs"]
 function App() {
   
-
   return (
     <>
-      <Home/>
+    {  <Router>
+      
+            <Navbar/>
+            <Routes>
+              {routes.map((route, index)=>(
+                <Route key={index} path= { route.path } element={<route.component />} />
+              ))}
+            </Routes>
+        </Router>}
     </>
   )
 }
