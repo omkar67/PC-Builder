@@ -18,7 +18,7 @@ import Drawer from '@mui/material/Drawer';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
-import ButtonBase from '@mui/material/ButtonBase';
+
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { Link } from 'react-router-dom';
@@ -55,7 +55,7 @@ function Navbar() {
             PaperProps={{
               sx: {
                 backgroundColor: 'black', // Set the background color of the drawer's Paper component
-                color: 'violet' // Optional: If you want text inside the drawer to be white
+                color: '#BB84EC' // Optional: If you want text inside the drawer to be white
               }
             }}>
             <Box
@@ -100,7 +100,7 @@ function Navbar() {
           {/* Centered Box containing both the logo and the text */}
           <Box display="flex" justifyContent="center" alignItems="center" flexGrow={1}>
             <img src={Logo} alt="Virtue Tech Logo" style={{ height: '70px', marginRight: '0px' }} />
-            <Typography variant="h6" component="div" sx={{ color: 'violet', fontFamily: "poppins" }}>
+            <Typography variant="h6" component="div" sx={{ color: '#BB84EC', fontFamily: "poppins" }}>
               VirtuTech
             </Typography>
           </Box>
@@ -136,10 +136,11 @@ function Navbar() {
               ),
             }}
           />
-
+          <Link to="/Cart" style={{ textDecoration: 'none', color: 'inherit' }}>
           <IconButton color="inherit" sx={{ marginRight: 3 }}>
             <ShoppingCartIcon />
           </IconButton>
+          </Link>
 
           <IconButton color="inherit" onClick={handleMenuOpen}>
             <AccountCircleIcon />

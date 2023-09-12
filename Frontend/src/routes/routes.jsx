@@ -4,7 +4,6 @@ import Home from '../pages/Home';
 import About from '../pages/About';
 import contactUs from '../pages/contactUs';
 import Cart from '../pages/Cart';
-import prebuitPC from '../pages/prebuiltPC';
 import customizePC from '../pages/customizePC'
 import prebuiltPC from '../pages/prebuiltPC';
 
