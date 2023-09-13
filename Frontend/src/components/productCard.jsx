@@ -21,13 +21,13 @@ export default function ProductCard() {
     <ThemeProvider theme={theme}>
       <Box
         sx={{
-          width: '120%',
-          maxWidth: 400,
+          width: '100%',
+          maxWidth: '22.5vw',
           position: 'relative',
           borderRadius: '5px',
           overflow: 'hidden',
           color: 'white',
-          backgroundColor: "rgba(0,0,0,0.4)"
+          backgroundColor: 'rgba(0,0,0,0.4)'
         }}
       >
         {/* Background image container */}
@@ -37,27 +37,28 @@ export default function ProductCard() {
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             width: '100%',
-            height: '100%',
+            height:'100%',
+            paddingTop: '75%',
             position: 'absolute',
             top: 0,
             left: 0,
-            zIndex: -1, // Place it behind the content
+            zIndex: -1,
           }}
         />
-        <Box sx={{ my: 0, mx: 2 }}>
-          <Grid container alignItems="center" sx={{ marginTop: 3 }}>
+        <Box sx={{ my: '1rem', mx: '2%' }}>
+          <Grid container sx={{ marginTop: '1rem' }}>
             <Grid item xs>
-              <Stack direction="row" spacing={2}>
+              <Stack direction="row" spacing="1vw">
                 <img
                   src="https://clipground.com/images/square-clipart-image-9.png"
-                  height="80px"
+                  height="60px"
                   alt="test img here"
-                  style={{ marginTop: '10px' }}
+                  style={{ marginTop: '1vw' }}
                 />
-                <Typography gutterBottom variant="h4" component="div" style={{ marginTop: '42.5px', fontSize: '25px' }} sx={{ mt: 45, width: '100%', whiteSpace: 'nowrap' }}>
+                <Typography gutterBottom variant="h4" component="div" style={{ marginTop: '2vw',marginLeft:'0.5vw', fontSize: '1.5vw',backgroundColor:'black' }} sx={{ mt: '1.125rem', width: '100%', whiteSpace: 'nowrap' }}>
                   INTEL-I510900K
                 </Typography>
-                <Typography gutterBottom variant="h4" component="div" style={{ marginTop: '43.5px', fontSize: '22px' }} sx={{ mt: 45, width: '100%', whiteSpace: 'nowrap' }}>
+                <Typography gutterBottom variant="h4" component="div" style={{ marginTop: '2vw',marginLeft:'0.5vw', fontSize: '1.5vw' }} sx={{ mt: '1.125rem', width: '100%', whiteSpace: 'nowrap' }}>
                   $134.50
                 </Typography>
               </Stack>
@@ -65,10 +66,10 @@ export default function ProductCard() {
             <Grid item>
             </Grid>
           </Grid>
-          <Typography color="white" variant="body2" sx={{ mt: 3.5 }} style={{ marginLeft: '-25px' }}>
+          <Typography color="white" variant="body2" sx={{ mt: '1.5rem' }}>
             <List>
               <ListItem>
-                <Stack direction="row" spacing={2}>
+                <Stack direction="row" spacing="1vw">
                   <Typography gutterBottom variant="body2" component="div">
                     Sub feature 1
                   </Typography>
@@ -78,7 +79,7 @@ export default function ProductCard() {
                 </Stack>
               </ListItem>
               <ListItem>
-                <Stack direction="row" spacing={2}>
+                <Stack direction="row" spacing="1vw">
                   <Typography gutterBottom variant="body2" component="div">
                     Sub feature 3
                   </Typography>
@@ -92,19 +93,19 @@ export default function ProductCard() {
           </Typography>
         </Box>
         <Divider variant="middle" color="white" />
-        <Box sx={{ m: 2 }}>
+        <Box sx={{ m: '2%' }}>
           <Typography gutterBottom variant="body1">
             Key features are
           </Typography>
-          <Stack direction="row" spacing={1}>
-            <Chip label="Subtype1" sx={{ backgroundColor: 'rgba(0,0,0,0.6)', color: 'white' }} />
-            <Chip color="primary" label="Subtype 2" sx={{ backgroundColor: 'rgba(0,0,0,0.6)', color: 'white' }} />
-            <Chip label="Medium" sx={{ backgroundColor: 'rgba(0,0,0,0.6)', color: 'white' }} />
-            <Chip label="Hard" sx={{ backgroundColor: 'rgba(0,0,0,0.6)', color: 'white' }} />
+          <Stack direction="row" spacing="1vw">
+            <Chip label="Subtype1" sx={{ backgroundColor: 'rgba(0,0,0,0.6)', color: 'white', fontSize: '1rem' }} />
+            <Chip color="primary" label="Subtype 2" sx={{ backgroundColor: 'rgba(0,0,0,0.6)', color: 'white', fontSize: '1rem' }} />
+            <Chip label="Medium" sx={{ backgroundColor: 'rgba(0,0,0,0.6)', color: 'white', fontSize: '1rem' }} />
+            <Chip label="Hard" sx={{ backgroundColor: 'rgba(0,0,0,0.6)', color: 'white', fontSize: '1rem' }} />
           </Stack>
         </Box>
-        <Box sx={{ mt: 3, ml: 1, mb: 1 }}>
-          <Button sx={{ backgroundColor: '#6600CC', color: 'white', borderRadius: '10px' }}>Add to cart</Button>
+        <Box sx={{ mt: '1rem', ml: '1%', mb: '1%' }}>
+          <Button sx={{ backgroundColor: '#6600CC', color: 'white', borderRadius: '10px', fontSize: '1rem' }}>Add to cart</Button>
         </Box>
       </Box>
     </ThemeProvider>
