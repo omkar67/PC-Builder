@@ -59,7 +59,7 @@ export default function CustList() {
             borderRadius: '4.5vw',
             overflow: 'hidden',
             color: 'white',
-            marginTop: '6vh',
+            marginTop: '0.5vh',
             zIndex: 1,
           }}
         >
