@@ -14,6 +14,7 @@ const theme = createTheme({
   typography: {
     fontFamily: 'Your Desired Font, sans-serif', // Replace 'Your Desired Font' with the actual font you want to use
   },
+  marginLeft:'2vw'
 });
 
 export default function ProductCard() {
@@ -24,10 +25,12 @@ export default function ProductCard() {
           width: '100%',
           maxWidth: '22.5vw',
           position: 'relative',
-          borderRadius: '5px',
+          borderRadius: '2px',
           overflow: 'hidden',
           color: 'white',
-          backgroundColor: 'rgba(0,0,0,0.4)'
+          backgroundColor: 'rgba(0,0,0,0.4)',
+          margin:'0.5rem',
+          marginLeft:'32.5rem',
         }}
       >
         {/* Background image container */}
@@ -45,20 +48,20 @@ export default function ProductCard() {
             zIndex: -1,
           }}
         />
-        <Box sx={{ my: '1rem', mx: '2%' }}>
-          <Grid container sx={{ marginTop: '1rem' }}>
+        <Box sx={{ my: '1rem', mx: '2%',marginLeft:'' }}>
+          <Grid container sx={{ marginTop: '1rem',marginLeft:'0.5vw'}}>
             <Grid item xs>
-              <Stack direction="row" spacing="1vw">
+              <Stack direction={{ xs: 'column', md: 'row' }}spacing="1vw">
                 <img
                   src="https://clipground.com/images/square-clipart-image-9.png"
                   height="60px"
                   alt="test img here"
                   style={{ marginTop: '1vw' }}
                 />
-                <Typography gutterBottom variant="h4" component="div" style={{ marginTop: '2vw',marginLeft:'0.5vw', fontSize: '1.5vw',backgroundColor:'black' }} sx={{ mt: '1.125rem', width: '100%', whiteSpace: 'nowrap' }}>
+                <Typography gutterBottom variant="h4" component="div" style={{ marginTop: '2vw',marginLeft:'0.5vw', fontSize: '1.5vw' }} sx={{ mt: '1.125rem', width: '100%', whiteSpace: 'nowrap' }}>
                   INTEL-I510900K
                 </Typography>
-                <Typography gutterBottom variant="h4" component="div" style={{ marginTop: '2vw',marginLeft:'0.5vw', fontSize: '1.5vw' }} sx={{ mt: '1.125rem', width: '100%', whiteSpace: 'nowrap' }}>
+                <Typography gutterBottom variant="h4" component="div" style={{ marginTop: '2.2vw',marginLeft:'0.5vw', fontSize: '1.3vw' }} sx={{ mt: '1.125rem', width: '100%'}}>
                   $134.50
                 </Typography>
               </Stack>
@@ -69,7 +72,7 @@ export default function ProductCard() {
           <Typography color="white" variant="body2" sx={{ mt: '1.5rem' }}>
             <List>
               <ListItem>
-                <Stack direction="row" spacing="1vw">
+                <Stack direction={{ xs: 'column', md: 'row' }}spacing="1vw">
                   <Typography gutterBottom variant="body2" component="div">
                     Sub feature 1
                   </Typography>
@@ -79,7 +82,7 @@ export default function ProductCard() {
                 </Stack>
               </ListItem>
               <ListItem>
-                <Stack direction="row" spacing="1vw">
+                <Stack direction={{ xs: 'column', md: 'row' }} spacing="1vw">
                   <Typography gutterBottom variant="body2" component="div">
                     Sub feature 3
                   </Typography>
@@ -93,11 +96,11 @@ export default function ProductCard() {
           </Typography>
         </Box>
         <Divider variant="middle" color="white" />
-        <Box sx={{ m: '2%' }}>
+        <Box sx={{ m: '2%',width:'20vw' }}>
           <Typography gutterBottom variant="body1">
             Key features are
           </Typography>
-          <Stack direction="row" spacing="1vw">
+          <Stack direction={{ xs: 'column', md: 'row' }} spacing={{ xs: '0.5rem', md: '0.5vw' }}>
             <Chip label="Subtype1" sx={{ backgroundColor: 'rgba(0,0,0,0.6)', color: 'white', fontSize: '1rem' }} />
             <Chip color="primary" label="Subtype 2" sx={{ backgroundColor: 'rgba(0,0,0,0.6)', color: 'white', fontSize: '1rem' }} />
             <Chip label="Medium" sx={{ backgroundColor: 'rgba(0,0,0,0.6)', color: 'white', fontSize: '1rem' }} />
@@ -105,7 +108,10 @@ export default function ProductCard() {
           </Stack>
         </Box>
         <Box sx={{ mt: '1rem', ml: '1%', mb: '1%' }}>
+          <Stack direction={{ xs: 'column', md: 'row' }}>
           <Button sx={{ backgroundColor: '#6600CC', color: 'white', borderRadius: '10px', fontSize: '1rem' }}>Add to cart</Button>
+          <Button sx={{textDecoration:'underline', color: 'white', borderRadius: '10px', fontSize: '1rem' }}>View Details</Button>
+          </Stack>
         </Box>
       </Box>
     </ThemeProvider>

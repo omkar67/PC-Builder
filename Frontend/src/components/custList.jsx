@@ -6,12 +6,14 @@ import Stack from '@mui/material/Stack';
 import Divider from '@mui/material/Divider';
 import Typography from '@mui/material/Typography';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { useNavigate } from 'react-router-dom';
 
 const theme = createTheme({
   typography: {
     fontFamily: 'poppins, montserrat, sans-serif',
   },
 });
+
 
 const backgroundStyle = {
   position: 'absolute',
@@ -41,7 +43,9 @@ const contentStyle = {
 };
 
 export default function CustList() {
+  const nav = useNavigate();
   return (
+    
     <div
       style={{
         display: 'flex',
@@ -415,6 +419,7 @@ export default function CustList() {
                       
                       }}
                      style={{marginLeft:'7vw', textDecoration:'underline', marginTop: '-0.5vw',}}
+                     onClick={()=>nav('/Cart')}
                     >
                       Proceed to Cart
                     </Button>
