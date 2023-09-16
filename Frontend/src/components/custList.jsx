@@ -25,7 +25,7 @@ const backgroundStyle = {
     'url("https://hrc.in.th/wp-content/uploads/2022/11/LIAN-LI-ODYSSEY-X-SKY.EYE-14.jpg")',
   backgroundSize: 'cover',
   backgroundPosition: 'center',
-  zIndex: -1,
+  
 };
 
 const contentStyle = {
@@ -39,7 +39,6 @@ const contentStyle = {
   alignItems: 'center',
   backgroundColor: 'rgba(93, 46, 170, 0.2)',
   color: 'white',
-  zIndex: -1,
 };
 
 export default function CustList() {
@@ -64,7 +63,7 @@ export default function CustList() {
             overflow: 'hidden',
             color: 'white',
             marginTop: '0.5vh',
-            zIndex: 1,
+           
           }}
         >
           <Box sx={{ my: '2vw', mx: '2vw' }}>

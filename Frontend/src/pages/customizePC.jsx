@@ -4,6 +4,7 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
+import Footer from '../components/Footer';
 const theme = createTheme({
   typography: {
     fontFamily: 'poppins, montserrat, sans-serif', // Replace with your desired font
@@ -18,7 +19,7 @@ const backgroundStyle = {
   backgroundImage: 'url("https://hrc.in.th/wp-content/uploads/2023/01/IN-WIN-D-FRAME-8.jpg")',
   backgroundSize: 'cover',
   backgroundPosition: 'center',
-  zIndex:-1 
+  
 };
 const contentStyle = {
   position: 'absolute',
@@ -30,13 +31,14 @@ const contentStyle = {
   flexDirection: 'column',
   backgroundColor: 'rgba(0, 0, 0, 0.4)',
   color: 'white',
-  zIndex:-1
+  
 };
 const systemBuilderStyle = {
   fontSize: '5vw',
   textAlign: 'center',
   color: 'white',
   marginTop: '3vh', // Adjust the marginTop here to reduce spacing
+  
 };
 const customizePC = () => {
   return (
@@ -50,6 +52,7 @@ const customizePC = () => {
                 <b>System Builder</b>
               </Typography>
               <CustList style={{marginTop:'0vh'}}/>
+              <Footer style={{ zIndex: 2 , marginTop:'5vh'}}/>
             </div>
     
     
