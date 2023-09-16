@@ -23,7 +23,7 @@ export default function ProductCard() {
       <Box
         sx={{
           width: '100%',
-          maxWidth: '22.5vw',
+          maxWidth: '380px',
           position: 'relative',
           borderRadius: '2px',
           overflow: 'hidden',
