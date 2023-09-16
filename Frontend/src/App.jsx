@@ -1,6 +1,8 @@
 import { React, useState } from 'react'
 import routes from './routes/routes';
 import Navbar from './components/Navbar';
+import Footer from './components/Footer';
+
 
 
 import './App.css'
@@ -21,6 +23,7 @@ function App() {
                 <Route key={index} path= { route.path } element={<route.component />} />
               ))}
             </Routes>
+            <Footer/>
         </Router>}
     </>
   )
