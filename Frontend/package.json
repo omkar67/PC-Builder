@@ -15,13 +15,8 @@
     "@mui/icons-material": "^5.14.9",
     "@mui/material": "^5.14.9",
     "@mui/styled-engine-sc": "^5.14.8",
-<<<<<<< HEAD
     "@mui/system": "^5.14.9",
     "antd": "^5.9.0",
-=======
-    "modules": "^0.4.0",
-    "nuka-carousel": "^6.0.3",
->>>>>>> d8b8ad3 (commit1)
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.15.0",
