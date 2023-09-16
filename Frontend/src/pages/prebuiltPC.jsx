@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import SideBar from '../components/SideBar';
 import ProductCard from '../components/productCard';
 import { Stack } from '@mui/system';
@@ -6,14 +6,6 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 
 const prebuiltPC = () => {
   const containerRef = useRef(null);
-
-  useEffect(() => {
-    // Adjust the container's minHeight based on its content's height
-    if (containerRef.current) {
-      const containerHeight = containerRef.current.clientHeight;
-      containerRef.current.style.minHeight = `${containerHeight}px`;
-    }
-  }, []);
 
   const containerStyle = {
     display: 'flex',
@@ -29,7 +21,7 @@ const prebuiltPC = () => {
 
   const productCardStyle = {
     flex: '2',
-    marginLeft: '1vh',
+    marginLeft: '6vh',
   };
 
   const stackStyle = {
@@ -42,7 +34,7 @@ const prebuiltPC = () => {
     },
     backgroundColor:'#373538',
   });
-  
+  const num=4;
    // Define the marks for RAM slider
    const step_16_gb = [
     { value: 0, label: '0GB' },
@@ -83,14 +75,14 @@ const prebuiltPC = () => {
     marks:step_16_gb,
     min:0,
     max:48,
-    step:16
+    step:8
   }
   const vram={
     title:'VRAM',
     marks:vram_marks,
     min:2,
     max:12,
-    step:12
+    step:2
   }
   const price_det={
     title:'Price',
@@ -116,9 +108,69 @@ const prebuiltPC = () => {
   }
   const gpu={
     label:'GPU',
+    set1:{
     opt1:'Ge Force RTX',
     opt2:'Radeon RX',
+    },
+    set2:{
+      opt1:'Ge Force RTX TI',
+      opt2:'Radeon RX XT',
+      }
   }
+  const slider_count=4
+  const main_list={
+    0:price_det,
+    1:ram,
+    2:vram,
+    3:ssd, 
+  }
+  const maxProductCardsPerStack = 3;
+
+  // Calculate the number of product cards per stack based on screen width
+  const calculateProductCardsPerStack = () => {
+    const screenWidth = window.innerWidth;
+    console.log(window.innerWidth)
+    let productCardsPerStack = maxProductCardsPerStack;
+
+    if (screenWidth < 1000) {
+      productCardsPerStack = 1; // Adjust this based on your desired breakpoint
+    } else if (screenWidth < 1400) {
+      productCardsPerStack = 2; // Adjust this based on your desired breakpoint
+    }
+
+    return productCardsPerStack;
+  };
+  const totalProductCards = 9;
+  // Calculate the number of stacks based on the number of product cards
+  const calculateStacks = () => {
+    let productCardsPerStack = calculateProductCardsPerStack();
+     // Total number of product cards
+    let totalStacks = Math.ceil(totalProductCards / productCardsPerStack);
+    if((totalStacks*productCardsPerStack)<totalProductCards){
+      totalStacks+=1;
+    }
+    return totalStacks;
+  };
+
+  // Initialize state to hold the number of product cards per stack and the number of stacks
+  const [productCardsPerStack, setProductCardsPerStack] = useState(calculateProductCardsPerStack());
+  const [totalStacks, setTotalStacks] = useState(calculateStacks());
+
+  // Update the number of product cards per stack and the number of stacks when the screen is resized
+  const handleResize = () => {
+    setProductCardsPerStack(calculateProductCardsPerStack());
+    setTotalStacks(calculateStacks());
+  };
+  useEffect(() => {
+    // Listen for window resize events and update the layout
+    window.addEventListener('resize', handleResize);
+
+    // Clean up the event listener when the component unmounts
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
   return (
     <ThemeProvider theme={theme}>
       {/* Background image container */}
@@ -130,23 +182,24 @@ const prebuiltPC = () => {
         `}
       </style>
       <div style={containerStyle}>
-        <SideBar label1={price_det} label2={ram} label3={vram} label4={ssd} dropdown1={Cpu} dropdown2={gpu} categories={categories} cat_titles={cat_titles}/>
+        <SideBar dropdown1={Cpu} dropdown2={gpu} categories={categories} cat_titles={cat_titles} slider={main_list} sliderNum={slider_count}/>
         <div style={productCardStyle}>
-          <Stack direction="row" spacing={'0.5vw'} style={stackStyle}>
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-          </Stack>
-          <Stack direction="row" spacing={'0.5vw'} style={stackStyle}>
-            <ProductCard style={{ marginTop: '1vh' }} />
-            <ProductCard />
-            <ProductCard />
-          </Stack>
-          <Stack direction="row" spacing={'0.5vw'} style={stackStyle}>
-            <ProductCard style={{ marginTop: '1vh' }} />
-            <ProductCard />
-            <ProductCard />
-          </Stack>
+          {[...Array(totalStacks)].map((_, stackIndex) => {
+            // Determine how many product cards should be in this stack
+            const curr_stack=stackIndex+1;
+            let num=curr_stack*productCardsPerStack
+            const cardsInThisStack = stackIndex === totalStacks - 1 && num > totalProductCards ? 1 : productCardsPerStack;
+
+            // Render a stack with the appropriate number of product crds
+            return (
+              <Stack key={stackIndex} direction="row" spacing={'0.5vw'} style={stackStyle}>
+                {[...Array(cardsInThisStack)].map((_, cardIndex) => (
+                  // Render a product card with spacing
+                  <ProductCard key={cardIndex} style={{ marginTop: cardIndex > 0 ? '1vh' : '0' }} />
+                ))}
+              </Stack>
+            );
+          })}
         </div>
       </div>
     </ThemeProvider>

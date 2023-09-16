@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Box, Typography, Slider, FormControl, Select, MenuItem, Checkbox, FormControlLabel, FormGroup,InputLabel } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import PropTypes from 'prop-types';
@@ -25,7 +25,7 @@ const theme = createTheme({
         markLabel: {
           color: 'white',
           marginLeft: '1vw',
-          marginTop: '2vw',
+          marginTop: '1vw',
           visibility:true,
           display:true,
         },
@@ -70,7 +70,13 @@ const SideBar = (props) => {
   function valuetext(value) {
     return `${value}`;
   }
-
+  const[drop2,setdrop2]=useState(1)
+   const drop1_opt1_handler = () =>{
+      setdrop2(1)
+    }
+    const drop1_opt2_handler = () =>{
+      setdrop2(2)
+    }
   return (
     <ThemeProvider theme={theme}>
       <div style={style_box} ref={styleBoxRef}>
@@ -82,8 +88,8 @@ const SideBar = (props) => {
             <Select
               sx={{ color: 'white', backgroundColor: 'rgba(53, 14, 88, 0.5)', menuProps: { style: { backgroundColor: 'rgba(53, 14, 88, 0.5)' } }, borderBlockColor: 'white', '& .MuiSelect-icon': { color: 'white' }, '& fieldset': { borderColor: 'white' } }}
             >
-              <MenuItem value="Intel" style={{ color: 'white', backgroundColor: 'rgba(53, 14, 88, 0.5)' }}>{props.dropdown1.opt1}</MenuItem>
-              <MenuItem value="AMD" style={{ color: 'white', backgroundColor: 'rgba(53, 14, 88, 0.5)' }}>{props.dropdown1.opt2}</MenuItem>
+              <MenuItem value="Intel" onClick={drop1_opt1_handler} style={{ color: 'white', backgroundColor: 'rgba(53, 14, 88, 0.5)' }}>{props.dropdown1.opt1}</MenuItem>
+              <MenuItem value="AMD" onClick={drop1_opt2_handler} style={{ color: 'white', backgroundColor: 'rgba(53, 14, 88, 0.5)' }}>{props.dropdown1.opt2}</MenuItem>
               {/* Add more CPU options here */}
             </Select>
           </FormControl>
@@ -93,63 +99,35 @@ const SideBar = (props) => {
             <Select
               sx={{ color: 'white', backgroundColor: 'rgba(53, 14, 88, 0.5)', menuProps: { style: { backgroundColor: 'rgba(53, 14, 88, 0.5)' } }, borderBlockColor: 'white', '& .MuiSelect-icon': { color: 'white' }, '& fieldset': { borderColor: 'white' } }}
             >
-              <MenuItem value="gpu1" style={{ color: 'white', backgroundColor: 'rgba(53, 14, 88, 0.5)', textAlign: 'center' }}> {props.dropdown2.opt1}</MenuItem>
-              <MenuItem value="gpu2" style={{ color: 'white', backgroundColor: 'rgba(53, 14, 88, 0.5)', textAlign: 'center' }}>{props.dropdown2.opt2}</MenuItem>
+              <MenuItem value="gpu1" style={{ color: 'white', backgroundColor: 'rgba(53, 14, 88, 0.5)', textAlign: 'center' }}> {drop2===2?props.dropdown2.set1.opt1:props.dropdown2.set2.opt1}</MenuItem>
+              <MenuItem value="gpu2" style={{ color: 'white', backgroundColor: 'rgba(53, 14, 88, 0.5)', textAlign: 'center' }}>{drop2===2?props.dropdown2.set1.opt2:props.dropdown2.set2.opt2}</MenuItem>
               {/* Add more GPU options here */}
             </Select>
           </FormControl>
 
-          <FormControl fullWidth margin="normal" style={{ marginLeft: '1.5vw' }}>
-            <Slider defaultValue={2} getAriaValueText={valuetext} step={props.label1.step} min={props.label1.min} max={props.label1.max} valueLabelDisplay="auto" markLabel='visible' marks={props.label1.mark} style={{ width: '20vw', '& .MuiSlider-markLabel': { color: 'white' } }} />
-            <InputLabel
-              sx={{
-                color: 'white',
-                textAlign: 'center',
-                fontSize: '1.5rem'
-              }}
-            >
-              {props.label1.title}
-            </InputLabel>
-          </FormControl>
-          <FormControl fullWidth margin="normal" style={{ marginLeft: '1.5vw', marginTop: '4vh' }}>
-            <Slider defaultValue={500} getAriaValueText={valuetext} step={props.label2.step} min={props.label2.min} max={props.label2.max} valueLabelDisplay="off" marks={props.label2.mark} style={{ width: '20vw', '& .MuiSlider-markLabel': { color: 'white' } }} />
-            <InputLabel
-              sx={{
-                color: 'white',
-                textAlign: 'center',
-                fontSize: '1.5rem'
-              }}
-            >
-              {props.label2.title}
-            </InputLabel>
-          </FormControl>
+{/* sliders start here  */}
 
-          <FormControl fullWidth margin="normal" style={{ marginLeft: '1.5vw', marginTop: '4vh' }}>
-            <Slider defaultValue={2} getAriaValueText={valuetext} step={props.label3.step} min={props.label3.min} max={props.label3.max} valueLabelDisplay="auto" marks={props.label3.mark} style={{ width: '20vw', '& .MuiSlider-markLabel': { color: 'white' } }} />
-            <InputLabel
-              sx={{
-                color: 'white',
-                textAlign: 'center',
-                fontSize: '1.5rem'
-              }}
-            >
-              {props.label3.title}
-            </InputLabel>
-          </FormControl>
-
-          <FormControl fullWidth margin="normal" style={{ marginLeft: '1.5vw', marginTop: '4vh' }}>
-            <Slider defaultValue={2} getAriaValueText={valuetext} step={props.label4.step} min={props.label4.min} max={props.label4.max} valueLabelDisplay="auto" marks={props.label4.mark} style={{ width: '20vw', '& .MuiSlider-markLabel': { color: 'white' } }} />
-            <InputLabel
-              sx={{
-                color: 'white',
-                textAlign: 'center',
-                fontSize: '1.5rem'
-              }}
-            >
-              {props.label4.title}              
-            </InputLabel>
-          </FormControl>
-
+          <div id='sliders'>
+            {
+              [...Array(props.sliderNum)].map((_, currIndex)=>{
+                return(
+                <FormControl fullWidth margin="normal" style={{ marginLeft: '1.5vw' }} key={currIndex}>
+                <Slider  defaultValue={props.slider[currIndex].min} getAriaValueText={valuetext} step={props.slider[currIndex].step} min={props.slider[currIndex].min} max={props.slider[currIndex].max} valueLabelDisplay="auto" markLabel='visible' marks={props.slider[currIndex].marks} style={{ width: '20vw', '& .MuiSlider-markLabel': { color: 'white' } }} />
+                <InputLabel
+                  sx={{
+                    color: 'white',
+                    textAlign: 'center',
+                    fontSize: '1.5rem'
+                  }}
+                >
+                  {props.slider[currIndex].title}
+                </InputLabel>
+              </FormControl>
+              )
+              })
+              }
+  
+        </div>{/* slider ends here*/}
           <FormGroup style={{ marginLeft: '2vw', marginTop: '5vh', fontSize:'2rem' }}>
             <Typography variant="subtitle1" style={{ color: 'white',fontSize:'2rem'  }}>{props.categories}</Typography>
             {props.cat_titles.map((category) => (
