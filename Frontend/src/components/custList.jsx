@@ -50,6 +50,7 @@ export default function CustList() {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'flex-start',
+        marginTop:'1vh'
       }}
     >
       <ThemeProvider theme={theme}>
