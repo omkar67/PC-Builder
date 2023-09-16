@@ -94,16 +94,6 @@ function Footer() {
             <p>Phone: +91 987654321</p>
           </div>
           <div className="col-md-4">
-            <h3>Quick Links</h3>
-            <ul className="footer-links">
-              <li><a href="/">Home</a></li>
-              <li><a href="/preBuiltPC">Pre Built PC's</a></li>
-              <li><a href="/customizePC">Customized PC's</a></li>
-              <li><a href="/about">About Us</a></li>
-              <li><a href="/contactUs">Contact Us</a></li>
-            </ul>
-          </div>
-          <div className="col-md-4">
             <h3>Newsletter</h3>
             <p>Subscribe to our newsletter for updates:</p>
             <div className="newsletter-form">
