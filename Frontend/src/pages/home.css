@@ -1,0 +1,41 @@
+.slide-content {
+    position: relative;
+  }
+  
+  .carousel-image {
+    width: 1550px;
+    height: 600px;
+  }
+  
+  .overlay-text {
+    position: absolute;
+    top: 30%; 
+    left: 20%;
+    transform: translate(-50%);
+    color: white;
+    text-align: left;
+    font-size: 30px;
+  }
+  
+  /* Additional styling for the button if needed */
+  .overlay-text button {
+    display: inline-block; /* Changed from block to inline-block */
+    margin-top: 10px;
+    padding: 10px 15px;
+    background-color: blue;
+    border: none;
+    color: white;
+    cursor: pointer;
+  }
+  
+  /* Style for the right button */
+  .overlay-text .right-btn {
+    background-color: red; /* Change this to your preferred color */
+    margin-left: 10px; /* Creates some spacing between the two buttons */
+  }
+  
+  /* If you want to customize the left button separately */
+  .overlay-text .left-btn {
+    background-color: blue; /* Change this if needed */
+  }
+  
