@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Box, Typography, Slider, FormControl, Select, MenuItem, Checkbox, FormControlLabel, FormGroup,InputLabel } from '@mui/material';
+import { Box, Typography, Slider, FormControl, Select, MenuItem, Checkbox, FormControlLabel, FormGroup, InputLabel } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import PropTypes from 'prop-types';
-// Create a theme
+
 const theme = createTheme({
   typography: {
     fontFamily: 'poppins, montserrat, sans-serif',
@@ -24,10 +24,10 @@ const theme = createTheme({
         },
         markLabel: {
           color: 'white',
-          marginLeft: '1vw',
+          marginLeft: '0.25vw',
           marginTop: '1vw',
-          visibility:true,
-          display:true,
+          visibility: true,
+          display: true,
         },
       },
     },
@@ -53,11 +53,9 @@ const SideBar = (props) => {
     };
   }, []);
 
-  const categories = ['Nimble', 'Edge', 'Titan'];
-
   // Define the style for the sidebar container
   const style_box = {
-    width: '25vw',
+    width: '22vw',
     minHeight: '90vh',
     backgroundColor: 'rgba(53, 14, 88, 0.5)',
     color: 'white',
@@ -65,92 +63,110 @@ const SideBar = (props) => {
     borderRadius: '15px'
   };
 
- 
-
   function valuetext(value) {
     return `${value}`;
   }
-  const[drop2,setdrop2]=useState(1)
-   const drop1_opt1_handler = () =>{
-      setdrop2(1)
-    }
-    const drop1_opt2_handler = () =>{
-      setdrop2(2)
-    }
+
+  const [selectedDropdownValues, setSelectedDropdownValues] = useState({});
+
   return (
     <ThemeProvider theme={theme}>
       <div style={style_box} ref={styleBoxRef}>
         <Box sx={{ height: '100%', color: 'white', borderRadius: '15px' }}>
           <Typography variant="h3" style={{ textAlign: 'center', marginTop: '0.5vh' }}>Filters</Typography>
+          {/* DROPDOWNS START HERE */}
+          <div id='dropdowns'>
+            {props.drop && Object.keys(props.drop).map((dropIndex) => {
+              return (
+                <FormControl fullWidth margin="normal" style={{ marginTop: '1vh', width: '20vw', marginLeft: '1vw' }} key={dropIndex}>
+                  <InputLabel style={{ color: 'white' }}>{props.drop[dropIndex].label}</InputLabel>
+                  <Select
+                    sx={{
+                      color: 'white',
+                      backgroundColor: 'rgba(53, 14, 88, 0.5)',
+                      menuProps: { style: { backgroundColor: 'rgba(53, 14, 88, 0.5)' } },
+                      borderBlockColor: 'white',
+                      '& .MuiSelect-icon': { color: 'white' },
+                      '& fieldset': { borderColor: 'white' },
+                    }}
+                    value={selectedDropdownValues[dropIndex] || ''}
+                    onChange={(event) => {
+                      const value = event.target.value;
+                      setSelectedDropdownValues((prevValues) => ({
+                        ...prevValues,
+                        [dropIndex]: value,
+                      }));
+                    }}
+                  >
+                    {props.drop[dropIndex].dropOpt && Object.keys(props.drop[dropIndex].dropOpt).map((dropOptIndex) => {
+                      return (
+                        <MenuItem value={dropOptIndex} style={{ color: 'white', backgroundColor: 'rgba(53, 14, 88, 2)' }} key={dropOptIndex}>
+                          {props.drop[dropIndex].dropOpt[dropOptIndex]}
+                        </MenuItem>
+                      );
+                    })}
+                  </Select>
+                </FormControl>
+              );
+            })}
+          </div>
+          {/* DROPDOWNS END HERE */}
 
-          <FormControl fullWidth margin="normal" style={{ marginTop: '1vh' }}>
-            <InputLabel style={{ color: 'white' }}>{props.dropdown1.label}</InputLabel>
-            <Select
-              sx={{ color: 'white', backgroundColor: 'rgba(53, 14, 88, 0.5)', menuProps: { style: { backgroundColor: 'rgba(53, 14, 88, 0.5)' } }, borderBlockColor: 'white', '& .MuiSelect-icon': { color: 'white' }, '& fieldset': { borderColor: 'white' } }}
-            >
-              <MenuItem value="Intel" onClick={drop1_opt1_handler} style={{ color: 'white', backgroundColor: 'rgba(53, 14, 88, 0.5)' }}>{props.dropdown1.opt1}</MenuItem>
-              <MenuItem value="AMD" onClick={drop1_opt2_handler} style={{ color: 'white', backgroundColor: 'rgba(53, 14, 88, 0.5)' }}>{props.dropdown1.opt2}</MenuItem>
-              {/* Add more CPU options here */}
-            </Select>
-          </FormControl>
-
-          <FormControl fullWidth margin="normal">
-            <InputLabel style={{ color: 'white' }}>{props.dropdown2.label}</InputLabel>
-            <Select
-              sx={{ color: 'white', backgroundColor: 'rgba(53, 14, 88, 0.5)', menuProps: { style: { backgroundColor: 'rgba(53, 14, 88, 0.5)' } }, borderBlockColor: 'white', '& .MuiSelect-icon': { color: 'white' }, '& fieldset': { borderColor: 'white' } }}
-            >
-              <MenuItem value="gpu1" style={{ color: 'white', backgroundColor: 'rgba(53, 14, 88, 0.5)', textAlign: 'center' }}> {drop2===2?props.dropdown2.set1.opt1:props.dropdown2.set2.opt1}</MenuItem>
-              <MenuItem value="gpu2" style={{ color: 'white', backgroundColor: 'rgba(53, 14, 88, 0.5)', textAlign: 'center' }}>{drop2===2?props.dropdown2.set1.opt2:props.dropdown2.set2.opt2}</MenuItem>
-              {/* Add more GPU options here */}
-            </Select>
-          </FormControl>
-
-{/* sliders start here  */}
-
+          {/* SLIDERS START HERE */}
           <div id='sliders'>
-            {
-              [...Array(props.sliderNum)].map((_, currIndex)=>{
-                return(
-                <FormControl fullWidth margin="normal" style={{ marginLeft: '1.5vw' }} key={currIndex}>
-                <Slider  defaultValue={props.slider[currIndex].min} getAriaValueText={valuetext} step={props.slider[currIndex].step} min={props.slider[currIndex].min} max={props.slider[currIndex].max} valueLabelDisplay="auto" markLabel='visible' marks={props.slider[currIndex].marks} style={{ width: '20vw', '& .MuiSlider-markLabel': { color: 'white' } }} />
-                <InputLabel
-                  sx={{
-                    color: 'white',
-                    textAlign: 'center',
-                    fontSize: '1.5rem'
-                  }}
-                >
-                  {props.slider[currIndex].title}
-                </InputLabel>
-              </FormControl>
-              )
-              })
-              }
-  
-        </div>{/* slider ends here*/}
-          <FormGroup style={{ marginLeft: '2vw', marginTop: '5vh', fontSize:'2rem' }}>
-            <Typography variant="subtitle1" style={{ color: 'white',fontSize:'2rem'  }}>{props.categories}</Typography>
-            {props.cat_titles.map((category) => (
-              <FormControlLabel key={category} control={<Checkbox name={category} style={{ color: '#BB84EC',fontSize:'2rem' }} />} label={category} />
-            ))}
-          </FormGroup>
+            {props.slider && [...Array(props.sliderNum)].map((_, currIndex) => {
+              return (
+                <FormControl fullWidth margin="normal" style={{ marginLeft: '1vw' }} key={currIndex}>
+                  <Slider
+                    defaultValue={props.slider[currIndex].min}
+                    getAriaValueText={valuetext}
+                    step={props.slider[currIndex].step}
+                    min={props.slider[currIndex].min}
+                    max={props.slider[currIndex].max}
+                    valueLabelDisplay="auto"
+                    valueLabelFormat={(value) => {
+                      return `${value}`;
+                    }}
+                    marks={props.slider[currIndex].marks}
+                    style={{ width: '18vw' }}
+                  />
+                  <InputLabel
+                    sx={{
+                      color: 'white',
+                      textAlign: 'center',
+                      fontSize: '1.5rem'
+                    }}
+                  >
+                    {props.slider[currIndex].title}
+                  </InputLabel>
+                </FormControl>
+              );
+            })}
+          </div>
+          {/* SLIDERS END HERE */}
+          {/* CHECKBOXES START HERE */}
+          <div id='checkboxes'>
+            {props.checkboxCategories &&
+              Object.keys(props.checkboxCategories).map((index) => {
+                const category = props.checkboxCategories[index];
+                return (
+                  <FormGroup style={{ marginLeft: '1vw', marginTop: '5vh', fontSize: '2rem' }} key={category.title}>
+                    <Typography variant="subtitle1" style={{ color: 'white', fontSize: '2rem' }}>{category.title}</Typography>
+                    {category.options && Object.keys(category.options).map((optionIndex) => {
+                      const option = category.options[optionIndex];
+                      return (
+                        <FormControlLabel key={option} control={<Checkbox name={option} style={{ color: '#BB84EC', fontSize: '2rem' }} />} label={option} />
+                      );
+                    })}
+                  </FormGroup>
+                );
+              })}
+          </div>
+          {/* CHECKBOXES END HERE */}
         </Box>
       </div>
     </ThemeProvider>
   );
 };
 
-export default SideBar; // Remove the colon after SideBar
-
-SideBar.propTypes={
-  label1: PropTypes.object.isRequired,
-  label2: PropTypes.object.isRequired,
-  label3: PropTypes.object.isRequired,
-  label4: PropTypes.object.isRequired,
-  categories: PropTypes.string.isRequired,
-  cat_titles: PropTypes.array.isRequired,
-  dropdown1: PropTypes.object.isRequired,
-  dropdown2: PropTypes.object.isRequired,
-}
-
-
+export default SideBar;

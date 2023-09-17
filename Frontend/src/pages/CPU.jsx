@@ -1,28 +1,30 @@
 import React from 'react'
 import SideBar from '../components/SideBar'
 const CPU = () => {
-    const d1={
-        label:'Manufacturer',
-        opt1:'AMD',
-        opt2:'Intel'
-    }
-    const gen1={
-        opt1:'14 NM',
-        opt2: '12 NM'
-    }
-    const gen2={
-        opt1:'12th Gen',
-        opt2: '13th Gen'
-    }
+  const d1 = {
+    label: 'Manufacturer',
+    dropOpt: {
+      0: 'AMD',
+      1: 'Intel',
+    },
+  };
     const d2={
-        label:'Generation',
-        set1:gen1,
-        set2:gen2,
+          label:'Generation',
+          dropOpt:{
+                0:'14 NM',
+                1: '12 NM',
+                2:'12th Gen',
+                3: '13th Gen',}
+        }
+      
+    const drop_1={
+      0:d1,
+      1:d2,
     }
     const cores={
         title:'Cores',
         min:2,
-        max:12,
+        max:64,
         step:2,
         marks:[
             {value:2,label:'2'},
@@ -54,19 +56,13 @@ const CPU = () => {
 
         ],
     }
-    const price_mark = [
-        { value: 50, label: '50$' },
-        { value: 100,label: ' ' },
-        { value: 150,label: ' ' },
-        { value: 200,label: ' ' },
-        { value: 500, label: '500$' }
-      ];
+    
       const price={
         title:'Price',
-        marks:price_mark,
-        min:500,
-        max:2500,
-        step:500,
+        marks:[],
+        min:50,
+        max:500,
+        step:5,
       }
     
     const tdp={
@@ -90,7 +86,38 @@ const CPU = () => {
         2:MaxFrequency,
         3:tdp,
     }
-
+    const checkbox = {
+      0: {
+        title: 'Integrated Graohics',
+        options: {
+          0: 'Yes',
+          1: 'No',
+          // Add more options as needed
+        },
+      },
+      1: {
+        title: 'Overclockable',
+        options: {
+          0: 'Yes',
+          1: 'No',
+          // Add more options as needed
+        },
+      },
+      // Add more categories as needed
+    };
+    const containerStyle = {
+      display: 'flex',
+      flexDirection: 'row',
+    };
+    const productCardStyle = {
+      flex: '2',
+      marginLeft: '6vh',
+    };
+    const stackStyle = {
+      marginTop: '1vh',
+    };
+  const cat_titles=['Yes','NO']
+  const cat_label='Integrated Graphics'
   return (
     <>
     <style>
@@ -100,11 +127,12 @@ const CPU = () => {
           }
         `}
       </style>
-    <div>
-      <SideBar dropdown1={d1} dropdown2={d2} slider={main_slider} sliderNum={slider_Num} ></SideBar>
-    </div>
+   
+      <SideBar drop={drop_1} slider={main_slider} sliderNum={slider_Num} checkboxCategories={checkbox}></SideBar>
+   
     </>
   )
 }
+
 
 export default CPU

@@ -6,6 +6,7 @@ import contactUs from '../pages/contactUs';
 import Cart from '../pages/Cart';
 import customizePC from '../pages/customizePC'
 import prebuiltPC from '../pages/prebuiltPC';
+import CPU from '../pages/CPU';
 
 const routes = [
     {
@@ -32,6 +33,10 @@ const routes = [
     {
         path: '/customizePC',
         component: customizePC,
+    },
+    {
+        path:'/CPU',
+        component: CPU,
     },
     
 ];

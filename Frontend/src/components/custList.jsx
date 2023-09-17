@@ -125,6 +125,7 @@ export default function CustList() {
                         marginTop: '1vw',
                       }}
                      style={{marginLeft:'13.5vw',width:'15vw'}}
+                     onClick={()=>nav('/CPU')}
                     >
                       +Add
                     </Button>
