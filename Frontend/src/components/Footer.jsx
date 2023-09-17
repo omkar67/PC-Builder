@@ -3,7 +3,7 @@ import 'font-awesome/css/font-awesome.min.css';
 
 function Footer() {
   return (
-    <footer className="footer" style={{ backgroundColor: '#373538', color: 'white' }}>
+    <footer className="footer" style={{ backgroundColor: '#373538', color: 'white',marginTop:'1vh' }}>
       <style>
         {`
           .footer {
