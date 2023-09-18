@@ -83,39 +83,50 @@ const prebuiltPC = () => {
     min:2,
     max:12,
     step:2
-  }
+  };
   const price_det={
     title:'Price',
     marks:price,
     min:500,
     max:2500,
     step:500,
-  }
+  };
   const ssd={
     title:'Storage',
     marks:ssd_marks,
     min:500,
     max:2500,
     step:500,
-  }
+  };
 
-  const cat_titles=['Nimble','Edge','Titan']
-  const categories='Model'
+  const chk_main={
+          0:{
+            title:'Model',
+            options:{
+              0:'Nimble',
+              1:'Edge',
+              2:'Titan',
+            }
+          },
+    };
   const Cpu={
     label:'CPU',
-    opt1:'Intel',
-    opt2:'AMD',
+    dropOpt:{
+      0:'Intel',
+      1: 'AMD',
+            }
   }
   const gpu={
     label:'GPU',
-    set1:{
-    opt1:'Ge Force RTX',
-    opt2:'Radeon RX',
-    },
-    set2:{
-      opt1:'Ge Force RTX TI',
-      opt2:'Radeon RX XT',
-      }
+    dropOpt:{
+      0:'RTX Series',
+      1: 'GTX Series',
+      2:'RXT Series',
+      3: 'TI series',}
+  }
+  const dropmain={
+    0:Cpu,
+    1:gpu,
   }
   const slider_count=4
   const main_list={
@@ -129,7 +140,7 @@ const prebuiltPC = () => {
   // Calculate the number of product cards per stack based on screen width
   const calculateProductCardsPerStack = () => {
     const screenWidth = window.innerWidth;
-    console.log(window.innerWidth)
+
     let productCardsPerStack = maxProductCardsPerStack;
 
     if (screenWidth < 1000) {
@@ -182,7 +193,7 @@ const prebuiltPC = () => {
         `}
       </style>
       <div style={containerStyle}>
-        <SideBar dropdown1={Cpu} dropdown2={gpu} categories={categories} cat_titles={cat_titles} slider={main_list} sliderNum={slider_count}/>
+        <SideBar drop={dropmain} checkboxCategories={chk_main} slider={main_list} sliderNum={slider_count}/>
         <div style={productCardStyle}>
           {[...Array(totalStacks)].map((_, stackIndex) => {
             // Determine how many product cards should be in this stack
