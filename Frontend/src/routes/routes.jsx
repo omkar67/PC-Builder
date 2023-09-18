@@ -6,6 +6,8 @@ import contactUs from '../pages/contactUs';
 import Cart from '../pages/Cart';
 import customizePC from '../pages/customizePC'
 import prebuiltPC from '../pages/prebuiltPC';
+import loginPage from '../pages/loginPage';
+import signUpPage from '../pages/signUpPage';
 
 const routes = [
     {
@@ -14,6 +16,15 @@ const routes = [
         exact: true,
     },
     {
+        path: '/login',
+        component: loginPage
+    },
+    {
+        path: '/signup',
+        component: signUpPage
+    },
+    {
+
         path: '/About',
         component: About,
     },

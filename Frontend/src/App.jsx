@@ -12,9 +12,9 @@ function App() {
   
   return (
     <>
+
+
     {  <Router>
-      
-            <Navbar/>
             <Routes>
               {routes.map((route, index)=>(
                 <Route key={index} path= { route.path } element={<route.component />} />
