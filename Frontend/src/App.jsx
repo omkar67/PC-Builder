@@ -1,6 +1,7 @@
 import { React, useState } from 'react'
 import routes from './routes/routes';
 import Navbar from './components/Navbar';
+import Footer from './components/Footer';
 
 import './App.css'
 
@@ -13,14 +14,21 @@ function App() {
   return (
     <>
 
+<<<<<<< HEAD
 
     {  <Router>
+=======
+    
+    {  <Router>
+      <Navbar/>
+>>>>>>> main
             <Routes>
               {routes.map((route, index)=>(
                 <Route key={index} path= { route.path } element={<route.component />} />
               ))}
             </Routes>
-        </Router>}
+            <Footer/>
+        </Router>}      
     </>
   )
 }

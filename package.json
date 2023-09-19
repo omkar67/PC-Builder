@@ -1,0 +1,13 @@
+{
+  "dependencies": {
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@fontsource/roboto": "^5.0.8",
+    "@mui/icons-material": "^5.14.9",
+    "@mui/material": "^5.14.9",
+    "@mui/styled-engine-sc": "^5.14.9",
+    "nuka-carousel": "^6.0.3",
+    "react-router-dom": "^6.15.0",
+    "styled-components": "^5.3.11"
+  }
+}

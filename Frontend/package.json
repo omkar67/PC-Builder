@@ -12,14 +12,21 @@
   "dependencies": {
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
+<<<<<<< HEAD
     "@fontsource/roboto": "^5.0.8",
+=======
+>>>>>>> main
     "@mui/icons-material": "^5.14.9",
     "@mui/material": "^5.14.9",
     "@mui/styled-engine-sc": "^5.14.8",
+    "@mui/system": "^5.14.9",
+    "antd": "^5.9.1",
+    "font-awesome": "^4.7.0",
+    "nuka-carousel": "^6.0.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.15.0",
-    "swiper": "^10.2.0"
+    "swiper": "^7.4.1"
   },
   "devDependencies": {
     "@types/react": "^18.2.15",

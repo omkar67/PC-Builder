@@ -6,12 +6,14 @@ import Stack from '@mui/material/Stack';
 import Divider from '@mui/material/Divider';
 import Typography from '@mui/material/Typography';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { useNavigate } from 'react-router-dom';
 
 const theme = createTheme({
   typography: {
     fontFamily: 'poppins, montserrat, sans-serif',
   },
 });
+
 
 const backgroundStyle = {
   position: 'absolute',
@@ -23,7 +25,7 @@ const backgroundStyle = {
     'url("https://hrc.in.th/wp-content/uploads/2022/11/LIAN-LI-ODYSSEY-X-SKY.EYE-14.jpg")',
   backgroundSize: 'cover',
   backgroundPosition: 'center',
-  zIndex: -1,
+  
 };
 
 const contentStyle = {
@@ -37,16 +39,18 @@ const contentStyle = {
   alignItems: 'center',
   backgroundColor: 'rgba(93, 46, 170, 0.2)',
   color: 'white',
-  zIndex: -1,
 };
 
 export default function CustList() {
+  const nav = useNavigate();
   return (
+    
     <div
       style={{
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'flex-start',
+        marginTop:'1vh'
       }}
     >
       <ThemeProvider theme={theme}>
@@ -59,8 +63,8 @@ export default function CustList() {
             borderRadius: '4.5vw',
             overflow: 'hidden',
             color: 'white',
-            marginTop: '6vh',
-            zIndex: 1,
+            marginTop: '0.5vh',
+           
           }}
         >
           <Box sx={{ my: '2vw', mx: '2vw' }}>
@@ -121,6 +125,7 @@ export default function CustList() {
                         marginTop: '1vw',
                       }}
                      style={{marginLeft:'13.5vw',width:'15vw'}}
+                     onClick={()=>nav('/CPU')}
                     >
                       +Add
                     </Button>
@@ -415,6 +420,7 @@ export default function CustList() {
                       
                       }}
                      style={{marginLeft:'7vw', textDecoration:'underline', marginTop: '-0.5vw',}}
+                     onClick={()=>nav('/Cart')}
                     >
                       Proceed to Cart
                     </Button>
