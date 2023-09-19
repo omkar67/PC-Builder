@@ -1,10 +1,3 @@
-<<<<<<< HEAD
-import React from 'react'
-import { Swiper, SwiperSlide } from 'swiper/react';
-import img1 from '../Images/img1.jpg'
-// Import Swiper styles
-import 'swiper/css';
-=======
 import React from 'react';
 import img1 from '../Images/img1.jpg';
 import img2 from '../Images/img2.jpg';
@@ -20,7 +13,6 @@ import { Card, CardContent, CardMedia, Typography, Box, Grid } from '@mui/materi
 import { styled } from '@mui/material/styles';
 import Navbar from '../components/Navbar';
 
->>>>>>> main
 
 const StyledCard = styled(Card)(({ theme }) => ({
   height: '400px',
@@ -61,22 +53,6 @@ const cardData = [
 ];
 const GuideSection = () => {
   return (
-<<<<<<< HEAD
-    <div>
-       <Swiper
-      spaceBetween={50}
-      slidesPerView={1}
-      onSlideChange={() => console.log('slide change')}
-      onSwiper={(swiper) => console.log(swiper)}
-    >
-      <SwiperSlide><img src= {img1} alt="cpu" style={{width:"100%"}}/></SwiperSlide>
-      <SwiperSlide><img src="https://hrc.in.th/wp-content/uploads/2023/08/LIAN-LI-PC-O11-DYNAMIC-EVO-10.jpg" alt="cpu"style={{width:"100%", height: "100%"}}/></SwiperSlide>
-      <SwiperSlide><img src="https://hrc.in.th/wp-content/uploads/2023/02/NZXT-H9-ELITE-SUMMON-7.jpg" alt="cpu"style={{width:"100%"}} /></SwiperSlide>
-      <SwiperSlide><img src="https://hrc.in.th/wp-content/uploads/2023/05/THERMALTAKE-CORE-P8-TEMPERED-GLASS-BLACK-NN.-4.jpg" alt="cpu"style={{width:"100%"}} /></SwiperSlide>
-      ...
-    </Swiper>
-    </div>
-=======
     <Box padding={4} bgcolor="black" color="cyan">
           <Typography variant="h4" gutterBottom align="center">
               How to Build Your PC
@@ -118,7 +94,6 @@ const GuideSection = () => {
               Once everything is connected, power up your machine. If everything is set up correctly, you should see the boot screen. Install your preferred operating system, and you're good to go!
           </Typography>
       </Box>
->>>>>>> main
   )
 }
 

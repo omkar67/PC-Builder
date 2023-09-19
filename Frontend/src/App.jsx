@@ -14,14 +14,9 @@ function App() {
   return (
     <>
 
-<<<<<<< HEAD
-
-    {  <Router>
-=======
     
     {  <Router>
       <Navbar/>
->>>>>>> main
             <Routes>
               {routes.map((route, index)=>(
                 <Route key={index} path= { route.path } element={<route.component />} />

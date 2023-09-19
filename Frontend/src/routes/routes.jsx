@@ -6,12 +6,9 @@ import contactUs from '../pages/contactUs';
 import Cart from '../pages/Cart';
 import customizePC from '../pages/customizePC'
 import prebuiltPC from '../pages/prebuiltPC';
-<<<<<<< HEAD
-import loginPage from '../pages/loginPage';
-import signUpPage from '../pages/signUpPage';
-=======
 import CPU from '../pages/CPU';
->>>>>>> main
+import loginPage from "../pages/loginPage";
+import signUpPage from "../pages/signUpPage"
 
 const routes = [
     {
