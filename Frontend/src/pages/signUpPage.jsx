@@ -57,7 +57,7 @@ const signUpPage = () => {
 
 
         <Box className="banner">
-          <Typography variant= 'h2' sx ={{mt:11, ml: 10,color: '#FFFFFD'}} > Welcome to VirtuTech </Typography>
+          <Typography variant= 'h2' sx ={{mt:10, ml: 10,color: '#FFFFFD'}} > Welcome to VirtuTech </Typography>
           <Typography variant= 'subtitle1' sx ={{ml: 10,color: '#FFFFFD'}} > One stop place for Ultimate Builders </Typography>
         </Box>
         

@@ -77,7 +77,7 @@ const LoginForm = () => {
 
       
         <Box className="LoginBox" 
-         sx = {{backgroundColor: '#1C1D21', height : '100vh', width: "45%",
+         sx = {{backgroundColor: '#1C1D21', height : '100vh', width: "40%",
                 display: "flex",
                 flexDirection: 'column',
                 flexWrap: 'wrap',
