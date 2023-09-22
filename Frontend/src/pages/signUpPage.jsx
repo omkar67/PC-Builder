@@ -134,23 +134,26 @@ const signUpPage = () => {
                       }
                     />
                 </FormControl>
+                  
+                  <Box sx={{width: "100%", textAlign: "center"}}>
+                    <StyledButton variant="contained" sx ={{mb : 1,mt: 2, mr: 8, width: '45ch', backgroundColor: "#08A9E9" , borderRadius: "15px" , }}> Sign Up</StyledButton>
+                  </Box>
+
                 
-                
-                <Typography variant = "h6" sx ={{ mb: 0,mt: 2 , mr: 8,color: '#FFFFFD' , textAlign: "center"}}> or </Typography>
+                <Typography variant = "h6" sx ={{ mb: 0,mt: 0 , mr: 8,color: '#FFFFFD' , textAlign: "center"}}> or </Typography>
               </Box>
 
+              
               
 
               <Box className="SocialLinks" sx = {{display: "flex", width:"100%" , justifyContent: "space-evenly"}}>
                 <Button variant = "contained" 
                 startIcon = {<img width="21" height="21" src="https://img.icons8.com/color/48/google-logo.png" alt="google-logo"/>}
-                sx= {{backgroundColor: "#FFFFFD" , color: "Black"}}> Continue with Google </Button>
-                <Button variant = "contained" startIcon ={<FacebookRoundedIcon/>}> Continue with Facebook </Button>
+                sx= {{backgroundColor: "#FFFFFD" , color: "Black", borderRadius: "50px"}}>Google</Button>
+                <Button variant = "contained" startIcon ={<FacebookRoundedIcon/>} sx = {{borderRadius: "50px"}}>Facebook</Button>
               </Box>
               
-              <Box sx={{width: "100%", textAlign: "center"}}>
-                <StyledButton variant="contained" sx ={{mb : 1,mt: 2, width: '45ch', backgroundColor: "#08A9E9" , borderRadius: "15px" , }}> Sign Up</StyledButton>
-              </Box>
+              
               
               
 
