@@ -5,6 +5,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Footer from '../components/Footer';
+import Navbar from '../components/Navbar';
 const theme = createTheme({
   typography: {
     fontFamily: 'poppins, montserrat, sans-serif', // Replace with your desired font
@@ -15,6 +16,8 @@ const theme = createTheme({
 const customizePC = () => {
   return (
   
+    <>
+      
         <ThemeProvider theme={theme}>
         
             {/* Background image container */}
@@ -37,6 +40,8 @@ const customizePC = () => {
     
     
         </ThemeProvider>
+
+        </>
       );
     }
 

@@ -11,6 +11,7 @@ import './home.css'
 import { Link } from 'react-router-dom';
 import { Card, CardContent, CardMedia, Typography, Box, Grid } from '@mui/material';
 import { styled } from '@mui/material/styles';
+import Navbar from '../components/Navbar';
 
 
 const StyledCard = styled(Card)(({ theme }) => ({
@@ -99,6 +100,8 @@ const GuideSection = () => {
 const Home = () => {
   const classes = StyledCard;
   return (
+    <>
+    
     <Box bgcolor="black" color="white" style={{ minHeight: '100vh' }}>
       <div>
         <Carousel
@@ -233,7 +236,8 @@ const Home = () => {
         
       </div>
     </Box>
-
+  
+    </>
 
   )
 }

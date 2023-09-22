@@ -45,7 +45,7 @@ function Navbar() {
 
   return (
     <div>
-      <AppBar position="static" sx={{ backgroundColor: '#373538', borderRadius: '20px' }}>
+      <AppBar position="static" sx={{ backgroundColor: '#373538' , position:"fixed" , zIndex: "33" }}>
         <Toolbar>
           <IconButton edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }} onClick={handleDrawerOpen}>
             <MenuIcon />

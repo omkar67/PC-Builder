@@ -3,8 +3,6 @@ import routes from './routes/routes';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 
-
-
 import './App.css'
 
 
@@ -15,16 +13,16 @@ function App() {
   
   return (
     <>
+
+    
     {  <Router>
       
-            <Navbar/>
             <Routes>
               {routes.map((route, index)=>(
                 <Route key={index} path= { route.path } element={<route.component />} />
               ))}
             </Routes>
-            <Footer/>
-        </Router>}
+        </Router>}      
     </>
   )
 }
