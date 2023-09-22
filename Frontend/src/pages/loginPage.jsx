@@ -112,6 +112,7 @@ const LoginForm = () => {
                       aria-label="toggle password visibility"
                       onClick={handleClickShowPassword}
                       onMouseDown={handleMouseDownPassword}
+                      sx = {{color: "#fff"}}
                     >
                       {showPassword ? <VisibilityOff /> : <Visibility />}
                     </IconButton>

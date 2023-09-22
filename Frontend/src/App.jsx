@@ -16,13 +16,12 @@ function App() {
 
     
     {  <Router>
-      <Navbar/>
+      
             <Routes>
               {routes.map((route, index)=>(
                 <Route key={index} path= { route.path } element={<route.component />} />
               ))}
             </Routes>
-            <Footer/>
         </Router>}      
     </>
   )

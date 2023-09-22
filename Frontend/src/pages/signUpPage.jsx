@@ -126,6 +126,7 @@ const signUpPage = () => {
                           aria-label="toggle password visibility"
                           onClick={handleClickShowPassword}
                           onMouseDown={handleMouseDownPassword}
+                          sx = {{color: "#fff"}}
                         >
                           {showPassword ? <VisibilityOff /> : <Visibility />}
                         </IconButton>
@@ -138,6 +139,8 @@ const signUpPage = () => {
                 <Typography variant = "h6" sx ={{ mb: 0,mt: 2 , mr: 8,color: '#FFFFFD' , textAlign: "center"}}> or </Typography>
               </Box>
 
+              
+
               <Box className="SocialLinks" sx = {{display: "flex", width:"100%" , justifyContent: "space-evenly"}}>
                 <Button variant = "contained" 
                 startIcon = {<img width="21" height="21" src="https://img.icons8.com/color/48/google-logo.png" alt="google-logo"/>}
@@ -145,10 +148,11 @@ const signUpPage = () => {
                 <Button variant = "contained" startIcon ={<FacebookRoundedIcon/>}> Continue with Facebook </Button>
               </Box>
               
-              
               <Box sx={{width: "100%", textAlign: "center"}}>
                 <StyledButton variant="contained" sx ={{mb : 1,mt: 2, width: '45ch', backgroundColor: "#08A9E9" , borderRadius: "15px" , }}> Sign Up</StyledButton>
               </Box>
+              
+              
 
           </Box>
         </Box>
