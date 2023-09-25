@@ -3,7 +3,7 @@ import 'font-awesome/css/font-awesome.min.css';
 
 function Footer() {
   return (
-    <footer className="footer" style={{ backgroundColor: '#373538', color: 'white',marginTop:'1vh' }}>
+    <footer className="footer" style={{ backgroundColor: '#373538', color: 'white', marginTop: '1vh' }}>
       <style>
         {`
           .footer {
@@ -34,28 +34,28 @@ function Footer() {
           }
           .newsletter-form {
             display: flex;
-            flex-direction: column; /* Stack input and button vertically */
-            align-items: center; /* Center items horizontally */
+            flex-direction: column;
+            align-items: center;
             margin-top: 20px;
           }
           .newsletter-form input[type="email"] {
-            width: 60%; 
+            width: 60%;
             padding: 10px;
             border: none;
             border-radius: 4px;
             outline: none;
             font-size: 16px;
-            text-align: center; 
+            text-align: center;
           }
           .newsletter-form button {
-            width: 20%; 
+            width: 20%;
             background-color: yellow;
             border: none;
             border-radius: 60px;
             color: black;
             font-size: 25px;
             cursor: pointer;
-            margin-top: 10px; 
+            margin-top: 10px;
           }
           .newsletter-form button:hover {
             background-color: #0099cc;
@@ -71,18 +71,25 @@ function Footer() {
           .social-icons {
             list-style: none;
             padding: 0;
+            display: flex; /* Display icons horizontally */
+            justify-content: center; /* Center icons horizontally */
           }
           .social-icons li {
-            display: inline-block;
-            margin-right: 15px;
+            margin-right: 15px; /* Add space between icons */
           }
-          .social-icons i {
+          .social-icons a {
+            text-decoration: none;
             font-size: 24px;
-            color: cyan;
             transition: transform 0.3s ease-in-out;
           }
-          .social-icons i:hover {
-            transform: scale(1.2);
+          .social-icons .facebook-icon {
+            color: #1877f2; /* Facebook blue */
+          }
+          .social-icons .twitter-icon {
+            color: #1da1f2; /* Twitter blue */
+          }
+          .social-icons .instagram-icon {
+            color: #bc2a8d; /* Instagram pink */
           }
         `}
       </style>
@@ -111,9 +118,9 @@ function Footer() {
             </div>
             <div className="col-md-6">
               <ul className="social-icons">
-                <li><a href="https://en-gb.facebook.com/"><i className="fab fa-facebook"></i></a></li>
-                <li><a href="https://twitter.com/"><i className="fab fa-twitter"></i></a></li>
-                <li><a href="https://www.instagram.com/"><i className="fab fa-instagram"></i></a></li>
+                <li><a href="https://en-gb.facebook.com/" className="facebook-icon"><i className="fa fa-facebook"></i></a></li>
+                <li><a href="https://twitter.com/" className="twitter-icon"><i className="fa fa-twitter"></i></a></li>
+                <li><a href="https://www.instagram.com/" className="instagram-icon"><i className="fa fa-instagram"></i></a></li>
               </ul>
             </div>
           </div>
