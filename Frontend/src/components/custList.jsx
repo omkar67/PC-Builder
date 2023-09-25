@@ -211,6 +211,7 @@ export default function CustList() {
                         marginTop: '1vw',
                       }}
                       style={{marginLeft:'12.5vw',width:'15vw'}}
+                    
                     >
                       +Add
                     </Button>
@@ -225,6 +226,7 @@ export default function CustList() {
                         fontSize: '2vw',
                       }}
                       style={{marginLeft:'17vw',width:'5vw'}}
+                     
                     >
                       $0.00
                     </Typography>

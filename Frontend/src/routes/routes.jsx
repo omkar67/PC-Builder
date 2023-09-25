@@ -9,7 +9,8 @@ import prebuiltPC from '../pages/prebuiltPC';
 import CPU from '../pages/CPU';
 import loginPage from "../pages/loginPage";
 import signUpPage from "../pages/signUpPage"
-
+import Storage from '../pages/Storage';
+import RAM from '../pages/RAM'
 const routes = [
     {
         path: '/',
@@ -49,6 +50,15 @@ const routes = [
         path:'/CPU',
         component: CPU,
     },
+    {
+        path:"/storage",
+        component : Storage
+    },
+    {
+        path:"/RAM",
+        component : RAM
+    }
+    
     
 ];
 
