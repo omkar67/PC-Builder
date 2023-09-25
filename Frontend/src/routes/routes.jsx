@@ -55,13 +55,17 @@ const routes = [
     },
     {
         path:"/storage",
-        component : Storage
+        component : Storage,
+    },
+   
+    {
+        path:"/Case",
+        component : Case,
     },
     {
         path:"/RAM",
         component : RAM
     }
-    
     
 ];
 
