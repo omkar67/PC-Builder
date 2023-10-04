@@ -8,9 +8,9 @@ import customizePC from '../pages/customizePC'
 import prebuiltPC from '../pages/prebuiltPC';
 import CPU from '../pages/CPU';
 import loginPage from "../pages/loginPage";
-import signUpPage from "../pages/signUpPage"
+
 import Storage from '../pages/Storage';
-import RAM from '../pages/RAM'
+import RAM from '../pages/RAM';
 import signUpPage from "../pages/signUpPage";
 import Case from "../pages/Case"
 
