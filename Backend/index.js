@@ -20,7 +20,9 @@ db.connect((err) => {
     }
     console.log('Connected to the database');
 });
-
+app.listen(port, () => {
+    console.log(`Example app listening on port ${port}`)
+});
 
 
 
@@ -45,6 +47,4 @@ app.get('/', async (req, res) => {
     }
 });
  */
-app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`)
-});
+

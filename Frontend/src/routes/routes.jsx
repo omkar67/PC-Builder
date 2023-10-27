@@ -13,6 +13,8 @@ import Storage from '../pages/Storage';
 import RAM from '../pages/RAM';
 import signUpPage from "../pages/signUpPage";
 import Case from "../pages/Case"
+import Motherboard from '../pages/Motherboard';
+import PSU from '../pages/PSU';
 
 const routes = [
     {
@@ -65,6 +67,14 @@ const routes = [
     {
         path:"/RAM",
         component : RAM
+    },
+    {
+        path:"/Motherboard",
+        component: Motherboard,
+    },
+    {
+        path:"/PSU",
+        component: PSU,
     }
     
 ];
