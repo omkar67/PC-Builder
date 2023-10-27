@@ -4,77 +4,84 @@ import ProductCard from '../components/productCard';
 import { Stack } from '@mui/system';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 
-const Storage = () => {
+const GPU = () => {
   const d1 = {
-    label: 'Manufacturer',
+    label: 'Company',
     dropOpt: {
-      0: 'Corsar',
-      1: 'GSkill',
-      2: 'Samsung',
-      3:"Trident",
+      0: 'AMD',
+      1: 'Nvidia',
     },
   };
     const d2={
-          label:'Type',
+          label:'Family',
           dropOpt:{
-                0:'SSD',
-                1: 'HHD',
-                2:'Hybrid',
-                }
+                0:'GeForce RTX 3000',
+                1:'GeForce RTX 4000',
+                2:'GeForce RTX 2000',
+                3: 'GeForce GTX',
+                4:'Radeon RX',
+                5: 'GeForce GT',}
         }
       
     const drop_1={
       0:d1,
       1:d2,
     }
-    const Capacity={
-        title:'Capacity',
-        min:256,
-        max:2048,
-        step:256,
+    const VRAM={
+        title:'VRAM',
+        min:4,
+        max:12,
+        step:2,
         marks:[
-          {value:256,label:'256 GB'},
-          {value:512,label:'512 GB'},
-          {value:1024,label:'1 TB'},
-          {value:2048,label:'2 TB'},
-      ]
-       
+            {value:2,label:'2'},
+            {value:4,label:''},
+            {value:6,label:' '},
+            {value:8,label:' '},
+            {value:10,label:' '},
+            {value:12,label:'12'},
+        ]
     }
   
     
       const price={
         title:'Price',
         marks:[
-          {value:500,label:'500'},
-
-          {value:10000,label:'10K'},
-        ],
-        min:500,
-        max:10000,
-        step:500,
+            {value:500,label:'500'},
+            {value:10000,label:'10K'},
+          ],
+        min:50,
+        max:500,
+        step:5,
       }
     
-
+   
     const slider_Num=2;
     const main_slider={
-        0:price,
-        1:Capacity,
-      
+        0:VRAM,
+        1:price,
+        
     }
     const checkbox = {
       0: {
-        title: 'NvME',
+        title: 'Manufacturer',
         options: {
-          0: 'Yes',
-          1: 'No',
+          0: 'Asus',
+          1: 'AsRock',
+          2:"Acer",
+          3:"GigaByte",
+          4:"MSi",
+          5:'Zotac',
           // Add more options as needed
         },
       },
       1: {
-        title: 'Form Factor',
+        title: 'Memory Type',
         options: {
-          0: '3.5"',
-          1: '2.5"',
+          0: 'GDDR4',
+          1: 'GDDR5',
+          2: 'GDDR5X',
+          3: 'GDDR6',
+          4: 'GDDR6X',
           // Add more options as needed
         },
       },
@@ -178,4 +185,4 @@ const Storage = () => {
 }
 
 
-export default Storage
+export default GPU
