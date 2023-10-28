@@ -15,6 +15,7 @@ import signUpPage from "../pages/signUpPage";
 import Case from "../pages/Case"
 import Motherboard from '../pages/Motherboard';
 import PSU from '../pages/PSU';
+import GPU from '../pages/GPU';
 
 const routes = [
     {
@@ -69,13 +70,17 @@ const routes = [
         component : RAM
     },
     {
-        path:"/Motherboard",
+        path:"/MOBO",
         component: Motherboard,
     },
     {
         path:"/PSU",
         component: PSU,
-    }
+    },
+    {
+        path:"/GPU",
+        component: GPU,
+    },
     
 ];
 

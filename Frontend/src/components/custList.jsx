@@ -169,6 +169,7 @@ export default function CustList() {
                         marginTop: '1vw',
                       }}
                       style={{marginLeft:'5vw',width:'15vw'}}
+                      onClick={()=>nav('/MOBO')}
                     >
                       +Add
                     </Button>
@@ -211,7 +212,7 @@ export default function CustList() {
                         marginTop: '1vw',
                       }}
                       style={{marginLeft:'12.5vw',width:'15vw'}}
-                    
+                      onClick={()=>nav('/storage')}
                     >
                       +Add
                     </Button>
@@ -255,6 +256,7 @@ export default function CustList() {
                         marginTop: '1vw',
                       }}
                      style={{marginLeft:'15.5vw',width:'15vw'}}
+                     onClick={()=>nav('/RAM')}
                     >
                       +Add
                     </Button>
@@ -283,6 +285,7 @@ export default function CustList() {
                       component="div"
                       sx={{ mt: '2vw', fontSize: '2vw' }}
                       style={{marginLeft:'2vw',width:'5vw'}}
+                     
                     >
                       GPU
                     </Typography>
@@ -297,6 +300,7 @@ export default function CustList() {
                         marginTop: '1vw',
                       }}
                       style={{marginLeft:'15.5vw',width:'15vw'}}
+                      onClick={()=>nav('/GPU')}
                     >
                       +Add
                     </Button>
@@ -339,6 +343,7 @@ export default function CustList() {
                         marginTop: '1vw',
                       }}
                       style={{marginLeft:'7.5vw',width:'15vw'}}
+                      onClick={()=>nav('/PSU')}
                     >
                       +Add
                     </Button>
@@ -381,6 +386,7 @@ export default function CustList() {
                         marginTop: '1vw',
                       }}
                       style={{marginLeft:'13.5vw',width:'15vw'}}
+                      onClick={()=>nav('/Case')}
                     >
                       +Add
                     </Button>
