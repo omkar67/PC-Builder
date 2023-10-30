@@ -1,12 +1,17 @@
 import express from 'express';
-import mongoose from 'mongoose';
-import { addSampleUser } from './queriesDB.js';
+import { initialize } from './queriesDB.js';
+import cors from 'cors'
+import mysql from 'mysql';
+
 
 const app = express();
 const port = 3000;
+app.use(cors())
+
 ///////////////
 
-import mysql from 'mysql';
+
+
 const db = mysql.createConnection({
     host: "db4free.net",
     user: "rajatmit",
@@ -23,6 +28,13 @@ db.connect((err) => {
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
 });
+app.get('/', (req, res) => {
+    res.send('Hello from my server!');
+  });
+
+  initialize(app, db)
+  
+
 
 
 
