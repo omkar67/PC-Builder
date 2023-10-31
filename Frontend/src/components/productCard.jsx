@@ -13,18 +13,20 @@ const theme = createTheme({
     fontFamily: 'Your Desired Font, sans-serif', // Replace 'Your Desired Font' with the actual font you want to use
   },
   marginLeft: '2vw',
+  height: "380px"
 });
 
-export default function ProductCard() {
+export default function ProductCard(props) {
   return (
     <ThemeProvider theme={theme}>
       <Box
         sx={{
           width: '100%',
           maxWidth: '380px',
+          maxHeight:'380px',
           position: 'relative',
           borderRadius: '2px',
-          overflow: 'hidden',
+          //overflow: 'hidden',
           color: 'white',
           backgroundColor: 'rgba(0,0,0,0.4)',
           margin: '0.5rem',
@@ -34,7 +36,7 @@ export default function ProductCard() {
         {/* Background image container */}
         <div
           style={{
-            backgroundImage: 'url("https://s3.envato.com/files/235229666/101417%20(3).jpg")',
+            backgroundImage: 'url("data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBwgHBgkIBwgKCgkLDRYPDQwMDRsUFRAWIB0iIiAdHx8kKDQsJCYxJx8fLT0tMTU3Ojo6Iys/RD84QzQ5OjcBCgoKDQwNGg8PGjclHyU3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3N//AABEIAHEA4gMBIgACEQEDEQH/xAAYAAEBAQEBAAAAAAAAAAAAAAABAgAGBf/EABkQAQEBAQEBAAAAAAAAAAAAAAABETESIf/EABsBAQEBAQEBAQEAAAAAAAAAAAMBAgAHBAYF/8QAGBEBAQEBAQAAAAAAAAAAAAAAAAIRARL/2gAMAwEAAhEDEQA/APJZmeiv1zMzOczHDiM9oSGRWGRNFViQ4YZE0NWJFSGQ4zoKsQmRUiaKrTIqQyHE0NWMMhkVGdDViQyGQ4miqxhkVIZGdBVjDIZFSIKrTIqQyFnQ1YxUhMTvQ1YxjhTWPbn2aKx/Qeh9oYcMhkTRVYkVhw4mhqxhkVIcZ0NWJDIZDiaKrGKkMOM96GrGGQyGRNDViRWGQyJoasSGQyKkZ0NWJDIcMTRVYxWHDjPehqxhwyGRA1YkMipDIgasYZFSHEDVpxlM5j256QyKwyPv16JVjDisMZ0NWmRWNipEDVjDIcOJoasSKwyGRnRVYkMhkViaGrEhkMVIzoasYcbFSODViQ4ZFSM6GrTIqQyHE0VWMMisLIasYZDhxNDVtjSKkMiaGrGHDisZ0NWnGVhdrHtzuKxsVI+96J2xhw4U0NWMVIcMjOiqxIZDhxA1YVhkOJoasSGQyKkTQ1acVIZDIzoasSKwyGRNDViRUjYZE0VWMVDIZGdDVjDIrCmhqxhkMhkTvQ1YkVI2KxnQ1Yw4ZFYneiq0heMmj9ueww4ZH9DXolWMOKkMjPQ1Yw4qQyIGrTipDIqRNFVpkVIcOM6GrEhwnE6GrEhkVIZE0NWMMipDIzoasSHDisTRVaZFYZDImh7YhhkPlkNWMMipDImhqxhkU0jOhq2wyfVZGxA1YwnKztZ9uewyKwyPv16HViQyHDImhqxhhxUjOhq04qQyGRNDViQyKkMiaKrGGRWGM6GrTiocMiaGrGKjSKkTQ1acVIZFYzoatOKkMhkTRVYkOGGRnQ1YOKkOIGrTipDIrE0VWmRWMyC73vWZmcjwcMisMj79egdtMipDIqRnvQ1aZDhxUiaGrBkOGRnRVYw4rDI7Q1YkMhkVIzoatMipCYyGrGKxpFYgqsSEyGRNDVjDipDiBqxIZDhxnQ9seVSMyaPtazMzmWZmc5mZnOeLFMz7X7rrTqmZBUTGZA0qFmQNGFmQNKhhZjoaE6sMgqKozIGiYWQPTFTjMgaNaMyC6zMyJxmZnOZmZzmZmc5//9k=")',
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             width:'100%',
@@ -51,41 +53,23 @@ export default function ProductCard() {
             <Grid item xs>
               <Stack direction={{ xs: 'column', md: 'row' }} spacing="1vw">
                 <img
-                  src="https://clipground.com/images/square-clipart-image-9.png"
+                  src={props.image}
                   height="60px"
                   alt="test img here"
                   style={{ marginTop: '1vw' }}
                 />
-                <Typography gutterBottom variant="h4" component="div" style={{ marginTop: '2vw', marginLeft: '0.5vw', fontSize: '1.5vw' }} sx={{ mt: '1.125rem', width: '100%', whiteSpace: 'nowrap' }}>
-                  INTEL-I510900K
-                </Typography>
-                <Typography gutterBottom variant="h4" component="div" style={{ marginTop: '2.2vw', marginLeft: '0.5vw', fontSize: '1.3vw' }} sx={{ mt: '1.125rem', width: '100%' }}>
-                  $134.50
+                <Typography gutterBottom variant="h4" component="div" style={{ marginTop: '2vw', marginLeft: '0.5vw', fontSize: '1.5vw' }} sx={{ mt: '1.125rem', width: '100%', }}>
+                  {props.name}
                 </Typography>
               </Stack>
             </Grid>
             <Grid item></Grid>
           </Grid>
-          <div style={{ color: 'white', marginTop: '1.5rem' }}>
+          <div style={{ color: 'white', marginTop: '1.5rem',marginLeft:'1.0.rem' }}>
             <div>
-              <Stack direction={{ xs: 'column', md: 'row' }} spacing="1vw">
-                <Typography gutterBottom variant="body2" component="div">
-                  Sub feature 1
+            <Typography gutterBottom variant="h4" component="div" style={{ marginTop: '2.2vw', marginLeft: '0.7vw', fontSize: '1.3vw' }} sx={{ mt: '1.125rem', width: '100%' }}>
+                  {props.price}
                 </Typography>
-                <Typography gutterBottom variant="body2" component="div">
-                  Sub feature 2
-                </Typography>
-              </Stack>
-            </div>
-            <div>
-              <Stack direction={{ xs: 'column', md: 'row' }} spacing="1vw">
-                <Typography gutterBottom variant="body2" component="div">
-                  Sub feature 3
-                </Typography>
-                <Typography gutterBottom variant="body2" component="div">
-                  Sub feature 4
-                </Typography>
-              </Stack>
             </div>
           </div>
         </Box>
@@ -95,16 +79,16 @@ export default function ProductCard() {
             Key features are
           </Typography>
           <Stack direction={{ xs: 'column', md: 'row' }} spacing={{ xs: '0.5rem', md: '0.5vw' }}>
-            <Chip label="Subtype1" sx={{ backgroundColor: 'rgba(0,0,0,0.6)', color: 'white', fontSize: '1rem' }} />
-            <Chip color="primary" label="Subtype 2" sx={{ backgroundColor: 'rgba(0,0,0,0.6)', color: 'white', fontSize: '1rem' }} />
-            <Chip label="Medium" sx={{ backgroundColor: 'rgba(0,0,0,0.6)', color: 'white', fontSize: '1rem' }} />
-            <Chip label="Hard" sx={{ backgroundColor: 'rgba(0,0,0,0.6)', color: 'white', fontSize: '1rem' }} />
+            <Chip label={props.feat1} sx={{ backgroundColor: 'rgba(0,0,0,0.6)', color: 'white', fontSize: '1rem' }} />
+            <Chip color="primary" label={props.feat2} sx={{ backgroundColor: 'rgba(0,0,0,0.6)', color: 'white', fontSize: '1rem' }} />
+            <Chip label={props.feat3} sx={{ backgroundColor: 'rgba(0,0,0,0.6)', color: 'white', fontSize: '1rem' }} />
+            <Chip label={props.feat4} sx={{ backgroundColor: 'rgba(0,0,0,0.6)', color: 'white', fontSize: '1rem' }} />
           </Stack>
         </Box>
         <Box sx={{ mt: '1rem', ml: '1%', mb: '1%' }}>
           <Stack direction={{ xs: 'column', md: 'row' }}>
             <Button sx={{ backgroundColor: '#6600CC', color: 'white', borderRadius: '10px', fontSize: '1rem' }}>Add to cart</Button>
-            <Button sx={{ textDecoration: 'underline', color: 'white', borderRadius: '10px', fontSize: '1rem' }}>View Details</Button>
+            <Chip label={props.brand} sx={{ backgroundColor: 'rgba(0,0,0,0.6)', color: 'white', fontSize: '1rem' }} />
           </Stack>
         </Box>
       </Box>

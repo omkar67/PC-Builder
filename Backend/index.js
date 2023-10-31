@@ -8,23 +8,39 @@ const app = express();
 const port = 3000;
 app.use(cors())
 
-///////////////
+/* const db = mysql.createConnection({
+    host: "82.180.140.5",
+    user: "u416017694_dsfgdfgdfgf",
+    password: "G6ggzw353i8?",
+    database: "u416017694_dfgdfgdgdg",
+    port:"3306"
+});
+ */
 
 
 
-const db = mysql.createConnection({
+/* const db = mysql.createConnection({
     host: "db4free.net",
     user: "rajatmit",
     password: "rajat@123",
     database: "myinventory"
+}); */
+
+const db = mysql.createConnection({
+    host: 'localhost', // Your local MySQL server host
+    user: 'root', // Your MySQL username
+    password: 'root', // Your MySQL password
+    database: 'pcbuilder', // Your database name
 });
 
 db.connect((err) => {
     if (err) {
-        throw err;
+        console.error('Error connecting to the database: ' + err.stack);
+        return;
     }
     console.log('Connected to the database');
 });
+
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
 });

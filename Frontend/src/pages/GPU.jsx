@@ -5,7 +5,10 @@ import { Stack } from "@mui/system";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 
 const GPU = () => {
-  const [products, setProducts] = useState([]);
+  const [gpuList, setGpuList] = useState([]);
+  const itemsPerPage = 3; // Number of items to display per page
+  const [currentPage, setCurrentPage] = useState(1);
+  
   const d1 = {
     label: "Company",
     dropOpt: {
@@ -60,6 +63,7 @@ const GPU = () => {
     0: VRAM,
     1: price,
   };
+
   const checkbox = {
     0: {
       title: "Manufacturer",
@@ -119,7 +123,7 @@ const GPU = () => {
 
     return productCardsPerStack;
   };
-  const totalProductCards = 9;
+  const totalProductCards = 3;
   // Calculate the number of stacks based on the number of product cards
   const calculateStacks = () => {
     let productCardsPerStack = calculateProductCardsPerStack();
@@ -130,6 +134,13 @@ const GPU = () => {
     }
     return totalStacks;
   };
+
+  const calculateRange = () => {
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    return gpuList.slice(startIndex, endIndex);
+  };
+  
 
   // Initialize state to hold the number of product cards per stack and the number of stacks
   const [productCardsPerStack, setProductCardsPerStack] = useState(
@@ -153,17 +164,18 @@ const GPU = () => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
-
+  
   async function loadData() {
     try {
       const res = await fetch("http://localhost:3000/api/GPU");
-      const data = await res.json()
-      // setProducts(data)
-
+      const data = await res.json();
+      setGpuList(data);
     } catch (error) {
       console.log(error);
     }
   }
+  
+  
   return (
     <ThemeProvider theme={theme}>
       <style>
@@ -190,7 +202,7 @@ const GPU = () => {
                 ? 1
                 : productCardsPerStack;
 
-            // Render a stack with the appropriate number of product crds
+            // Render a stack with the appropriate number of product cards
             return (
               <Stack
                 key={stackIndex}
@@ -198,14 +210,42 @@ const GPU = () => {
                 spacing={"0.5vw"}
                 style={stackStyle}
               >
-                {[...Array(cardsInThisStack)].map((_, cardIndex) => (
-                  // Render a product card with spacing
-                  <ProductCard
-                    key={cardIndex}
-                    style={{ marginTop: cardIndex > 0 ? "1vh" : "0" }}
-                  />
-                ))}
-              </Stack>
+             {calculateRange().map((gpu, index) => (
+  <ProductCard
+    key={gpu.id}
+    style={{
+      marginTop: index > 0 ? "1vh" : "0",
+      marginLeft: index % 3 > 0 ? "1vw" : "0",
+    }}
+    price={gpu.price}
+    id={gpu.id}
+    image={gpu.image}
+    name={gpu.name}
+    feat1={gpu.part_type}
+    feat2={`power: ${gpu.power}`}
+    feat4={`resolution:${gpu.resolution}`}
+    feat3={`vram:${gpu.vram}`}
+    brand={gpu.brand}
+  />
+))}
+
+<div style={{ display: "flex", justifyContent: "center", marginTop: "1vh" }}>
+  <button
+    onClick={() => setCurrentPage(currentPage - 1)}
+    disabled={currentPage === 1}
+  >
+    Previous
+  </button>
+  <button
+    onClick={() => setCurrentPage(currentPage + 1)}
+    disabled={
+      currentPage === Math.ceil(gpuList.length / itemsPerPage)
+    }
+  >
+    Next
+  </button>
+</div>
+</Stack>
             );
           })}
         </div>

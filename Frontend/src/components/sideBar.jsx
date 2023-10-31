@@ -61,6 +61,7 @@ const SideBar = (props) => {
     color: 'white',
     marginTop: '1vh',
     borderRadius: '15px'
+    
   };
 
   function valuetext(value) {
