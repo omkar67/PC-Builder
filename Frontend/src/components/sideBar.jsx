@@ -60,7 +60,8 @@ const SideBar = (props) => {
     backgroundColor: 'rgba(53, 14, 88, 0.5)',
     color: 'white',
     marginTop: '1vh',
-    borderRadius: '15px'
+    borderRadius: '15px',
+    maxWidth:'400px'
     
   };
 
@@ -73,13 +74,13 @@ const SideBar = (props) => {
   return (
     <ThemeProvider theme={theme}>
       <div style={style_box} ref={styleBoxRef}>
-        <Box sx={{ height: '100%', color: 'white', borderRadius: '15px' }}>
+        <Box sx={{ height: '100%', color: 'white', borderRadius: '15px',width:'350px' }}>
           <Typography variant="h3" style={{ textAlign: 'center', marginTop: '0.5vh' }}>Filters</Typography>
           {/* DROPDOWNS START HERE */}
           <div id='dropdowns'>
             {props.drop && Object.keys(props.drop).map((dropIndex) => {
               return (
-                <FormControl fullWidth margin="normal" style={{ marginTop: '1vh', width: '20vw', marginLeft: '1vw' }} key={dropIndex}>
+                <FormControl fullWidth margin="normal" style={{ marginTop: '1vh', width: '90%', marginLeft: '1vw' }} key={dropIndex}>
                   <InputLabel style={{ color: 'white' }}>{props.drop[dropIndex].label}</InputLabel>
                   <Select
                     sx={{
@@ -129,7 +130,7 @@ const SideBar = (props) => {
                       return `${value}`;
                     }}
                     marks={props.slider[currIndex].marks}
-                    style={{ width: '18vw' }}
+                    style={{ width: '86%' }}
                   />
                   <InputLabel
                     sx={{

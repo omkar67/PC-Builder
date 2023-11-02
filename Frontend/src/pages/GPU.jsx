@@ -54,11 +54,11 @@ const GPU = () => {
     title: "Price",
     marks: [
       { value: 500, label: "500" },
-      { value: 10000, label: "10K" },
+      { value: 20000, label: "20K" },
     ],
-    min: 50,
-    max: 500,
-    step: 5,
+    min: 500,
+    max: 20000,
+    step: 500,
   };
 
   const slider_Num = 2;
@@ -118,6 +118,7 @@ const GPU = () => {
   
   const handlePageChange = (newPage) => {
     setCurrentPage(newPage);
+    window.scrollTo(0, 0);
   };
  
   useEffect(() => {
@@ -207,12 +208,14 @@ const GPU = () => {
             <button
               onClick={() => handlePageChange(currentPage - 1)}
               disabled={currentPage === 1}
+              style={{backgroundColor:'#BB84EC',color:'white',fontSize:'3vh', fontFamily: 'poppins, montserrat, sans-serif',height:'100px',width:'200px',margin:'10px',borderRadius:'10px',border:'Solid',borderColor:'rgba(53, 14, 88, 0.5)'}}
             >
               Previous
             </button>
             <button
               onClick={() => handlePageChange(currentPage + 1)}
               disabled={currentPage === totalPages}
+              style={{backgroundColor:'rgba(53, 14, 88, 0.5)',color:'white',fontSize:'3vh', fontFamily: 'poppins, montserrat, sans-serif',height:'100px',width:'200px',margin:'10px',borderRadius:'10px',border:'Solid',borderColor:'#BB84EC'}}
             >
               Next
             </button>
