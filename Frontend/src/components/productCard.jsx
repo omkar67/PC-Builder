@@ -85,6 +85,7 @@ export default function ProductCard(props) {
             <Chip label={props.feat2} sx={{ backgroundColor: 'rgba(0,0,0,0.6)', color: 'white', fontSize: '1rem', marginRight: '0.5rem' }} />
             <Chip label={props.feat3} sx={{ backgroundColor: 'rgba(0,0,0,0.6)', color: 'white', fontSize: '1rem', marginRight: '0.5rem' }} />
             <Chip label={props.feat4} sx={{ backgroundColor: 'rgba(0,0,0,0.6)', color: 'white', fontSize: '1rem', marginRight: '0.5rem' }} />
+            <Chip label={props.feat5} sx={{ backgroundColor: 'rgba(0,0,0,0.6)', color: 'white', fontSize: '1rem', marginRight: '0.5rem' }} />
             <Chip label={props.brand} sx={{ backgroundColor: 'rgba(0,0,0,0.6)', color: 'white', fontSize: '1rem', marginRight: '0.5rem',marginTop:'0.5rem' }} />
           </Stack>
         </Box>

@@ -3,8 +3,15 @@ import SideBar from '../components/SideBar';
 import ProductCard from '../components/productCard';
 import { Stack } from '@mui/system';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
+import Grid from '@mui/material/Grid';
+import { experimentalStyled as styled } from '@mui/material/styles';
+import Paper from '@mui/material/Paper';
 
 const Case = () => {
+  const [caseList, setCaseList] = useState([]);
+  const itemsPerPage = 15; // Number of items to display per page
+  const [currentPage, setCurrentPage] = useState(1);
+  
   const d1 = {
     label: 'Manufacturer',
     dropOpt: {
@@ -144,84 +151,103 @@ const Case = () => {
       },
       backgroundColor:'#373538',
     });
-    const maxProductCardsPerStack = 3;
+    const totalPages = Math.ceil(caseList.length / itemsPerPage);
 
-    // Calculate the number of product cards per stack based on screen width
-    const calculateProductCardsPerStack = () => {
-      const screenWidth = window.innerWidth;
-  
-      let productCardsPerStack = maxProductCardsPerStack;
-  
-      if (screenWidth < 1000) {
-        productCardsPerStack = 1; // Adjust this based on your desired breakpoint
-      } else if (screenWidth < 1400) {
-        productCardsPerStack = 2; // Adjust this based on your desired breakpoint
-      }
-  
-      return productCardsPerStack;
+ 
+    const calculateRange = () => {
+      const startIndex = (currentPage - 1) * itemsPerPage;
+      const endIndex = startIndex + itemsPerPage;
+      return caseList.slice(startIndex, endIndex);
     };
-    const totalProductCards = 9;
-    // Calculate the number of stacks based on the number of product cards
-    const calculateStacks = () => {
-      let productCardsPerStack = calculateProductCardsPerStack();
-       // Total number of product cards
-      let totalStacks = Math.ceil(totalProductCards / productCardsPerStack);
-      if((totalStacks*productCardsPerStack)<totalProductCards){
-        totalStacks+=1;
-      }
-      return totalStacks;
+    
+    const handlePageChange = (newPage) => {
+      setCurrentPage(newPage);
+      window.scrollTo(0, 0);
     };
-  
-    // Initialize state to hold the number of product cards per stack and the number of stacks
-    const [productCardsPerStack, setProductCardsPerStack] = useState(calculateProductCardsPerStack());
-    const [totalStacks, setTotalStacks] = useState(calculateStacks());
-  
-    // Update the number of product cards per stack and the number of stacks when the screen is resized
-    const handleResize = () => {
-      setProductCardsPerStack(calculateProductCardsPerStack());
-      setTotalStacks(calculateStacks());
-    };
+   
     useEffect(() => {
-      // Listen for window resize events and update the layout
-      window.addEventListener('resize', handleResize);
+      // Fetch data when the component mounts
+      async function loadData() {
+        try {
+          const res = await fetch("http://localhost:3000/api/Case");
+          const data = await res.json();
+          setCaseList(data);
+        } catch (error) {
+          console.log(error);
+        }
+      }
   
-      // Clean up the event listener when the component unmounts
-      return () => {
-        window.removeEventListener('resize', handleResize);
-      };
+      loadData();
     }, []);
-  return (
-    <ThemeProvider theme={theme}>
-    <style>
-        {`
-          body {
-            background-color: #373538; /* Set your desired background color here */
-          }
-        `}
-      </style>
-      <div style={containerStyle}>
-      <SideBar drop={drop_1} slider={main_slider} sliderNum={slider_Num} checkboxCategories={checkbox}></SideBar>
-      <div style={productCardStyle}>
-          {[...Array(totalStacks)].map((_, stackIndex) => {
-            // Determine how many product cards should be in this stack
-            const curr_stack=stackIndex+1;
-            let num=curr_stack*productCardsPerStack
-            const cardsInThisStack = stackIndex === totalStacks - 1 && num > totalProductCards ? 1 : productCardsPerStack;
-
-            // Render a stack with the appropriate number of product crds
-            return (
-              <Stack key={stackIndex} direction="row" spacing={'0.5vw'} style={stackStyle}>
-                {[...Array(cardsInThisStack)].map((_, cardIndex) => (
-                  // Render a product card with spacing
-                  <ProductCard key={cardIndex} style={{ marginTop: cardIndex > 0 ? '1vh' : '0' }} />
-                ))}
-              </Stack>
-            );
-          })}
+    const Item = styled(Paper)(({ theme }) => ({
+      backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+      ...theme.typography.body2,
+      padding: theme.spacing(2),
+      textAlign: 'center',
+      color: theme.palette.text.secondary,
+    }));
+    
+    return (
+      <>
+      <ThemeProvider theme={theme}>
+          <style>
+          {`
+            body {
+              background-color: #373538; /* Set your desired background color here */
+            }
+          `}
+        </style>
+        <div style={containerStyle}>
+          <SideBar
+            drop={drop_1}
+            slider={main_slider}
+            sliderNum={slider_Num}
+            checkboxCategories={checkbox}
+          />
+          <div style={{}}>
+  
+          <Grid container spacing={3} columnSpacing={3} rowSpacing={2} rowGap={2}>
+          {calculateRange().map((pccase, index) => (
+            <Grid item xs={12} sm={6} md={4} key={index}>
+              <ProductCard
+                key={pccase.id}
+                style={{
+                  margin: "15px", // Adjust this value to control spacing between cards
+                }}
+                price={`₹${pccase.price}`}
+                image={pccase.image}
+                name={pccase.name}
+                feat1={pccase.part_type}
+                feat2={`Type: ${pccase.type}`}
+                feat3={`Manufacturer: ${pccase.brand}`}
+               
+              />
+            </Grid>
+          ))}
+              </Grid> 
+  
+            <div style={{ display: "flex", justifyContent: "center", marginTop: "1vh" }}>
+              <button
+                onClick={() => handlePageChange(currentPage - 1)}
+                disabled={currentPage === 1}
+                style={{backgroundColor:'#BB84EC',color:'white',fontSize:'3vh', fontFamily: 'poppins, montserrat, sans-serif',height:'100px',width:'200px',margin:'10px',borderRadius:'10px',border:'Solid',borderColor:'rgba(53, 14, 88, 0.5)'}}
+              >
+                Previous
+              </button>
+              <button
+                onClick={() => handlePageChange(currentPage + 1)}
+                disabled={currentPage === totalPages}
+                style={{backgroundColor:'rgba(53, 14, 88, 0.5)',color:'white',fontSize:'3vh', fontFamily: 'poppins, montserrat, sans-serif',height:'100px',width:'200px',margin:'10px',borderRadius:'10px',border:'Solid',borderColor:'#BB84EC'}}
+              >
+                Next
+              </button>
+            </div>
+          </div>
         </div>
-      </div>
-    </ThemeProvider>
-  )
+           
+          </ThemeProvider>
+      </>
+    );
 }
 
 

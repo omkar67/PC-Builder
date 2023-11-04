@@ -170,8 +170,7 @@ const GPU = () => {
               style={{
                 margin: "15px", // Adjust this value to control spacing between cards
               }}
-              price={gpu.price}
-              id={gpu.id}
+              price={`₹${gpu.price}`}
               image={gpu.image}
               name={gpu.name}
               feat1={gpu.part_type}
@@ -182,27 +181,7 @@ const GPU = () => {
             />
           </Grid>
         ))}
-            </Grid>  <Grid container spacing={3}>
-              {calculateRange().map((gpu, index) => (
-                <Grid item xs={12} sm={6} md={4} key={index}>
-                  <ProductCard
-                    key={gpu.id}
-                    style={{
-                      margin: "15px", // Adjust this value to control spacing between cards
-                    }}
-                    price={gpu.price}
-                    id={gpu.id}
-                    image={gpu.image}
-                    name={gpu.name}
-                    feat1={gpu.part_type}
-                    feat2={`power: ${gpu.power}`}
-                    feat4={`resolution:${gpu.resolution}`}
-                    feat3={`vram:${gpu.vram}`}
-                    brand={gpu.brand}
-                  />
-                </Grid>
-              ))}
-            </Grid>
+            </Grid> 
 
           <div style={{ display: "flex", justifyContent: "center", marginTop: "1vh" }}>
             <button
