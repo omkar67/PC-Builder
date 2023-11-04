@@ -22,15 +22,17 @@ export default function ProductCard(props) {
       <Box
         sx={{
           width: '100%',
-          maxWidth: '380px',
-          maxHeight:'380px',
+          maxWidth: '700px',
+          maxHeight:'750px',
           position: 'relative',
-          borderRadius: '2px',
-          //overflow: 'hidden',
+          borderRadius: '20px',
+          overflow: 'hidden',
           color: 'white',
           backgroundColor: 'rgba(0,0,0,0.4)',
-          margin: '0.5rem',
-          marginLeft: '32.5rem',
+          margin: '0rem',
+          marginLeft:'10px',
+          height:'100%'
+          
         }}
       >
         {/* Background image container */}
@@ -54,9 +56,9 @@ export default function ProductCard(props) {
               <Stack direction={{ xs: 'column', md: 'row' }} spacing="1vw">
                 <img
                   src={props.image}
-                  height="60px"
+                  height="200rem"
                   alt="test img here"
-                  style={{ marginTop: '1vw' }}
+                  style={{ marginTop: '1vw',width: '100%', height: 'auto', maxWidth: '150px'  }}
                 />
                 <Typography gutterBottom variant="h4" component="div" style={{ marginTop: '2vw', marginLeft: '0.5vw', fontSize: '1.5vw' }} sx={{ mt: '1.125rem', width: '100%', }}>
                   {props.name}
@@ -67,7 +69,7 @@ export default function ProductCard(props) {
           </Grid>
           <div style={{ color: 'white', marginTop: '1.5rem',marginLeft:'1.0.rem' }}>
             <div>
-            <Typography gutterBottom variant="h4" component="div" style={{ marginTop: '2.2vw', marginLeft: '0.7vw', fontSize: '1.3vw' }} sx={{ mt: '1.125rem', width: '100%' }}>
+            <Typography gutterBottom variant="h4" component="div" style={{ marginTop: '2.2vw', marginLeft: '0.7vw', fontSize: '2vw' }} sx={{ mt: '1.125rem', width: '100%' }}>
                   {props.price}
                 </Typography>
             </div>
@@ -78,18 +80,16 @@ export default function ProductCard(props) {
           <Typography gutterBottom variant="body1">
             Key features are
           </Typography>
-          <Stack direction={{ xs: 'column', md: 'row' }} spacing={{ xs: '0.5rem', md: '0.5vw' }}>
-            <Chip label={props.feat1} sx={{ backgroundColor: 'rgba(0,0,0,0.6)', color: 'white', fontSize: '1rem' }} />
-            <Chip color="primary" label={props.feat2} sx={{ backgroundColor: 'rgba(0,0,0,0.6)', color: 'white', fontSize: '1rem' }} />
-            <Chip label={props.feat3} sx={{ backgroundColor: 'rgba(0,0,0,0.6)', color: 'white', fontSize: '1rem' }} />
-            <Chip label={props.feat4} sx={{ backgroundColor: 'rgba(0,0,0,0.6)', color: 'white', fontSize: '1rem' }} />
+          <Stack style={{ display: 'flex', flexWrap: 'wrap' }} direction={'row'}>
+            <Chip label={props.feat1} sx={{ backgroundColor: 'rgba(0,0,0,0.6)', color: 'white', fontSize: '1rem', marginRight: '0.5rem' }} />
+            <Chip label={props.feat2} sx={{ backgroundColor: 'rgba(0,0,0,0.6)', color: 'white', fontSize: '1rem', marginRight: '0.5rem' }} />
+            <Chip label={props.feat3} sx={{ backgroundColor: 'rgba(0,0,0,0.6)', color: 'white', fontSize: '1rem', marginRight: '0.5rem' }} />
+            <Chip label={props.feat4} sx={{ backgroundColor: 'rgba(0,0,0,0.6)', color: 'white', fontSize: '1rem', marginRight: '0.5rem' }} />
+            <Chip label={props.brand} sx={{ backgroundColor: 'rgba(0,0,0,0.6)', color: 'white', fontSize: '1rem', marginRight: '0.5rem',marginTop:'0.5rem' }} />
           </Stack>
         </Box>
-        <Box sx={{ mt: '1rem', ml: '1%', mb: '1%' }}>
-          <Stack direction={{ xs: 'column', md: 'row' }}>
-            <Button sx={{ backgroundColor: '#6600CC', color: 'white', borderRadius: '10px', fontSize: '1rem' }}>Add to cart</Button>
-            <Chip label={props.brand} sx={{ backgroundColor: 'rgba(0,0,0,0.6)', color: 'white', fontSize: '1rem' }} />
-          </Stack>
+        <Box sx={{ mt: '2rem', ml: '1%', mb: '1.5rem', maxHeight:'50px',maxWidth:'200px' }}>
+          <Button sx={{ backgroundColor: '#6600CC', color: 'white', borderRadius: '10px', fontSize: '1.5rem' }}>Add to cart</Button>
         </Box>
       </Box>
     </ThemeProvider>
