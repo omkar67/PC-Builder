@@ -10,7 +10,7 @@ import { useState } from 'react';
 import Visibility from '@mui/icons-material/Visibility'; 
 import VisibilityOff from '@mui/icons-material/VisibilityOff';  
 import LoginImage from '../Images/LoginImage.jpg'
-
+import { Link } from 'react-router-dom';
 const StyledButton = styled(Button)({
   // Add your custom styles here
   backgroundColor: 'blue',
@@ -129,7 +129,7 @@ const LoginForm = () => {
           
           <Box className="bottom" sx = {{ mt : 3,paddingLeft: "20%" , display: "flex" , justifyContent : "space-between" , alignItems: "center"}}>
             <Typography variant ='subtitle1' sx ={{color: '#FFFFFD' ,opacity: "50%"}}> Don't have an Account? </Typography>
-            <Button variant = "outlined" sx = {{ml: 10 ,backgroundColor: "#333437" , border: "none" , color: "#FFFFFD" }}> Sign Up </Button>
+            <Button component={Link} to="/signup " variant = "outlined" sx = {{ml: 10 ,backgroundColor: "#333437" , border: "none" , color: "#FFFFFD" }}> Sign Up </Button>
           </Box>
         </Box>
 
