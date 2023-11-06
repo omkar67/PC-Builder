@@ -116,6 +116,7 @@ const GPU = () => {
     return gpuList.slice(startIndex, endIndex);
   };
   
+  
   const handlePageChange = (newPage) => {
     setCurrentPage(newPage);
     window.scrollTo(0, 0);
