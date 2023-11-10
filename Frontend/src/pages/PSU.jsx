@@ -6,9 +6,17 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Grid from '@mui/material/Grid';
 import { experimentalStyled as styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
-
-
+import { setPSU } from "../redux/actions";
+import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from "react-router-dom";
 const PSU = () => {
+  const dispatch = useDispatch();
+  const nav = useNavigate();
+  const updatePSU = (id) => {
+    // Call the Redux action to update the CPU state with the provided ID
+    dispatch(setPSU(id));
+    nav('/CustomizePC')
+  };
   const [psuList, setPsuList] = useState([]);
   const itemsPerPage = 15; // Number of items to display per page
   const [currentPage, setCurrentPage] = useState(1);
@@ -166,6 +174,7 @@ const PSU = () => {
               feat2={`power: ${psu.power}`}
               feat4={`Type:${psu.type}`}
               feat3={`Manufacturer: ${psu.brand}`}
+              updateFunct={() => updatePSU(psu.id)}
             
             />
           </Grid>

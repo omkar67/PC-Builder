@@ -6,12 +6,19 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Grid from '@mui/material/Grid';
 import { experimentalStyled as styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
-
+import { useSelector, useDispatch } from 'react-redux';
+import { setCase } from "../redux/actions";
+import { useNavigate } from "react-router-dom";
 const Case = () => {
+  const nav = useNavigate();
   const [caseList, setCaseList] = useState([]);
   const itemsPerPage = 15; // Number of items to display per page
   const [currentPage, setCurrentPage] = useState(1);
-  
+  const updateCase = (id) => {
+    // Call the Redux action to update the CPU state with the provided ID
+    dispatch(setCase(id));
+    nav('/CustomizePC')
+  };
   const d1 = {
     label: 'Manufacturer',
     dropOpt: {
@@ -211,6 +218,7 @@ const Case = () => {
             <Grid item xs={12} sm={6} md={4} key={index}>
               <ProductCard
                 key={pccase.id}
+                
                 style={{
                   margin: "15px", // Adjust this value to control spacing between cards
                 }}
@@ -220,7 +228,7 @@ const Case = () => {
                 feat1={pccase.part_type}
                 feat2={`Type: ${pccase.type}`}
                 feat3={`Manufacturer: ${pccase.brand}`}
-               
+                updateFunct={() => updateCase(pccase.id)}
               />
             </Grid>
           ))}

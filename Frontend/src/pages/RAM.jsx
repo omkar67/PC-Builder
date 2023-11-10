@@ -6,8 +6,19 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Grid from '@mui/material/Grid';
 import { experimentalStyled as styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
-
+import { useSelector, useDispatch } from 'react-redux';
+import { setRAM } from "../redux/actions";
+import { useNavigate } from "react-router-dom";
 const RAM = () => {
+  const dispatch = useDispatch();
+  const nav = useNavigate();
+  const updateRAM = (id) => {
+    // Call the Redux action to update the CPU state with the provided ID
+    dispatch(setRAM(id));
+    nav('/CustomizePC')
+  };
+  
+
   const [ramList, setRamList] = useState([]);
   const itemsPerPage = 15; // Number of items to display per page
   const [currentPage, setCurrentPage] = useState(1);
@@ -170,6 +181,7 @@ const RAM = () => {
               feat2={`Type: ${ram.type}`}
               feat4={`Memory: ${ram.memory} GB` }
               brand={ram.brand}
+              updateFunct={() =>updateRAM(ram.id)}
             />
           </Grid>
         ))}

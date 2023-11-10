@@ -6,8 +6,17 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Grid from '@mui/material/Grid';
 import { experimentalStyled as styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
-
+import { useSelector, useDispatch } from 'react-redux';
+import { setStorage } from "../redux/actions";
+import { useNavigate } from "react-router-dom";
 const Storage = () => {
+  const dispatch = useDispatch();
+  const nav = useNavigate();
+  const updateStorage = (id) => {
+    // Call the Redux action to update the CPU state with the provided ID
+    dispatch(setStorage(id));
+    nav('/CustomizePC')
+  };
   const [storageList, setStorageList] = useState([]);
   const itemsPerPage = 15; // Number of items to display per page
   const [currentPage, setCurrentPage] = useState(1);
@@ -166,6 +175,7 @@ const Storage = () => {
               feat2={`Type: ${storage.type}`}
               feat3={`Storage: ${storage.space} GB`}
               brand={storage.brand}
+              updateFunct={() =>updateStorage(storage.id)}
             />
           </Grid>
         ))}
