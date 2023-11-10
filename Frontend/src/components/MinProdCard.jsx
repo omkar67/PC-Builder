@@ -4,7 +4,7 @@ import Chip from '@mui/material/Chip';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
-
+import { useNavigate } from 'react-router-dom';
 import Typography from '@mui/material/Typography';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 
@@ -17,6 +17,10 @@ const theme = createTheme({
 });
 
 export default function MinProductCard(props) {
+  const nav = useNavigate()
+  const UpdateButton = (str) =>{
+    nav(`/${str}`)
+  }
   return (
     <ThemeProvider theme={theme}>
       <Box
@@ -61,7 +65,9 @@ export default function MinProductCard(props) {
                 <Typography gutterBottom variant="h4" component="div" style={{ marginTop: '1.5vw', marginLeft:'1vw', fontSize: '1vw',  marginRight:'0px',}} sx={{ mt: '1.125rem', width: '100%', }}>
                 {props.name}
                 </Typography>
-                <Button style={{ backgroundColor: 'rgba(0,0,0,0)', color: 'white', borderRadius: '10px', fontSize: '1rem',padding:'5px',maxWidth:'100px',height:'100%',marginTop:'1.7vw', marginLeft:'5px',textDecoration: 'underline',marginRight:'20px' }}>Update</Button>
+                <Button style={{ backgroundColor: 'rgba(0,0,0,0)', color: 'white', borderRadius: '10px', fontSize: '1rem',padding:'5px',maxWidth:'100px',height:'100%',marginTop:'1.7vw', marginLeft:'5px',textDecoration: 'underline',marginRight:'20px' }}
+                onClick={() => UpdateButton(props.CompName) }
+                >Update</Button>
                 <Typography gutterBottom variant="h4" component="div" style={{ marginTop: '1.5vw', marginLeft:'1vw', fontSize: '1.5vw',maxWidth:'220px',paddingLeft:'',marginRight:'-3vw' }} sx={{ mt: '1.125rem', width: '200%', }}>
                   {props.price}
                 </Typography>
