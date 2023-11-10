@@ -253,7 +253,7 @@ export default function CustList() {
             >
               CPU
             </Typography>
-            <MinProductCard name={cpudata[0]?.name} price={cpudata[0]?.price} image={cpudata[0]?.image} />
+            <MinProductCard name={cpudata[0]?.name} price={cpudata[0]?.price} image={cpudata[0]?.image} CompName={'CPU'}/>
           </Stack>
         </Grid>
       )}
@@ -313,7 +313,7 @@ export default function CustList() {
           >
             MOTHERBOARD
           </Typography>
-          <MinProductCard name={mobodata[0]?.name} price={mobodata[0]?.price} image={mobodata[0]?.image}/>
+          <MinProductCard name={mobodata[0]?.name} price={mobodata[0]?.price} image={mobodata[0]?.image} CompName={'MOBO'}/>
           </Stack>
           </Grid>
     )}
@@ -374,7 +374,7 @@ export default function CustList() {
                     >
                       STORAGE
                     </Typography>
-                    <MinProductCard name={storedata[0]?.name} price={storedata[0]?.price} image={storedata[0]?.image}/>
+                    <MinProductCard name={storedata[0]?.name} price={storedata[0]?.price} image={storedata[0]?.image} CompName={'Storage'}/>
                   </Stack>
                   </Grid>
           )
@@ -436,7 +436,7 @@ export default function CustList() {
                     >
                       RAM
                     </Typography>
-                    <MinProductCard name={ramdata[0]?.name} price={ramdata[0]?.price} image={ramdata[0]?.image}></MinProductCard>
+                    <MinProductCard name={ramdata[0]?.name} price={ramdata[0]?.price} image={ramdata[0]?.image} CompName={'RAM'}></MinProductCard>
                     </Stack>
                     </Grid>
 )
@@ -503,7 +503,7 @@ export default function CustList() {
                     </Typography>
                     
                     
-                      <MinProductCard  name={gpudata[0]?.name} price={gpudata[0]?.price} image={gpudata[0]?.image}/>
+                      <MinProductCard  name={gpudata[0]?.name} price={gpudata[0]?.price} image={gpudata[0]?.image} CompName={'GPU'}/>
                    
                     </Stack>
                     </Grid>
@@ -566,7 +566,7 @@ export default function CustList() {
                     >
                       POWER SUPPLY
                     </Typography>
-                  <MinProductCard  name={psudata[0]?.name} price={psudata[0]?.price} image={psudata[0]?.image}/>
+                  <MinProductCard  name={psudata[0]?.name} price={psudata[0]?.price} image={psudata[0]?.image} CompName={'PSU'}/>
                 </Stack>
                 </Grid>
   )
@@ -629,7 +629,7 @@ export default function CustList() {
           >
             CASE
           </Typography>
-          <MinProductCard  name={casedata[0]?.name} price={casedata[0]?.price} image={casedata[0]?.image}/>
+          <MinProductCard  name={casedata[0]?.name} price={casedata[0]?.price} image={casedata[0]?.image} CompName={'Case'}/>
         </Stack>
         </Grid>
       )}
