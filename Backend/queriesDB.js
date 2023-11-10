@@ -78,6 +78,9 @@ export function initialize(app, db) {
             res.json(results);
         });
     });
+
+
+
 }
 
 /* const userRouter = Router(); */

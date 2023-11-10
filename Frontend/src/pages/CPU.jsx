@@ -8,6 +8,11 @@ import { experimentalStyled as styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
 const CPU = () => {
   const [cpuList, setCpuList] = useState([]);
+  const [manufacturerFilter, setManufacturerFilter] = useState("AMD");
+  const [coresFilter, setCoresFilter] = useState({ min: 2, max: 64 });
+  const [speedFilter, setSpeedFilter] = useState({ min: 1.1, max: 4.7 });
+  const [powerFilter, setPowerFilter] = useState({ min: 20, max: 280 });
+
   const itemsPerPage = 15; // Number of items to display per page
   const [currentPage, setCurrentPage] = useState(1);
   const d1 = {
@@ -17,19 +22,11 @@ const CPU = () => {
       1: "Intel",
     },
   };
-  const d2 = {
-    label: "Generation",
-    dropOpt: {
-      0: "14 NM",
-      1: "12 NM",
-      2: "12th Gen",
-      3: "13th Gen",
-    },
-  };
+
 
   const drop_1 = {
     0: d1,
-    1: d2,
+
   };
   const cores = {
     title: "Cores",
@@ -44,8 +41,8 @@ const CPU = () => {
       { value: 64, label: "64" },
     ],
   };
-  const MaxFrequency = {
-    title: "Max Frequency",
+  const speed = {
+    title: "speed",
     min: 1.1,
     max: 4.7,
     step: 0.3,
@@ -69,13 +66,13 @@ const CPU = () => {
   const price = {
     title: "Price",
     marks: [],
-    min: 50,
-    max: 500,
+    min: 7000,
+    max: 7457,
     step: 5,
   };
 
-  const tdp = {
-    title: "TDP",
+  const power = {
+    title: "power",
     min: 20,
     max: 280,
     step: 20,
@@ -92,8 +89,8 @@ const CPU = () => {
   const main_slider = {
     0: price,
     1: cores,
-    2: MaxFrequency,
-    3: tdp,
+    2: speed,
+    3: power,
   };
   const checkbox = {
     0: {
@@ -131,22 +128,22 @@ const CPU = () => {
     },
     backgroundColor: "#373538",
   });
- 
+
 
   const totalPages = Math.ceil(cpuList.length / itemsPerPage);
 
- 
+
   const calculateRange = () => {
     const startIndex = (currentPage - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
     return cpuList.slice(startIndex, endIndex);
   };
-  
+
   const handlePageChange = (newPage) => {
     setCurrentPage(newPage);
     window.scrollTo(0, 0);
   };
- 
+
   useEffect(() => {
     // Fetch data when the component mounts
     async function loadData() {
@@ -154,6 +151,7 @@ const CPU = () => {
         const res = await fetch("http://localhost:3000/api/CPU");
         const data = await res.json();
         setCpuList(data);
+        setManufacturerFilter("AMD")
       } catch (error) {
         console.log(error);
       }
@@ -161,6 +159,26 @@ const CPU = () => {
 
     loadData();
   }, []);
+
+  useEffect(() => {
+    setCpuList((old) => {
+      let newArr = []
+      
+      for (const iterator of old.slice()) {
+        if (manufacturerFilter == iterator.brand) {
+           newArr.push(iterator)
+        }
+        
+      }
+
+      console.table(newArr)
+      return newArr
+
+    })
+  }, [manufacturerFilter])
+
+
+  function updatemanufacturer(name) { setManufacturerFilter(name) }
 
   const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -170,67 +188,116 @@ const CPU = () => {
     color: theme.palette.text.secondary,
   }));
 
+  /*  const filteredCpuList = cpuList
+     .filter((cpu) => {
+       if (manufacturerFilter === null) return true;
+       return cpu.brand === manufacturerFilter;
+     })
+     .filter((cpu) => {
+       if (coresFilter === null) return true;
+       return cpu.cores === coresFilter;
+     })
+     .filter((cpu) => {
+       if (speedFilter === null) return true;
+       return cpu.speed === speedFilter;
+     })
+     .filter((cpu) => {
+       if (powerFilter === null) return true;
+       return cpu.power === powerFilter;
+     });
+  */
+
+  // Apply filters to the CPU list
+  /* const productCards = filteredCpuList.map((cpu) => (
+    <ProductCard
+      key={cpu.id}
+      style={{
+        margin: "15px", // Adjust this value to control spacing between cards
+      }}
+      price={`₹${cpu.price}`}
+      image={cpu.image}
+      name={cpu.name}
+      feat1={`Core: ${cpu.coreCount}`}
+      feat2={`Power: ${cpu.power}`}
+      feat4={`Speed: ${cpu.speed}`}
+      feat3={`Socket: ${cpu.socket}`}
+      feat5={`Thread: ${cpu.threadCount}`}
+      brand={cpu.brand}
+    />
+  )); */
+
+
   return (
     <>
-    <ThemeProvider theme={theme}>
+      <ThemeProvider theme={theme}>
+
+
         <style>
-        {`
+          {`
           body {
             background-color: #373538; /* Set your desired background color here */
           }
         `}
-      </style>
-      <div style={containerStyle}>
-        <SideBar
-          drop={drop_1}
-          slider={main_slider}
-          sliderNum={slider_Num}
-          checkboxCategories={checkbox}
-        />
-        <div style={{}}>
+        </style>
+        <div style={containerStyle}>
+          <SideBar
+            drop={drop_1}
+            slider={main_slider}
+            sliderNum={slider_Num}
+            checkboxCategories={checkbox}
+            manufacturerFilter={manufacturerFilter}
+            coresFilter={coresFilter}
+            speedFilter={speedFilter}
+            powerFilter={powerFilter}
+            onManufacturerFilterChange={(value) => setManufacturerFilter(value)}
+            onCoresFilterChange={(value) => setCoresFilter(value)}
+            onSpeedFilterChange={(value) => setSpeedFilter(value)}
+            onPowerFilterChange={(value) => setPowerFilter(value)}
+          />
+          <div style={{}}>
 
-        <Grid container spacing={3} columnSpacing={3} rowSpacing={2} rowGap={2}>
-        {calculateRange().map((cpu, index) => (
-          <Grid item xs={12} sm={6} md={4} key={index}>
-            <ProductCard
-              key={cpu.id}
-              style={{
-                margin: "15px", // Adjust this value to control spacing between cards
-              }}
-              price={`₹${cpu.price}`}
-              image={cpu.image}
-              name={cpu.name}
-              feat1={`Core: ${cpu.coreCount}`}
-              feat2={`power: ${cpu.power}`}
-              feat4={`speed: ${cpu.speed}`}
-              feat3={`socket: ${cpu.socket}`}
-              feat5={`Thread: ${cpu.threadCount}`}
-              brand={cpu.brand}
-            />
-          </Grid>
-        ))}
-            </Grid> 
+            <Grid container spacing={3} columnSpacing={3} rowSpacing={2} rowGap={2}>
+              {calculateRange().map((cpu, index) => (
+                <Grid item xs={12} sm={6} md={4} key={index}>
+                  <ProductCard
+                    key={cpu.id}
+                    style={{
+                      margin: "15px", // Adjust this value to control spacing between cards
+                    }}
+                    price={`₹${cpu.price}`}
+                    image={cpu.image}
+                    name={cpu.name}
+                    feat1={`Core: ${cpu.coreCount}`}
+                    feat2={`power: ${cpu.power}`}
+                    feat4={`speed: ${cpu.speed}`}
+                    feat3={`socket: ${cpu.socket}`}
+                    feat5={`Thread: ${cpu.threadCount}`}
+                    brand={cpu.brand}
+                  />
+                </Grid>
+              ))}
+            </Grid>
 
-          <div style={{ display: "flex", justifyContent: "center", marginTop: "1vh" }}>
-            <button
-              onClick={() => handlePageChange(currentPage - 1)}
-              disabled={currentPage === 1}
-              style={{backgroundColor:'#BB84EC',color:'white',fontSize:'3vh', fontFamily: 'poppins, montserrat, sans-serif',height:'100px',width:'200px',margin:'10px',borderRadius:'10px',border:'Solid',borderColor:'rgba(53, 14, 88, 0.5)'}}
-            >
-              Previous
-            </button>
-            <button
-              onClick={() => handlePageChange(currentPage + 1)}
-              disabled={currentPage === totalPages}
-              style={{backgroundColor:'rgba(53, 14, 88, 0.5)',color:'white',fontSize:'3vh', fontFamily: 'poppins, montserrat, sans-serif',height:'100px',width:'200px',margin:'10px',borderRadius:'10px',border:'Solid',borderColor:'#BB84EC'}}
-            >
-              Next
-            </button>
+            <div style={{ display: "flex", justifyContent: "center", marginTop: "1vh" }}>
+              <button
+                onClick={() => handlePageChange(currentPage - 1)}
+                disabled={currentPage === 1}
+                style={{ backgroundColor: '#BB84EC', color: 'white', fontSize: '3vh', fontFamily: 'poppins, montserrat, sans-serif', height: '100px', width: '200px', margin: '10px', borderRadius: '10px', border: 'Solid', borderColor: 'rgba(53, 14, 88, 0.5)' }}
+              >
+                Previous
+              </button>
+              <button
+                onClick={() => handlePageChange(currentPage + 1)}
+                disabled={currentPage === totalPages}
+                style={{ backgroundColor: 'rgba(53, 14, 88, 0.5)', color: 'white', fontSize: '3vh', fontFamily: 'poppins, montserrat, sans-serif', height: '100px', width: '200px', margin: '10px', borderRadius: '10px', border: 'Solid', borderColor: '#BB84EC' }}
+              >
+                Next
+              </button>
+            </div>
           </div>
         </div>
-      </div>
-         
-        </ThemeProvider>
+
+      </ThemeProvider>
     </>
   );
 };
