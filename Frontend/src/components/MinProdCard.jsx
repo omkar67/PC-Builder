@@ -4,7 +4,7 @@ import Chip from '@mui/material/Chip';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
-import Divider from '@mui/material/Divider';
+
 import Typography from '@mui/material/Typography';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 
@@ -16,14 +16,14 @@ const theme = createTheme({
   height: "380px"
 });
 
-export default function ProductCard(props) {
+export default function MinProductCard(props) {
   return (
     <ThemeProvider theme={theme}>
       <Box
         sx={{
-          width: '100%',
-          maxWidth: '750px',
-          maxHeight:'750px',
+          width: '120%',
+          maxWidth: '900px',
+          maxHeight:'150px',
           position: 'relative',
           borderRadius: '20px',
           overflow: 'hidden',
@@ -50,47 +50,23 @@ export default function ProductCard(props) {
             zIndex: -1,
           }}
         />
-        <Box sx={{ my: '1rem', mx: '2%', marginLeft: '' }}>
-          <Grid container sx={{ marginTop: '1rem', marginLeft: '0.5vw' }}>
-            <Grid item xs>
+        <Box sx={{ my: '1rem', mx: '2%'}} style={{marginTop:''}}>
               <Stack direction={{ xs: 'column', md: 'row' }} spacing="1vw">
                 <img
                   src={props.image}
-                  height="200rem"
                   alt="test img here"
-                  style={{ marginTop: '1vw',width: '100%', height: 'auto', maxWidth: '150px'  }}
+                  style={{ marginTop: '5px',width: 'auto', height: '100px',marginLeft:'5px' }}
                 />
-                <Typography gutterBottom variant="h4" component="div" style={{ marginTop: '2vw', marginLeft: '0.5vw', fontSize: '1.5vw' }} sx={{ mt: '1.125rem', width: '100%', }}>
-                  {props.name}
+                
+                <Typography gutterBottom variant="h4" component="div" style={{ marginTop: '1.5vw', marginLeft:'1vw', fontSize: '1vw',  marginRight:'0px',}} sx={{ mt: '1.125rem', width: '100%', }}>
+                {props.name}
                 </Typography>
-              </Stack>
-            </Grid>
-            <Grid item></Grid>
-          </Grid>
-          <div style={{ color: 'white', marginTop: '1.5rem',marginLeft:'1.0.rem' }}>
-            <div>
-            <Typography gutterBottom variant="h4" component="div" style={{ marginTop: '2.2vw', marginLeft: '0.7vw', fontSize: '2vw' }} sx={{ mt: '1.125rem', width: '100%' }}>
+                <Button style={{ backgroundColor: 'rgba(0,0,0,0)', color: 'white', borderRadius: '10px', fontSize: '1rem',padding:'5px',maxWidth:'100px',height:'100%',marginTop:'1.7vw', marginLeft:'5px',textDecoration: 'underline',marginRight:'20px' }}>Update</Button>
+                <Typography gutterBottom variant="h4" component="div" style={{ marginTop: '1.5vw', marginLeft:'1vw', fontSize: '1.5vw',maxWidth:'220px',paddingLeft:'',marginRight:'-3vw' }} sx={{ mt: '1.125rem', width: '200%', }}>
                   {props.price}
                 </Typography>
-            </div>
-          </div>
-        </Box>
-        <Divider variant="middle" color="white" />
-        <Box sx={{ m: '2%', width: '20vw' }}>
-          <Typography gutterBottom variant="body1">
-            Key features are
-          </Typography>
-          <Stack style={{ display: 'flex', flexWrap: 'wrap' }} direction={'row'}>
-            <Chip label={props.feat1} sx={{ backgroundColor: 'rgba(0,0,0,0.6)', color: 'white', fontSize: '1rem', marginRight: '0.5rem' }} />
-            <Chip label={props.feat2} sx={{ backgroundColor: 'rgba(0,0,0,0.6)', color: 'white', fontSize: '1rem', marginRight: '0.5rem' }} />
-            <Chip label={props.feat3} sx={{ backgroundColor: 'rgba(0,0,0,0.6)', color: 'white', fontSize: '1rem', marginRight: '0.5rem' }} />
-            <Chip label={props.feat4} sx={{ backgroundColor: 'rgba(0,0,0,0.6)', color: 'white', fontSize: '1rem', marginRight: '0.5rem' }} />
-            <Chip label={props.feat5} sx={{ backgroundColor: 'rgba(0,0,0,0.6)', color: 'white', fontSize: '1rem', marginRight: '0.5rem' }} />
-            <Chip label={props.brand} sx={{ backgroundColor: 'rgba(0,0,0,0.6)', color: 'white', fontSize: '1rem', marginRight: '0.5rem',marginTop:'0.5rem' }} />
-          </Stack>
-        </Box>
-        <Box sx={{ mt: '2rem', ml: '1%', mb: '1.5rem', maxHeight:'50px',maxWidth:'200px' }}>
-          <Button sx={{ backgroundColor: '#6600CC', color: 'white', borderRadius: '10px', fontSize: '1.5rem' }} onClick={() => props.updateFunct(props.id)}>Add to Build</Button>
+              </Stack>
+
         </Box>
       </Box>
     </ThemeProvider>

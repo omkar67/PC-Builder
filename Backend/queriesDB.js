@@ -78,6 +78,84 @@ export function initialize(app, db) {
             res.json(results);
         });
     });
+    app.get('/api/getCPU/:id', (req, res) => {
+        const cpuId = req.params.id;
+        const sql = 'SELECT * FROM cpu WHERE id = ?';
+    
+        db.query(sql, [cpuId], (err, results) => {
+            if (err) {
+                return res.status(500).json({ error: err.message });
+            }
+            res.json(results);
+        });
+    });
+    app.get('/api/getMOBO/:id', (req, res) => {
+        const cpuId = req.params.id;
+        const sql = 'SELECT * FROM motherboard WHERE id = ?';
+    
+        db.query(sql, [cpuId], (err, results) => {
+            if (err) {
+                return res.status(500).json({ error: err.message });
+            }
+            res.json(results);
+        });
+    });
+    app.get('/api/getPSU/:id', (req, res) => {
+        const cpuId = req.params.id;
+        const sql = 'SELECT * FROM psu WHERE id = ?';
+    
+        db.query(sql, [cpuId], (err, results) => {
+            if (err) {
+                return res.status(500).json({ error: err.message });
+            }
+            res.json(results);
+        });
+    });
+    app.get('/api/getRAM/:id', (req, res) => {
+        const cpuId = req.params.id;
+        const sql = 'SELECT * FROM ram WHERE id = ?';
+    
+        db.query(sql, [cpuId], (err, results) => {
+            if (err) {
+                return res.status(500).json({ error: err.message });
+            }
+            res.json(results);
+        });
+    });
+    app.get('/api/getStorage/:id', (req, res) => {
+        const cpuId = req.params.id;
+        const sql = 'SELECT * FROM storage WHERE id = ?';
+    
+        db.query(sql, [cpuId], (err, results) => {
+            if (err) {
+                return res.status(500).json({ error: err.message });
+            }
+            res.json(results);
+        });
+    });
+    app.get('/api/getGPU/:id', (req, res) => {
+        const cpuId = req.params.id;
+        const sql = 'SELECT * FROM gpu WHERE id = ?';
+    
+        db.query(sql, [cpuId], (err, results) => {
+            if (err) {
+                return res.status(500).json({ error: err.message });
+            }
+            res.json(results);
+        });
+    });
+    app.get('/api/getCase/:id', (req, res) => {
+        const cpuId = req.params.id;
+        const sql = 'SELECT * FROM pccase WHERE id = ?';
+    
+        db.query(sql, [cpuId], (err, results) => {
+            if (err) {
+                return res.status(500).json({ error: err.message });
+            }
+            res.json(results);
+        });
+    });
+    
 }
 
 /* const userRouter = Router(); */

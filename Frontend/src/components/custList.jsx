@@ -7,6 +7,10 @@ import Divider from '@mui/material/Divider';
 import Typography from '@mui/material/Typography';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { useNavigate } from 'react-router-dom';
+import MinProductCard from './MinProdCard';
+import { useSelector } from 'react-redux';
+import { useState, useEffect } from 'react';
+
 
 const theme = createTheme({
   typography: {
@@ -43,6 +47,81 @@ const contentStyle = {
 
 export default function CustList() {
   const nav = useNavigate();
+  const cpuState = useSelector((state) => state.components.CPU);
+  const gpuState = useSelector((state) => state.components.GPU)
+  const MOBOState = useSelector((state) => state.components.MOBO)
+  const RAMState = useSelector((state) => state.components.RAM)
+  const CaseState = useSelector((state) => state.components.Case)
+  const PSUState = useSelector((state) => state.components.PSU)
+  const StorageState = useSelector((state) => state.components.Storage)
+  const [cpudata,setCPUdata]=useState([])
+  const [gpudata,setGPUdata]=useState([])
+  const [psudata,setPSUdata]=useState([])
+  const [ramdata,setRAMdata]=useState([])
+  const [casedata,setCASEdata]=useState([])
+  const [mobodata,setMOBOdata]=useState([])
+  const [storedata,setStoredata]=useState([])
+
+  useEffect(() => {
+    async function loadData() {
+      try {
+        if (cpuState != null) {
+          const res1 = await fetch(`http://localhost:3000/api/getCPU/${cpuState}`);
+          const data1 = await res1.json();
+          setCPUdata(data1);
+        }
+        if (gpuState !== null) {
+          const res2 = await fetch(`http://localhost:3000/api/getGPU/${gpuState}`);
+          const data2 = await res2.json();
+          setGPUdata(data2);
+        }
+        if (PSUState !== null) {
+          const res3 = await fetch(`http://localhost:3000/api/getPSU/${PSUState}`);
+          const data3 = await res3.json();
+          setPSUdata(data3);
+        }
+        if (RAMState !== null) {
+          const res4 = await fetch(`http://localhost:3000/api/getRAM/${RAMState}`);
+          const data4 = await res4.json();
+          setRAMdata(data4);
+        }
+        if (CaseState !== null) {
+          const res5 = await fetch(`http://localhost:3000/api/getCase/${CaseState}`);
+          const data5 = await res5.json();
+          setCASEdata(data5);
+        }
+        if (MOBOState !== null) {
+          const res6 = await fetch(`http://localhost:3000/api/getMOBO/${MOBOState}`);
+          const data6 = await res6.json();
+          setMOBOdata(data6);
+        }
+        if (StorageState !== null) {
+          const res7 = await fetch(`http://localhost:3000/api/getStorage/${StorageState}`);
+          const data7 = await res7.json();
+          setStoredata(data7);
+        }
+
+        // All data loaded, you can perform any callback here
+        console.log('All data loaded:', {
+          cpudata,
+          gpudata,
+          psudata,
+          ramdata,
+          casedata,
+          mobodata,
+          storedata,
+        });
+
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
+    loadData();
+  }, [cpuState, gpuState, PSUState, RAMState, CaseState, MOBOState, StorageState]);
+
+  
+  
   return (
     
     <div
@@ -103,52 +182,85 @@ export default function CustList() {
                   </Stack>
                   </Grid>
                 {/* Grid Item 1 - CPU */}
-                <Grid item xs style={{marginTop:'.5vw',}}>
-                  <Stack direction="row"spacing={'0.5vw'}>
-                    <Typography
-                      gutterBottom
-                      variant="h4"
-                      component="div"
-                      sx={{ mt: '2vw', fontSize: '2vw' }}
-                      style={{marginLeft:'2vw',width:'7vw'}}
-                    >
-                      CPU
-                    </Typography>
-                    <Button
-                      sx={{
-                        '&:hover': { backgroundColor: 'rgba(176,216,230,0.5)' },
-                        backgroundColor: '#d3c0f2',
-                        color: 'black',
-                        borderRadius: '1vw',
-                        height: '3vw',
-                        fontSize: '2.5vw',
-                        marginTop: '1vw',
-                      }}
-                     style={{marginLeft:'13.5vw',width:'15vw'}}
-                     onClick={()=>nav('/CPU')}
-                    >
-                      +Add
-                    </Button>
-                    <Typography
-                      gutterBottom
-                      variant="h4"
-                      component="div"
-                      sx={{
-                        mt: '1vw',
-                        width: '10vw',
-                        whiteSpace: 'nowrap',
-                        fontSize: '2vw',
-                        
-                      }}
-                      style={{marginLeft:'17vw',width:'5vw'}}
-                    >
-                      $0.00
-                    </Typography>
-                  </Stack>
-                </Grid>
-
-                <Grid item xs style={{marginTop:'.5vw',}}>
-                  <Stack direction="row"spacing={'0.5vw'}>
+                {cpuState === null ? ( // Check if the CPU state is in its initial state (null)
+        <Grid item xs style={{ marginTop: '.5vw' }}>
+          <Stack direction="row" spacing={'0.5vw'}>
+            <Typography
+              gutterBottom
+              variant="h4"
+              component="div"
+              sx={{ mt: '2vw', fontSize: '2vw' }}
+              style={{
+                marginLeft: '2vw',
+                width: '7vw',
+                marginRight: '2vw',
+                
+              }}
+            >
+              CPU
+            </Typography>
+            <Button
+              sx={{
+                '&:hover': { backgroundColor: 'rgba(176, 216, 230, 0.5)' },
+                backgroundColor: '#d3c0f2',
+                color: 'black',
+                borderRadius: '1vw',
+                height: '3vw',
+                fontSize: '2.5vw',
+                marginTop: '1vw',
+                
+              }}
+              style={{
+                marginLeft: '11.5vw',
+                width: '15vw',
+              }}
+              onClick={() => nav('/CPU')}
+            >
+              +Add
+            </Button>
+            <Typography
+              gutterBottom
+              variant="h4"
+              component="div"
+              sx={{
+                mt: '1vw',
+                width: '10vw',
+                whiteSpace: 'nowrap',
+                fontSize: '2vw',
+              }}
+              style={{
+                marginLeft: '17vw',
+                width: '5vw',
+              }}
+            >
+              $0.00
+            </Typography>
+          </Stack>
+        </Grid>
+      ) : (
+        <Grid item xs style={{ marginTop: '0.5vw' }}>
+          <Stack direction="row" spacing={'0.5vw'}>
+            <Typography
+              gutterBottom
+              variant="h4"
+              component="div"
+              sx={{ mt: '2vw', fontSize: '2vw' }}
+              style={{
+                marginLeft: '0vw',
+                width: '7vw',
+                marginRight: '5.5vw',
+              }}
+            >
+              CPU
+            </Typography>
+            <MinProductCard name={cpudata[0]?.name} price={cpudata[0]?.price} image={cpudata[0]?.image} />
+          </Stack>
+        </Grid>
+      )}
+{/* Grid Item 2 - MOBO */}
+{ MOBOState===null ? (
+                <Grid item xs style={{marginTop:'1vw',}}>
+                <Stack direction="row"spacing={'0.5vw'}>
                     <Typography
                       gutterBottom
                       variant="h4"
@@ -188,8 +300,25 @@ export default function CustList() {
                       $0.00
                     </Typography>
                   </Stack>
-                </Grid>
-                {/* item 3 storage */}
+                </Grid> 
+    ):(
+      <Grid item xs style={{marginTop:'1vw',}}>
+      <Stack direction="row"spacing={'0.5vw'}>
+          <Typography
+            gutterBottom
+            variant="h4"
+            component="div"
+            sx={{ mt: '2vw', fontSize: '1.5vw' }}
+            style={{marginLeft:'2vw',width:'15.5vw'}}
+          >
+            MOTHERBOARD
+          </Typography>
+          <MinProductCard name={mobodata[0]?.name} price={mobodata[0]?.price} image={mobodata[0]?.image}/>
+          </Stack>
+          </Grid>
+    )}
+        {/* item 3 storage */}
+  {StorageState===null?(
                 <Grid item xs style={{marginTop:'.5vw',}}>
                   <Stack direction="row"spacing={'0.5vw'}>
                     <Typography
@@ -233,7 +362,26 @@ export default function CustList() {
                     </Typography>
                   </Stack>
                 </Grid>
+          ):(
+            <Grid item xs style={{marginTop:'.5vw',}}>
+                  <Stack direction="row"spacing={'0.5vw'}>
+                    <Typography
+                      gutterBottom
+                      variant="h4"
+                      component="div"
+                      sx={{ mt: '2vw', fontSize: '1.5vw' }}
+                      style={{marginLeft:'2vw',width:'8vw'}}
+                    >
+                      STORAGE
+                    </Typography>
+                    <MinProductCard name={storedata[0]?.name} price={storedata[0]?.price} image={storedata[0]?.image}/>
+                  </Stack>
+                  </Grid>
+          )
+
+    }
                 {/* Ram - 4  */}
+{RAMState===null?(
                 <Grid item xs style={{marginTop:'.5vw',}}>
                   <Stack direction="row"spacing={'0.5vw'}>
                     <Typography
@@ -276,7 +424,27 @@ export default function CustList() {
                     </Typography>
                   </Stack>
                 </Grid>
-                {/* GPU- 5  */}
+):(
+  <Grid item xs style={{marginTop:'.5vw',}}>
+                  <Stack direction="row"spacing={'0.5vw'}>
+                    <Typography
+                      gutterBottom
+                      variant="h4"
+                      component="div"
+                      sx={{ mt: '2vw', fontSize: '2vw' }}
+                      style={{marginLeft:'2vw',width:'5vw'}}
+                    >
+                      RAM
+                    </Typography>
+                    <MinProductCard name={ramdata[0]?.name} price={ramdata[0]?.price} image={ramdata[0]?.image}></MinProductCard>
+                    </Stack>
+                    </Grid>
+)
+    }
+
+{/* GPU-5  */}
+  {gpuState===null?(
+                
                 <Grid item xs style={{marginTop:'.5vw',}}>
                   <Stack direction="row"spacing={'0.5vw'}>
                     <Typography
@@ -320,7 +488,30 @@ export default function CustList() {
                     </Typography>
                   </Stack>
                 </Grid>
+                ):(
+                  <Grid item xs style={{marginTop:'.5vw',}}>
+                  <Stack direction="row"spacing={'0.5vw'}>
+                    <Typography
+                      gutterBottom
+                      variant="h4"
+                      component="div"
+                      sx={{ mt: '2vw', fontSize: '2vw' }}
+                      style={{marginLeft:'2vw',width:'5vw',marginRight:'5vw',marginTop:'3vh'}}
+                     
+                    >
+                      GPU
+                    </Typography>
+                    
+                    
+                      <MinProductCard  name={gpudata[0]?.name} price={gpudata[0]?.price} image={gpudata[0]?.image}/>
+                   
+                    </Stack>
+                    </Grid>
+
+                )
+}
                 {/* Power Supply - 6  */}
+  {PSUState===null?(
                 <Grid item xs style={{marginTop:'.5vw',}}>
                   <Stack direction="row"spacing={'0.5vw'}>
                     <Typography
@@ -363,7 +554,27 @@ export default function CustList() {
                     </Typography>
                   </Stack>
                 </Grid>
-                {/* CASE - 7  */}
+  ):(
+    <Grid item xs style={{marginTop:'.5vw',}}>
+                  <Stack direction="row"spacing={'0.5vw'}>
+                    <Typography
+                      gutterBottom
+                      variant="h4"
+                      component="div"
+                      sx={{ mt: '2vw', fontSize: '1.5vw' }}
+                      style={{marginLeft:'2vw',width:'13vw'}}
+                    >
+                      POWER SUPPLY
+                    </Typography>
+                  <MinProductCard  name={psudata[0]?.name} price={psudata[0]?.price} image={psudata[0]?.image}/>
+                </Stack>
+                </Grid>
+  )
+
+}
+
+  {/* CASE - 7  */}
+      { CaseState===null?( 
                 <Grid item xs style={{marginTop:'.5vw',}}>
                   <Stack direction="row"spacing={'0.5vw'}>
                     <Typography
@@ -406,7 +617,22 @@ export default function CustList() {
                     </Typography>
                   </Stack>
                 </Grid>
-                {/* GPU- 5  */}
+      ):(
+        <Grid item xs style={{marginTop:'.5vw',}}>
+        <Stack direction="row"spacing={'0.5vw'}>
+          <Typography
+            gutterBottom
+            variant="h4"
+            component="div"
+            sx={{ mt: '2vw', fontSize: '2vw' }}
+            style={{marginLeft:'2vw',width:'7vw'}}
+          >
+            CASE
+          </Typography>
+          <MinProductCard  name={casedata[0]?.name} price={casedata[0]?.price} image={casedata[0]?.image}/>
+        </Stack>
+        </Grid>
+      )}
                 <Grid item xs style={{marginTop:'0vw',backgroundColor:'#4c1f93',borderRadius:'5vw',marginLeft:'4vw'}}>
                   <Stack direction="row"spacing={'0.5vw'} style={{marginTop:'1vw'}}>
                     <Typography
