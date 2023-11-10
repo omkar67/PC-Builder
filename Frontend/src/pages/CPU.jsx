@@ -9,6 +9,7 @@ import Paper from '@mui/material/Paper';
 import { useSelector, useDispatch } from 'react-redux';
 import { setCPU } from "../redux/actions";
 import { useNavigate } from "react-router-dom";
+// import { useSelector } from 'react-redux';
 const CPU = () => {
   const dispatch = useDispatch();
   const nav = useNavigate();
@@ -37,8 +38,8 @@ const CPU = () => {
 
   const drop_1 = {
     0: d1,
-
   };
+
   const cores = {
     title: "Cores",
     min: 2,
@@ -163,6 +164,7 @@ const CPU = () => {
         const data = await res.json();
         setCpuList(data);
         setManufacturerFilter("AMD")
+
       } catch (error) {
         console.log(error);
       }
@@ -171,22 +173,34 @@ const CPU = () => {
     loadData();
   }, []);
 
-  useEffect(() => {
-    setCpuList((old) => {
-      let newArr = []
+  //console.log("chocolate boi :- ",cpuList);
+  const brand = cpuList.map(brand => brand.brand);
+  // console.log("chocolate boi :- ",brand);
+  function test (brand){
+    return brand=="AMD";
+  }
+  const brandName = brand.filter(test);
+  // console.log("New **************",brandName);
+ 
+  const menu = useSelector(state => state.components.manufacturer);
+  console.log("************",menu)
+  
+
+  // useEffect(() => {
+  //   setCpuList((old) => {
+  //     let newArr = []
       
-      for (const iterator of old.slice()) {
-        if (manufacturerFilter == iterator.brand) {
-           newArr.push(iterator)
-        }
+  //     for (const iterator of old.slice()) {
+  //       if (manufacturerFilter == iterator.brand) {
+  //          newArr.push(iterator)
+  //       }
         
-      }
+  //     }
+  //     console.table(newArr)
+  //     return newArr
 
-      console.table(newArr)
-      return newArr
-
-    })
-  }, [manufacturerFilter])
+  //   })
+  // }, [manufacturerFilter])
 
 
   function updatemanufacturer(name) { setManufacturerFilter(name) }

@@ -6,6 +6,16 @@ export const setCPU = createAction('components/setCPU', (value) => {
   };
 });
 
+export const setMenu = createAction('components/setMenu', (value) => {
+  return {
+    payload: value,
+  };
+});
+
+export const setManufacturer = createAction('components/setManufacturer', (value) => ({
+  payload: value,
+}));
+
 export const setGPU = createAction('components/setGPU', (value) => {
   return {
     payload: value,

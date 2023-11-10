@@ -2,6 +2,14 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Box, Typography, Slider, FormControl, Select, MenuItem, Checkbox, FormControlLabel, FormGroup, InputLabel } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
+
+// import store from './yourStorePath';
+// import { setPSU } from './yourActionsPath';
+import store from  "../redux/store"
+import { setManufacturer} from '../redux/actions';
+
+
 
 const theme = createTheme({
   typography: {
@@ -35,6 +43,7 @@ const theme = createTheme({
 });
 
 const SideBar = (props) => {
+  const dispatch = useDispatch();
   const styleBoxRef = useRef(null);
 
   useEffect(() => {
@@ -71,6 +80,8 @@ const SideBar = (props) => {
 
   const [selectedDropdownValues, setSelectedDropdownValues] = useState({});
 
+   
+
   return (
     <ThemeProvider theme={theme}>
       <div style={style_box} ref={styleBoxRef}>
@@ -81,7 +92,7 @@ const SideBar = (props) => {
             {props.drop && Object.keys(props.drop).map((dropIndex) => {
               return (
                 <FormControl fullWidth margin="normal" style={{ marginTop: '1vh', width: '90%', marginLeft: '1vw' }} key={dropIndex}>
-                  <InputLabel style={{ color: 'white' }}>{props.drop[dropIndex].label}</InputLabel>
+                  <InputLabel style={{ color: 'white' }}>{props.drop[dropIndex].label} </InputLabel>
                   <Select
                     sx={{
                       color: 'white',
@@ -94,10 +105,13 @@ const SideBar = (props) => {
                     value={selectedDropdownValues[dropIndex] || ''}
                     onChange={(event) => {
                       const value = event.target.value;
+                    
                       setSelectedDropdownValues((prevValues) => ({
                         ...prevValues,
                         [dropIndex]: value,
                       }));
+
+      
                     }}
                   >
                     {props.drop[dropIndex].dropOpt && Object.keys(props.drop[dropIndex].dropOpt).map((dropOptIndex) => {

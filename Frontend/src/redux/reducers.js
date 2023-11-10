@@ -10,6 +10,7 @@ const initialState = {
   RAM: null,
   Storage: null,
   PSU: null,
+  manufacturer:null,
 };
 
 const componentsReducer = createReducer(initialState, (builder) => {
@@ -34,6 +35,9 @@ const componentsReducer = createReducer(initialState, (builder) => {
     })
     .addCase(actions.setPSU, (state, action) => {
       state.PSU = action.payload;
+    })
+    .addCase(actions.setManufacturer, (state, action) => {
+      state.manufacturer = action.payload;
     });
   // Add similar cases for the other state variables
 });
