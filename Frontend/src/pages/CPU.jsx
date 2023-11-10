@@ -6,7 +6,18 @@ import { ThemeProvider, createTheme } from "@mui/material/styles";
 import Grid from '@mui/material/Grid';
 import { experimentalStyled as styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
+import { useSelector, useDispatch } from 'react-redux';
+import { setCPU } from "../redux/actions";
+import { useNavigate } from "react-router-dom";
 const CPU = () => {
+  const dispatch = useDispatch();
+  const nav = useNavigate();
+  const updateCPU = (id) => {
+    // Call the Redux action to update the CPU state with the provided ID
+    dispatch(setCPU(id));
+    nav('/CustomizePC')
+  };
+  
   const [cpuList, setCpuList] = useState([]);
   const itemsPerPage = 15; // Number of items to display per page
   const [currentPage, setCurrentPage] = useState(1);
@@ -194,6 +205,7 @@ const CPU = () => {
           <Grid item xs={12} sm={6} md={4} key={index}>
             <ProductCard
               key={cpu.id}
+              
               style={{
                 margin: "15px", // Adjust this value to control spacing between cards
               }}
@@ -206,6 +218,7 @@ const CPU = () => {
               feat3={`socket: ${cpu.socket}`}
               feat5={`Thread: ${cpu.threadCount}`}
               brand={cpu.brand}
+              updateFunct={() =>updateCPU(cpu.id)}
             />
           </Grid>
         ))}

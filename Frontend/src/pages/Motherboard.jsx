@@ -6,9 +6,19 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Grid from '@mui/material/Grid';
 import { experimentalStyled as styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
-
+import { useSelector, useDispatch } from 'react-redux';
+import { setMOBO } from "../redux/actions";
+import { useNavigate } from "react-router-dom";
 
 const Motherboard = () => {
+  const dispatch = useDispatch();
+  const nav = useNavigate();
+  const updateMOBO = (id) => {
+    // Call the Redux action to update the CPU state with the provided ID
+    dispatch(setMOBO(id));
+    nav('/CustomizePC')
+  };
+  
   const [mbList, setMbList] = useState([]);
   const itemsPerPage = 15; // Number of items to display per page
   const [currentPage, setCurrentPage] = useState(1);
@@ -187,6 +197,7 @@ const Motherboard = () => {
                 feat3={`Memory Slots: ${motherboard.memory_slots}`}
                 feat5={`Form Factor: ${motherboard.FormFactor}`}
                 brand={motherboard.brand}
+                updateFunct={() => updateMOBO(motherboard.id)}
               />
             </Grid>
           ))}
