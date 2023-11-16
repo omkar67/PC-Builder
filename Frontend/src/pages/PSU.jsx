@@ -9,6 +9,7 @@ import Paper from '@mui/material/Paper';
 import { setPSU } from "../redux/actions";
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from "react-router-dom";
+import { useGame } from "../context/Filter";
 const PSU = () => {
   const dispatch = useDispatch();
   const nav = useNavigate();
@@ -20,73 +21,25 @@ const PSU = () => {
   const [psuList, setPsuList] = useState([]);
   const itemsPerPage = 15; // Number of items to display per page
   const [currentPage, setCurrentPage] = useState(1);
-  const d1 = {
-    label: 'Manufacturer',
-    dropOpt: {
-      0: 'ABS',
-      1: 'Apex',
-      2: 'Corsair',
-      3: 'Evga',
-      4: 'Fractal Design',
-    },
-  };
-    const d2={
-          label:'Type',
-          dropOpt:{
-                0:'ATX',
-                1: 'Flex ATX',
-                2:'Mini ITX',
-                3: 'SFX',
-            4:'TFX'}
-        }
+  const drop_1= [
+    [
+      'Company',
+      ['Silverstone', 'be' , 'Fractal' , 'FSP' ,'Corsair', 'EVGA', 'Lian']
+    ],
+    [
+      'Type',
+      ['SFX' ,'ATX']
+    ],[
+      'power',
+      [400, 450, 500 ,550, 600 , 650 , 700,750 ,800 ,1000, 1200 ,2000]
+    ]
+  ];
+
+
+ 
       
-    const drop_1={
-      0:d1,
-      1:d2,
-    }
-    const wattage={
-        title:'Wattage (W)',
-        min:200,
-        max:2050,
-        step:100,
-       
-    }
    
-    
-      const price={
-        title:'Price',
-        marks:[],
-        min:50,
-        max:500,
-        step:5,
-      }
-    
    
-    const slider_Num=2;
-    const main_slider={
-        0:price,
-        1:wattage,
-        
-    }
-   /*  const checkbox = {
-      0: {
-        title: 'Integrated Graohics',
-        options: {
-          0: 'Yes',
-          1: 'No',
-          // Add more options as needed
-        },
-      },
-      1: {
-        title: 'Overclockable',
-        options: {
-          0: 'Yes',
-          1: 'No',
-          // Add more options as needed
-        },
-      },
-      // Add more categories as needed
-    }; */
     const containerStyle = {
       display: 'flex',
       flexDirection: 'row',
@@ -117,21 +70,29 @@ const PSU = () => {
     setCurrentPage(newPage);
     window.scrollTo(0, 0);
   };
- 
+
+  const {type, socket , brand} = useGame()
   useEffect(() => {
     // Fetch data when the component mounts
     async function loadData() {
       try {
         const res = await fetch("http://localhost:3000/api/PSU");
         const data = await res.json();
-        setPsuList(data);
+        let filteredData = [...data]; 
+        //const filteredData = brand ? data.filter(item => item.brand === brand) : data;
+        let brandCondition = brand ? data.filter(item => item.brand === brand) : data;
+        let typeCondition = type ? data.filter(item => item.type === type) : data;
+        let socketCondition = socket ? data.filter(item => item.power === socket) : data;
+        filteredData = [...brandCondition, ...typeCondition , ...socketCondition];
+    
+        setPsuList(filteredData);
       } catch (error) {
         console.log(error);
       }
     }
 
     loadData();
-  }, []);
+  }, [brand , type, socket]);
   const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
     ...theme.typography.body2,
@@ -153,9 +114,7 @@ const PSU = () => {
       <div style={containerStyle}>
         <SideBar
           drop={drop_1}
-          slider={main_slider}
-          sliderNum={slider_Num}
-    
+         
         />
         <div style={{}}>
 

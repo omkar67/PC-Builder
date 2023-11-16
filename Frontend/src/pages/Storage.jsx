@@ -9,6 +9,7 @@ import Paper from '@mui/material/Paper';
 import { useSelector, useDispatch } from 'react-redux';
 import { setStorage } from "../redux/actions";
 import { useNavigate } from "react-router-dom";
+import { useGame } from "../context/Filter";
 const Storage = () => {
   const dispatch = useDispatch();
   const nav = useNavigate();
@@ -20,74 +21,28 @@ const Storage = () => {
   const [storageList, setStorageList] = useState([]);
   const itemsPerPage = 15; // Number of items to display per page
   const [currentPage, setCurrentPage] = useState(1);
-  const d1 = {
-    label: 'Manufacturer',
-    dropOpt: {
-      0: 'Corsar',
-      1: 'GSkill',
-      2: 'Samsung',
-      3:"Trident",
-    },
-  };
-    const d2={
-          label:'Type',
-          dropOpt:{
-                0:'SSD',
-                1: 'HHD',
-                2:'Hybrid',
-                }
-        }
-      
-    const drop_1={
-      0:d1,
-      1:d2,
-    }
-    const Capacity={
-        title:'Capacity',
-        min:256,
-        max:2048,
-        step:256,
-        marks:[
-          {value:256,label:'256 GB'},
-          {value:512,label:'512 GB'},
-          {value:1024,label:'1 TB'},
-          {value:2048,label:'2 TB'},
-      ]
-       
-    }
+
+  const drop_1= [
+    [
+      'Company',
+      ['Samsung', 'Kingston', 'Western', 'HP', 'PNY' , 'Silicon', 'Gigabyte', 'MSI' ,'Seagate', 'Crucial']
+    ],
+    [
+      'Type',
+      ["NVME", "SATA", "HDD" ]
+    ],[
+      'Capacity',
+      [250 , 500 , 1000 , 2000]
+    ]
+  ];
   
-    
-      const price={
-        title:'Price',
-        marks:[
-          {value:500,label:'500'},
-
-          {value:10000,label:'10K'},
-        ],
-        min:500,
-        max:10000,
-        step:500,
-      }
-    
-
-    const slider_Num=2;
-    const main_slider={
-        0:price,
-        1:Capacity,
+   
       
-    }
-    const checkbox = {
-      0: {
-        title: 'NvME',
-        options: {
-          0: 'Yes',
-          1: 'No',
-          // Add more options as needed
-        },
-      },
-     
-      // Add more categories as needed
-    };
+
+
+    
+      
+  
     const containerStyle = {
       display: 'flex',
       flexDirection: 'row',
@@ -118,6 +73,7 @@ const Storage = () => {
     setCurrentPage(newPage);
     window.scrollTo(0, 0);
   };
+  const {brand , type , socket} = useGame()
  
   useEffect(() => {
     // Fetch data when the component mounts
@@ -125,14 +81,24 @@ const Storage = () => {
       try {
         const res = await fetch("http://localhost:3000/api/storage");
         const data = await res.json();
-        setStorageList(data);
+        let filteredData = [...data]; 
+      
+      
+        // filteredData = filteredData.filter(item => item.brand === brand || item.type === type );
+       
+        let brandCondition = brand ? data.filter(item => item.brand === brand) : data;
+        let typeCondition = type ? data.filter(item => item.type === type) : data;
+        let socketCondition = socket ? data.filter(item => item.space === socket) : data;
+        filteredData = [...brandCondition, ...typeCondition ,...socketCondition];
+    
+        setStorageList(filteredData);
       } catch (error) {
         console.log(error);
       }
     }
 
     loadData();
-  }, []);
+  }, [brand , type , socket]);
   const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
     ...theme.typography.body2,
@@ -154,9 +120,8 @@ const Storage = () => {
       <div style={containerStyle}>
         <SideBar
           drop={drop_1}
-          slider={main_slider}
-          sliderNum={slider_Num}
-          checkboxCategories={checkbox}
+         
+          
         />
         <div style={{}}>
 

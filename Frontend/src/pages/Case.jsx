@@ -9,6 +9,7 @@ import Paper from '@mui/material/Paper';
 import { useSelector, useDispatch } from 'react-redux';
 import { setCase } from "../redux/actions";
 import { useNavigate } from "react-router-dom";
+import { useGame } from "../context/Filter";
 const Case = () => {
   const nav = useNavigate();
   const [caseList, setCaseList] = useState([]);
@@ -19,128 +20,23 @@ const Case = () => {
     dispatch(setCase(id));
     nav('/CustomizePC')
   };
-  const d1 = {
-    label: 'Manufacturer',
-    dropOpt: {
-      0: 'Corsair',
-      1: 'Deepcooll',
-      2: 'NZHT',
-      3: 'Lian',
-      4: 'Fractal',
-    },
-  };
-    const d2={
-          label:'Type',
-          dropOpt:{
-                0:' ATX Mid Tower',
-                1: 'ATX Full Tower',
-                2:'ATX mini Tower',
-                3: 'ATX Desktop',
-                4: 'MicroATX Slim',
-                5: 'Mini ITX Desktop',}
-        };
-        const d3={
-          label:'Color',
-          dropOpt:{
-                0:' Black',
-                1: 'Silver / Black',
-                2:'White',
-                3: 'Blue / Black',
-                4: 'Blue / Red',
-                5: 'Black / Gold',
-                6:' Gunmetal',
-                7: 'Pink / Black',
-                8:'Yellow / Red',}
-        };
-        const d4={
-          label:'Side Panel',
-          dropOpt:{
-                0:' Acrylic',
-                1: 'Mesh',
-                2:'Tinted Acrylic',
-                3: 'Tempered Glass',
-                4: 'Tinted Tempered Glass',}
-        }
-        const d5={
-          label:'Front Panel USB',
-          dropOpt:{
-                0:' USB 3.2 Gen 2x2 Type-C',
-                1: 'USB 3.2 Gen 2 Type-C',
-                2:'USB 3.2 Gen 1 Type-C',
-                3: 'USB 3.2 Gen 1 Type-A',
-                4: 'USB 2.0 Type-A',}
-        }
-    const drop_1={
-      0:d1,
-      1:d2,
-      2:d3,
-      3:d4,
-      4:d5,
-    }
-    const powersupply={
-        title:'Power Supply',
-        min:60 ,
-        max:1375 ,
-        step:10,
-        marks:[
-            {value:60 ,label:'60 W'},
-            {value:275 ,label:'275 W '},
-            {value:750 ,label:'750 W '},
-            {value:1375 ,label:'1375 W'},
-        ]
-    }
-    const ExternalVolume={
-      title:'External Volume',
-      min:2.890,
-      max:257.347,
-        step:0.231,
-        marks:[
-            {value:2.890,label:'2.890'},
-            {value:84.456,label:'84.456 '},
-            {value:192.7,label:'192.7 '},
-            {value:257.347,label:'257.347'},
-          ],
-    }
+
     
-      const price={
-        title:'Price',
-        marks:[],
-        min:50,
-        max:700,
-        step:5,
-      }
-    
-    const FullHeightExpansionSlots={
-        title:'Full Height Expansion Slots',
-        min:0,
-        max:11,
-        step:1,
-        marks:[
-            {value:1,label:'1'},
-            {value:4 ,label:'4'},
-            {value:6 ,label:'6'},
-            {value:9 ,label:'9'},
-            {value:11 ,label:'11'},
-        ]
-    }
-      const slider_Num=4;
-      const main_slider={
-        0:price,
-        1:powersupply,
-        2:ExternalVolume,
-        3:FullHeightExpansionSlots,
-    }
-    const checkbox = {
-      0: {
-        title: 'POWER SUPPLY SHROUD',
-        options: {
-          0: 'Yes',
-          1: 'No',
-         
-        },
-      },
-      
-    };
+  const drop_1= [
+    [
+      'Company',
+      ['Corsair' , 'NZXT' , 'Lian', 'Fractal', 'be' ,'Deepcool']
+    ],
+    [
+      'Type',
+      ['ATX', 'ITX', 'MicroATX']
+    ],
+   
+  ];
+
+ 
+  
+   
     const containerStyle = {
       display: 'flex',
       flexDirection: 'row',
@@ -171,21 +67,38 @@ const Case = () => {
       setCurrentPage(newPage);
       window.scrollTo(0, 0);
     };
-   
+    const {brand} = useGame()
+    const {type} = useGame()
+
+ 
     useEffect(() => {
       // Fetch data when the component mounts
       async function loadData() {
         try {
           const res = await fetch("http://localhost:3000/api/Case");
           const data = await res.json();
-          setCaseList(data);
+          let filteredData = [...data]; 
+      
+      
+        // filteredData = filteredData.filter(item => item.brand === brand || item.type === type );
+       
+        let brandCondition = brand ? data.filter(item => item.brand === brand) : data;
+        let typeCondition = type ? data.filter(item => item.type === type) : data;
+
+        filteredData = [...brandCondition, ...typeCondition];
+    
+
+        setCaseList(filteredData);
+          
         } catch (error) {
           console.log(error);
         }
       }
   
       loadData();
-    }, []);
+    }, [type, brand]);
+
+    
     const Item = styled(Paper)(({ theme }) => ({
       backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
       ...theme.typography.body2,
@@ -207,9 +120,7 @@ const Case = () => {
         <div style={containerStyle}>
           <SideBar
             drop={drop_1}
-            slider={main_slider}
-            sliderNum={slider_Num}
-            checkboxCategories={checkbox}
+          
           />
           <div style={{}}>
   

@@ -72,9 +72,7 @@ function Navbar() {
                   <ListItemText primary="Home" />
                 </ListItem>
 
-                <ListItem ListItemButton  component={Link} to="/prebuiltPC " style={{ color: 'inherit', textDecoration: 'none'}} onClick={handleDrawerClose}>
-                  <ListItemText primary="Pre Built PC's" />
-                </ListItem>
+            
 
                 <ListItem component={Link} to="/customizePC" style={{ color: 'inherit', textDecoration: 'none'}} onClick={handleDrawerClose}>
                   <ListItemText primary="Build PC" />

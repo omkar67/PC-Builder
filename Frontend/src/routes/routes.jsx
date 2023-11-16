@@ -5,7 +5,7 @@ import About from '../pages/About';
 import contactUs from '../pages/contactUs';
 import Cart from '../pages/Cart';
 import customizePC from '../pages/customizePC'
-import prebuiltPC from '../pages/prebuiltPC';
+
 import CPU from '../pages/CPU';
 import loginPage from "../pages/loginPage";
 
@@ -40,10 +40,7 @@ const routes = [
         path: '/Cart',
         component: Cart,
     },
-    {
-        path: '/prebuiltPC',
-        component: prebuiltPC,
-    },
+    
     {
         path: '/contactUs',
         component: contactUs,

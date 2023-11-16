@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+//import SideBar from "../components/SideBar";
 import SideBar from "../components/SideBar";
 import ProductCard from "../components/productCard";
 import { Stack } from "@mui/system";
@@ -9,6 +10,9 @@ import Paper from '@mui/material/Paper';
 import { useSelector, useDispatch } from 'react-redux';
 import { setGPU } from "../redux/actions";
 import { useNavigate } from 'react-router-dom';
+
+//
+import { useGame } from "../context/Filter";
 
 const GPU = () => {
   const dispatch = useDispatch();
@@ -22,87 +26,23 @@ const GPU = () => {
   const itemsPerPage = 15; // Number of items to display per page
   const [currentPage, setCurrentPage] = useState(1);
   
-  const d1 = {
-    label: "Company",
-    dropOpt: {
-      0: "AMD",
-      1: "Nvidia",
-    },
-  };
-  const d2 = {
-    label: "Family",
-    dropOpt: {
-      0: "GeForce RTX 3000",
-      1: "GeForce RTX 4000",
-      2: "GeForce RTX 2000",
-      3: "GeForce GTX",
-      4: "Radeon RX",
-      5: "GeForce GT",
-    },
-  };
-
-  const drop_1 = {
-    0: d1,
-    1: d2,
-  };
-  const VRAM = {
-    title: "VRAM",
-    min: 4,
-    max: 12,
-    step: 2,
-    marks: [
-      { value: 2, label: "2" },
-      { value: 4, label: "" },
-      { value: 6, label: " " },
-      { value: 8, label: " " },
-      { value: 10, label: " " },
-      { value: 12, label: "12" },
+  const drop_1= [
+    [
+      'Company',
+      ['NVIDIA', 'AMD']
     ],
-  };
+    [
+      'Vram',
+      [2, 4,6,8,11,12,16, 24]
+    ],[
+    'Resolution',
+    ['1080p', '1080p/1440p', '1440p', '1440p/4K', '4K']]
+  ];
 
-  const price = {
-    title: "Price",
-    marks: [
-      { value: 500, label: "500" },
-      { value: 20000, label: "20K" },
-    ],
-    min: 500,
-    max: 20000,
-    step: 500,
-  };
 
-  const slider_Num = 2;
-  const main_slider = {
-    0: VRAM,
-    1: price,
-  };
 
-  const checkbox = {
-    0: {
-      title: "Manufacturer",
-      options: {
-        0: "Asus",
-        1: "AsRock",
-        2: "Acer",
-        3: "GigaByte",
-        4: "MSi",
-        5: "Zotac",
-        // Add more options as needed
-      },
-    },
-    1: {
-      title: "Memory Type",
-      options: {
-        0: "GDDR4",
-        1: "GDDR5",
-        2: "GDDR5X",
-        3: "GDDR6",
-        4: "GDDR6X",
-        // Add more options as needed
-      },
-    },
-    // Add more categories as needed
-  };
+
+  
   const containerStyle = {
     display: "flex",
     flexDirection: "row",
@@ -131,6 +71,11 @@ const GPU = () => {
     setCurrentPage(newPage);
     window.scrollTo(0, 0);
   };
+
+  //
+  const {brand,type, socket} = useGame()
+  // console.log("Value change :---",brand)
+
  
   useEffect(() => {
     // Fetch data when the component mounts
@@ -138,14 +83,21 @@ const GPU = () => {
       try {
         const res = await fetch("http://localhost:3000/api/GPU");
         const data = await res.json();
-        setGpuList(data);
+        let filteredData = [...data]; 
+
+       // const brandCondition = brand ? data.filter(item => item.brand === brand) : data;
+        let brandCondition = brand ? data.filter(item => item.brand === brand) : data;
+        let typeCondition = type ? data.filter(item => item.vram === type) : data;
+        let socketCondition = socket ? data.filter(item => item.resolution === socket) : data;
+        filteredData = [...brandCondition, ...typeCondition, ...socketCondition];
+        setGpuList(filteredData);
       } catch (error) {
         console.log(error);
       }
     }
 
     loadData();
-  }, []);
+  }, [brand,type, socket]);
   const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
     ...theme.typography.body2,
@@ -153,6 +105,9 @@ const GPU = () => {
     textAlign: 'center',
     color: theme.palette.text.secondary,
   }));
+
+  
+ 
   
   return (
     <>
@@ -167,9 +122,8 @@ const GPU = () => {
       <div style={containerStyle}>
         <SideBar
           drop={drop_1}
-          slider={main_slider}
-          sliderNum={slider_Num}
-          checkboxCategories={checkbox}
+         
+        
         />
         <div style={{}}>
 

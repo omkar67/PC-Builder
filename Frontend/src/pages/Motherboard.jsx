@@ -9,7 +9,7 @@ import Paper from '@mui/material/Paper';
 import { useSelector, useDispatch } from 'react-redux';
 import { setMOBO } from "../redux/actions";
 import { useNavigate } from "react-router-dom";
-
+import { useGame } from "../context/Filter";
 const Motherboard = () => {
   const dispatch = useDispatch();
   const nav = useNavigate();
@@ -23,92 +23,24 @@ const Motherboard = () => {
   const itemsPerPage = 15; // Number of items to display per page
   const [currentPage, setCurrentPage] = useState(1);
   
-  const d1 = {
-    label: 'Manufacturer',
-    dropOpt: {
-      0: 'MSI',
-      1: 'Intel',
-      2: 'ECS',
-      3:'ASRock',
-    },
-  };
-    const d2={
-          label:'Socket',
-          dropOpt:{
-                0:'TRX40',
-                1: 'X399',
-                2: 'AM3',
-                3: 'AM4',
-                4:'AM5',
-                5: 'LGA 1700',
-            6:'LGA 1151',
-        7:'LGA 1200'}
-        }
-        const d3 ={
-            label:'Form Factor',
-            dropOpt:{
-                0:'ATX',
-                1: 'MicroATX',
-                2: 'ITX',
-            
-            }
-        }
-      
-    const drop_1={
-      0:d1,
-      1:d2,
-      2:d3
-    }
-    const Slots={
-        title:'Slots',
-        min:1,
-        max:4,
-        
-      
-    }
-    const Max_Memory={
-        title:'Max Memory',
-        min:2,
-        max:2048,
-        step:10,
-       
-    }
-    
-      const price={
-        title:'Price',
-        marks:[],
-        min:500,
-        max:50000,
-        step:5,
-      }
-    
+  const drop_1= [
+    [
+      'Company',
+      ['Intel', 'AMD']
+    ],[
+    'Socket',
+    [    'LGA 1151', 'LGA 1200', 'LGA 1700','AM3', 'AM4','AM5', 'X399','TRX40']],[
+      'Form Factor',
+      ['ATX', 'MicroATX', 'ITX',]
+    ]
    
-    const slider_Num=3;
-    const main_slider={
-        0:price,
-        1:Slots,
-        2:Max_Memory,
-
-    }
-    /* const checkbox = {
-      0: {
-        title: 'Integrated Graohics',
-        options: {
-          0: 'Yes',
-          1: 'No',
-          // Add more options as needed
-        },
-      },
-      1: {
-        title: 'Overclockable',
-        options: {
-          0: 'Yes',
-          1: 'No',
-          // Add more options as needed
-        },
-      },
-      // Add more categories as needed
-    }; */
+  ];
+  
+     
+      
+   
+   
+ 
     const containerStyle = {
       display: 'flex',
       flexDirection: 'row',
@@ -140,6 +72,7 @@ const Motherboard = () => {
       setCurrentPage(newPage);
       window.scrollTo(0, 0);
     };
+    const {brand , type, socket} = useGame()
    
     useEffect(() => {
       // Fetch data when the component mounts
@@ -147,14 +80,26 @@ const Motherboard = () => {
         try {
           const res = await fetch("http://localhost:3000/api/MOBO");
           const data = await res.json();
-          setMbList(data);
+          let filteredData = [...data]; 
+      
+      
+          // filteredData = filteredData.filter(item => item.brand === brand || item.type === type );
+         
+          let brandCondition = brand ? data.filter(item => item.brand === brand) : data;
+          let typeCondition = type ? data.filter(item => item.FormFactor === type) : data;
+          let socketCondition = socket ? data.filter(item => item.socket === socket) : data;
+  
+          filteredData = [...brandCondition, ...typeCondition, ...socketCondition];
+      
+         
+          setMbList(filteredData);
         } catch (error) {
           console.log(error);
         }
       }
   
       loadData();
-    }, []);
+    }, [brand , type , socket]);
     const Item = styled(Paper)(({ theme }) => ({
       backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
       ...theme.typography.body2,
@@ -175,8 +120,7 @@ const Motherboard = () => {
         <div style={containerStyle}>
           <SideBar
             drop={drop_1}
-            slider={main_slider}
-            sliderNum={slider_Num}
+            
           />
           <div style={{}}>
   

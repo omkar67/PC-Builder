@@ -5,10 +5,12 @@ import store from './redux/store'; // Import your Redux store
 import routes from './routes/routes';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import { GamesProvider } from './context/Filter';
 
 function App() {
   return (
     <>
+    <GamesProvider>
       <Provider store={store}> {/* Wrap your app with Provider */}
         <Router>
           <Navbar />
@@ -20,6 +22,7 @@ function App() {
           <Footer />
         </Router>
       </Provider>
+      </GamesProvider>
     </>
   );
 }

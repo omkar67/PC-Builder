@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import SideBar from '../components/SideBar';
+
 import ProductCard from '../components/productCard';
 import { Stack } from '@mui/system';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
@@ -9,6 +10,7 @@ import Paper from '@mui/material/Paper';
 import { useSelector, useDispatch } from 'react-redux';
 import { setRAM } from "../redux/actions";
 import { useNavigate } from "react-router-dom";
+import { useGame } from "../context/Filter";
 const RAM = () => {
   const dispatch = useDispatch();
   const nav = useNavigate();
@@ -22,78 +24,25 @@ const RAM = () => {
   const [ramList, setRamList] = useState([]);
   const itemsPerPage = 15; // Number of items to display per page
   const [currentPage, setCurrentPage] = useState(1);
-  const d1 = {
-    label: 'Manufacturer',
-    dropOpt: {
-      0: 'Acer',
-      1: 'AMD',
-      2: 'Dell',
-    },
-  };
-    const d2={
-          label:'Type',
-          dropOpt:{
-                0:'DDR',
-                1: 'DDR2',
-                2:'DDR3',
-                3: 'DDR4'
-                }
-        }
-      
-    const drop_1={
-      0:d1,
-      1:d2,
-    }
-    const Capacity={
-        title:'RAM in GB',
-        min:2,
-        max:64,
-        step:2,
-       
-    }
-    const Speed={
-        title:'Speed',
-        min:333,
-        max:8400,
-        step:30,
-       
-    }
-    
-      const price={
-        title:'Price in Rs',
-        marks:[],
-        min:50,
-        max:20000,
-        step:5,
-      }
-    
 
-    const slider_Num=3;
-    const main_slider={
-        0:price,
-        1:Capacity,
-        2:Speed,
+  const drop_1= [
+    [
+      'Company',
+      ['Corsair', 'Silicon', 'G.Skill', 'Kingston', 'Patriot' ,'Crucial', 'Samsung']
+    ],[
+    'Type',
+    [ 'DDR3', 'DDR4', 'DDR5'  ]],[
+      'RAM',
+      [2, 4, 8 , 16 , 32, 64]
+    ]
+   
+  ];
+  
+
       
-    }
-    const checkbox = {
-      0: {
-        title: 'Integrated Graohics',
-        options: {
-          0: 'Yes',
-          1: 'No',
-          // Add more options as needed
-        },
-      },
-      1: {
-        title: 'Overclockable',
-        options: {
-          0: 'Yes',
-          1: 'No',
-          // Add more options as needed
-        },
-      },
-      // Add more categories as needed
-    };
+
+   
+ 
     const containerStyle = {
       display: 'flex',
       flexDirection: 'row',
@@ -124,21 +73,33 @@ const RAM = () => {
     setCurrentPage(newPage);
     window.scrollTo(0, 0);
   };
- 
+
+  const {brand , type ,socket} = useGame()
+
   useEffect(() => {
     // Fetch data when the component mounts
     async function loadData() {
       try {
         const res = await fetch("http://localhost:3000/api/RAM");
         const data = await res.json();
-        setRamList(data);
+        let filteredData = [...data]; 
+      
+      
+        // filteredData = filteredData.filter(item => item.brand === brand || item.type === type );
+       
+        let brandCondition = brand ? data.filter(item => item.brand === brand) : data;
+        let typeCondition = type ? data.filter(item => item.type === type) : data;
+        let socketCondition = socket ? data.filter(item => item.memory === socket) : data;
+        filteredData = [...brandCondition, ...typeCondition , ...socketCondition];
+    
+        setRamList(filteredData);
       } catch (error) {
         console.log(error);
       }
     }
 
     loadData();
-  }, []);
+  }, [brand , type , socket]);
   const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
     ...theme.typography.body2,
@@ -160,9 +121,7 @@ const RAM = () => {
       <div style={containerStyle}>
         <SideBar
           drop={drop_1}
-          slider={main_slider}
-          sliderNum={slider_Num}
-          checkboxCategories={checkbox}
+         
         />
         <div style={{}}>
 

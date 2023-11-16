@@ -2,14 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Box, Typography, Slider, FormControl, Select, MenuItem, Checkbox, FormControlLabel, FormGroup, InputLabel } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import PropTypes from 'prop-types';
-import { useDispatch } from 'react-redux';
-
-// import store from './yourStorePath';
-// import { setPSU } from './yourActionsPath';
-import store from  "../redux/store"
-import { setManufacturer} from '../redux/actions';
-
-
+import { useGame } from '../context/Filter';
 
 const theme = createTheme({
   typography: {
@@ -43,9 +36,12 @@ const theme = createTheme({
 });
 
 const SideBar = (props) => {
-  const dispatch = useDispatch();
   const styleBoxRef = useRef(null);
-
+  const { makeBrand } = useGame()
+  const {makeType} = useGame()
+  const {makeSocket} = useGame()
+  const {makeCoreCount} = useGame()
+  const {makeThreadCount} = useGame()
   useEffect(() => {
     const setMinHeight = () => {
       if (styleBoxRef.current) {
@@ -70,8 +66,8 @@ const SideBar = (props) => {
     color: 'white',
     marginTop: '1vh',
     borderRadius: '15px',
-    maxWidth:'400px'
-    
+    maxWidth: '400px'
+
   };
 
   function valuetext(value) {
@@ -80,19 +76,17 @@ const SideBar = (props) => {
 
   const [selectedDropdownValues, setSelectedDropdownValues] = useState({});
 
-   
-
   return (
     <ThemeProvider theme={theme}>
       <div style={style_box} ref={styleBoxRef}>
-        <Box sx={{ height: '100%', color: 'white', borderRadius: '15px',width:'350px' }}>
+        <Box sx={{ height: '100%', color: 'white', borderRadius: '15px', width: '350px' }}>
           <Typography variant="h3" style={{ textAlign: 'center', marginTop: '0.5vh' }}>Filters</Typography>
           {/* DROPDOWNS START HERE */}
           <div id='dropdowns'>
-            {props.drop && Object.keys(props.drop).map((dropIndex) => {
+            {props.drop.map((dropItem, dropIndex) => {
               return (
                 <FormControl fullWidth margin="normal" style={{ marginTop: '1vh', width: '90%', marginLeft: '1vw' }} key={dropIndex}>
-                  <InputLabel style={{ color: 'white' }}>{props.drop[dropIndex].label} </InputLabel>
+                  <InputLabel style={{ color: 'white' }}>{dropItem[0]}</InputLabel>
                   <Select
                     sx={{
                       color: 'white',
@@ -105,19 +99,25 @@ const SideBar = (props) => {
                     value={selectedDropdownValues[dropIndex] || ''}
                     onChange={(event) => {
                       const value = event.target.value;
-                    
                       setSelectedDropdownValues((prevValues) => ({
                         ...prevValues,
                         [dropIndex]: value,
                       }));
-
-      
+                      
+                      makeBrand(value);
+                      makeType(value);
+                      makeSocket(value)
+                      makeCoreCount(value)
+                      makeThreadCount(value)
+                      console.log("****", value)
+                   
+                      
                     }}
                   >
-                    {props.drop[dropIndex].dropOpt && Object.keys(props.drop[dropIndex].dropOpt).map((dropOptIndex) => {
+                    {dropItem[1].map((dropOpt, dropOptIndex) => {
                       return (
-                        <MenuItem value={dropOptIndex} style={{ color: 'white', backgroundColor: 'rgba(53, 14, 88, 2)' }} key={dropOptIndex}>
-                          {props.drop[dropIndex].dropOpt[dropOptIndex]}
+                        <MenuItem value={dropOpt} style={{ color: 'white', backgroundColor: 'rgba(53, 14, 88, 2)' }} key={dropOptIndex}>
+                          {dropOpt}
                         </MenuItem>
                       );
                     })}
@@ -127,6 +127,7 @@ const SideBar = (props) => {
             })}
           </div>
           {/* DROPDOWNS END HERE */}
+
 
           {/* SLIDERS START HERE */}
           <div id='sliders'>
