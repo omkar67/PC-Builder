@@ -8,7 +8,7 @@ import Typography from '@mui/material/Typography';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { useNavigate } from 'react-router-dom';
 import MinProductCard from './MinProdCard';
-import { useSelector } from 'react-redux';
+import { useSelector,useDispatch } from 'react-redux';
 import { useState, useEffect } from 'react';
 
 
@@ -54,6 +54,7 @@ export default function CustList() {
   const CaseState = useSelector((state) => state.components.Case)
   const PSUState = useSelector((state) => state.components.PSU)
   const StorageState = useSelector((state) => state.components.Storage)
+  const itemState = useSelector((state) => state.components.items)
   const [cpudata,setCPUdata]=useState([])
   const [gpudata,setGPUdata]=useState([])
   const [psudata,setPSUdata]=useState([])
@@ -654,8 +655,25 @@ export default function CustList() {
                       
                       }}
                      style={{marginLeft:'7vw', textDecoration:'underline', marginTop: '-0.5vw',}}
-                     onClick={()=>nav('/Cart')}
-                    >
+                     onClick={() => {
+                      if (
+                        cpuState !== null &&
+                        gpuState !== null &&
+                        PSUState !== null &&
+                        RAMState !== null &&
+                        CaseState !== null &&
+                        MOBOState !== null &&
+                        StorageState !== null &&
+                        itemState === null
+                      ) {
+                        // Dispatch the action to set itemState to 1
+                        dispatch(setItem(1));
+                        
+                        nav('/Cart');
+                      } else {
+                        console.log('Conditions not met');
+                      }
+                    }}>
                       Proceed to Cart
                     </Button>
                     <Typography

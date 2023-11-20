@@ -4,7 +4,7 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-import Footer from '../components/Footer';
+
 import Navbar from '../components/Navbar';
 const theme = createTheme({
   typography: {

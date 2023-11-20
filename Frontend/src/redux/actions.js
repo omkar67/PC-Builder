@@ -46,5 +46,10 @@ export const setMOBO = createAction('components/setMOBO', (value) => {
       payload: value,
     };
   });
+  export const setItem = createAction('components/setItem', (value) => {
+    return {
+      payload: value,
+    };
+  });
 
 // Define similar actions for the other state variables
