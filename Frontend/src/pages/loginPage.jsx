@@ -30,6 +30,21 @@ const theme = createTheme({
 
 
 const LoginForm = () => {
+  const [errors , setErrors] = useState({})
+  const [values, setValues] = useState({
+    username:'',
+    password:''
+  })
+  const handleInput=(event) =>{
+    setValues(prev =>({...prev, [event.target.name]:[event.target.value]}))
+  }
+
+  const handleSubmit=(event) =>{
+    event.preventDefault();
+    setErrors(validation(values))
+  }
+
+
   document.body.style.margin = '0'
   document.body.style.padding = '0px'
   document.body.style.backgroundImage = `url(${LoginImage})`
@@ -97,6 +112,8 @@ const LoginForm = () => {
                   <Typography htmlFor="standard-adornment-password" sx = {{color:  "#FFFFFD", opacity: "50%"}}>Username</Typography>
                   <Input
                     id="standard-basic"
+                    onChange={handleInput}
+                    name='username'
                   />
                   
             </FormControl>
@@ -104,6 +121,8 @@ const LoginForm = () => {
             <FormControl sx={{ m: 0, width: '40ch',input : { color: 'white'} }} variant="standard">
               <Typography htmlFor="standard-adornment-password" sx = {{color : "#FFFFFD", opacity: "50%"}}>Password</Typography>
               <Input
+                onChange={handleInput}
+                name='password'
                 id="standard-adornment-password"
                 type={showPassword ? 'text' : 'password'}
                 endAdornment={
@@ -114,14 +133,14 @@ const LoginForm = () => {
                       onMouseDown={handleMouseDownPassword}
                       sx = {{color: "#fff"}}
                     >
-                      {showPassword ? <VisibilityOff /> : <Visibility />}
+                      {showPassword ? <Visibility /> :<VisibilityOff /> }
                     </IconButton>
                   </InputAdornment>
                   }
                 />
             </FormControl>
             <Typography><a href="#" style = {{ color: "#FFFFFD" , opacity: "50%"}}> Forgot Password? </a> </Typography>
-            <StyledButton variant="contained" sx ={{mt : 3, width: '40ch', backgroundColor: "#08A9E9" , borderRadius: "15px"}}>Login</StyledButton>
+            <StyledButton variant="contained" sx ={{mt : 3, width: '40ch', backgroundColor: "#08A9E9" , borderRadius: "15px"}} onClick={handleSubmit}>Login</StyledButton>
 
           </Box>
 

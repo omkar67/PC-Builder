@@ -6,7 +6,7 @@ import GoogleIcon from '@mui/icons-material/Google';
 import FacebookRoundedIcon from '@mui/icons-material/FacebookRounded';
 import Visibility from '@mui/icons-material/Visibility'; 
 import VisibilityOff from '@mui/icons-material/VisibilityOff';  
-
+import { Link } from 'react-router-dom';
 const signUpPage = () => {
 
 
@@ -128,7 +128,7 @@ const signUpPage = () => {
                           onMouseDown={handleMouseDownPassword}
                           sx = {{color: "#fff"}}
                         >
-                          {showPassword ? <VisibilityOff /> : <Visibility />}
+                          {showPassword ? <Visibility /> : <VisibilityOff />}
                         </IconButton>
                       </InputAdornment>
                       }
@@ -145,13 +145,10 @@ const signUpPage = () => {
 
               
               
-
-              <Box className="SocialLinks" sx = {{display: "flex", width:"100%" , justifyContent: "space-evenly"}}>
-                <Button variant = "contained" 
-                startIcon = {<img width="21" height="21" src="https://img.icons8.com/color/48/google-logo.png" alt="google-logo"/>}
-                sx= {{backgroundColor: "#FFFFFD" , color: "Black", borderRadius: "50px"}}>Google</Button>
-                <Button variant = "contained" startIcon ={<FacebookRoundedIcon/>} sx = {{borderRadius: "50px"}}>Facebook</Button>
-              </Box>
+              <Box className="bottom" sx = {{ mt : 3,paddingLeft: "20%" , display: "flex" , justifyContent : "space-between" , alignItems: "center"}}>
+            <Typography variant ='subtitle1' sx ={{color: '#FFFFFD' ,opacity: "50%"}}> Already have an Account </Typography>
+            <Button component={Link} to="/login " variant = "outlined" sx = {{ml: 10 ,backgroundColor: "#333437" , border: "none" , color: "#FFFFFD" }}> Login </Button>
+          </Box>
               
               
               
