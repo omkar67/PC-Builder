@@ -1,7 +1,17 @@
 import React from 'react';
 import 'font-awesome/css/font-awesome.min.css';
+import { useLocation } from 'react-router-dom';
 
 function Footer() {
+  const location = useLocation();
+
+  // Check if the current route is /customizePC
+  const isCustomizePCRoute = location.pathname === '/CustomizePC';
+
+  // Conditionally render the footer based on the route
+  if (isCustomizePCRoute) {
+    return null; // Do not render the footer for /customizePC route
+  }
   return (
     <footer className="footer" style={{ backgroundColor: '#373538', color: 'white', marginTop: '1vh' }}>
       <style>
