@@ -11,6 +11,7 @@ import { setCase } from "../redux/actions";
 import { useNavigate } from "react-router-dom";
 import { useGame } from "../context/Filter";
 const Case = () => {
+  const dispatch = useDispatch();
   const nav = useNavigate();
   const [caseList, setCaseList] = useState([]);
   const itemsPerPage = 15; // Number of items to display per page

@@ -10,7 +10,7 @@ import { useNavigate } from 'react-router-dom';
 import MinProductCard from './MinProdCard';
 import { useSelector,useDispatch } from 'react-redux';
 import { useState, useEffect } from 'react';
-
+import { setItem } from '../redux/actions';
 
 const theme = createTheme({
   typography: {
@@ -33,11 +33,12 @@ const backgroundStyle = {
 };
 
 const contentStyle = {
+  height:'auto',
   position: 'absolute',
   top: 0,
   left: 0,
   width: '100%',
-  height: '100%',
+  
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
@@ -47,6 +48,7 @@ const contentStyle = {
 
 export default function CustList() {
   const nav = useNavigate();
+  const dispatch = useDispatch();
   const cpuState = useSelector((state) => state.components.CPU);
   const gpuState = useSelector((state) => state.components.GPU)
   const MOBOState = useSelector((state) => state.components.MOBO)
@@ -136,19 +138,20 @@ export default function CustList() {
       <ThemeProvider theme={theme}>
         <Box
           sx={{
+            height:'auto',
             width: '90%',
             maxWidth: '75vw',
             minHeight: '80vh',
             position: 'relative',
             borderRadius: '4.5vw',
-            overflow: 'hidden',
+            
             color: 'white',
             marginTop: '0.5vh',
            
           }}
         >
-          <Box sx={{ my: '2vw', mx: '2vw' }}>
-            <div style={contentStyle}>
+          <Box sx={{ my: '2vw', mx: '2vw', height:'auto' }}>
+            <div style={contentStyle }>
                 {/* Header */}
                 <Grid item xs style={{marginTop:'1.5vw'}}>
                   <Stack direction="row" spacing={'0.5vw'}>
@@ -663,8 +666,8 @@ export default function CustList() {
                         RAMState !== null &&
                         CaseState !== null &&
                         MOBOState !== null &&
-                        StorageState !== null &&
-                        itemState === null
+                        StorageState !== null 
+                        
                       ) {
                         // Dispatch the action to set itemState to 1
                         dispatch(setItem(1));

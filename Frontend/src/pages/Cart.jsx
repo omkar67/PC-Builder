@@ -16,7 +16,7 @@ const Cart = () => {
   const CaseState = useSelector((state) => state.components.Case)
   const PSUState = useSelector((state) => state.components.PSU)
   const StorageState = useSelector((state) => state.components.Storage)
-  const itemState = useSelector((state) => state.components.items)
+  const itemState = useSelector((state) => state.components.item)
   const [cpudata,setCPUdata]=useState([])
   const [gpudata,setGPUdata]=useState([])
   const [psudata,setPSUdata]=useState([])

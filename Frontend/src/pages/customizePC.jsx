@@ -24,6 +24,7 @@ const customizePC = () => {
            <style>
            {`
           body {
+            min-height: 100vh;
             background-image: url('https://hrc.in.th/wp-content/uploads/2023/01/IN-WIN-D-FRAME-8.jpg'); /* Replace 'path/to/your/image.jpg' with the actual path to your image file */
             background-size: cover; /* This ensures that the image covers the entire background */
             background-repeat: no-repeat; /* Prevents the image from repeating */
