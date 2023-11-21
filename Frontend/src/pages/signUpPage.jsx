@@ -7,9 +7,31 @@ import FacebookRoundedIcon from '@mui/icons-material/FacebookRounded';
 import Visibility from '@mui/icons-material/Visibility'; 
 import VisibilityOff from '@mui/icons-material/VisibilityOff';  
 import { Link } from 'react-router-dom';
+import axios from 'axios'
+import  { useState } from 'react';
+
 const signUpPage = () => {
 
-
+  const [values, setValues] = useState({
+    name: '',
+    email: '',
+    username: '',
+    password: '',
+    mobile_number: ''
+  });
+  
+  const handleChange = (event) => {
+    setValues({ ...values, [event.target.name]: event.target.value });
+  };
+  
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    axios.post("http://localhost:3000/api/signup", values)
+    .then(res => alert("Registered successfully"))
+    .catch(err => alert(`Error ${err.response}`)); // Log the entire response
+  
+  };
+  
   
   const StyledButton = styled(Button)({
     // Add your custom styles here
@@ -91,6 +113,8 @@ const signUpPage = () => {
                     <Typography htmlFor="standard-adornment-password" sx = {{color:  "#FFFFFD", opacity: "50%"}}> Enter your name here </Typography>
                     <Input
                       id="filled-basic"
+                      onChange={handleChange}
+                      name='name'
                     />
                     
                 </FormControl>
@@ -98,6 +122,8 @@ const signUpPage = () => {
                     <Typography htmlFor="standard-adornment-password" sx = {{color:  "#FFFFFD", opacity: "50%"}}> Enter Mobile Number </Typography>
                     <Input
                       id="standard-basic"
+                      onChange={handleChange}
+                      name='mobile_number'
                     />
                     
                 </FormControl>
@@ -105,6 +131,8 @@ const signUpPage = () => {
                     <Typography htmlFor="standard-adornment-password" sx = {{color:  "#FFFFFD", opacity: "50%"}}> Enter your Email </Typography>
                     <Input
                       id="standard-basic"
+                      onChange={handleChange}
+                      name='email'
                     />
                     
                 </FormControl>
@@ -112,12 +140,16 @@ const signUpPage = () => {
                     <Typography htmlFor="standard-adornment-password" sx = {{color:  "#FFFFFD", opacity: "50%"}}> Create Username </Typography>
                     <Input
                       id="standard-basic"
+                      onChange={handleChange}
+                      name='username'
                     />
                     
                 </FormControl>
                 <FormControl sx={{ mt: 1, width: '50ch',input : { color: 'white'} }} variant="standard">
                   <Typography htmlFor="standard-adornment-password" sx = {{color : "#FFFFFD", opacity: "50%"}}>Create Password</Typography>
                   <Input
+                  onChange={handleChange}
+                  name='password'
                     id="standard-adornment-password"
                     type={showPassword ? 'text' : 'password'}
                     endAdornment={
@@ -136,7 +168,10 @@ const signUpPage = () => {
                 </FormControl>
                   
                   <Box sx={{width: "100%", textAlign: "center"}}>
-                    <StyledButton variant="contained" sx ={{mb : 1,mt: 2, mr: 8, width: '45ch', backgroundColor: "#08A9E9" , borderRadius: "15px" , }}> Sign Up</StyledButton>
+                    <StyledButton 
+                    variant="contained" sx ={{mb : 1,mt: 2, mr: 8, width: '45ch', backgroundColor: "#08A9E9" , borderRadius: "15px" , }}
+                    onClick={handleSubmit}> Sign Up</StyledButton>
+                   
                   </Box>
 
                 

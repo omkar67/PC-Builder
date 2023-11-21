@@ -11,6 +11,8 @@ import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';  
 import LoginImage from '../Images/LoginImage.jpg'
 import { Link } from 'react-router-dom';
+import axios from 'axios'
+import { useNavigate  } from 'react-router-dom';
 const StyledButton = styled(Button)({
   // Add your custom styles here
   backgroundColor: 'blue',
@@ -28,9 +30,14 @@ const theme = createTheme({
 
 
 
-
 const LoginForm = () => {
-  const [errors , setErrors] = useState({})
+const navigate = useNavigate();
+const [username , setUsername] = useState('')
+const [password , setPassword] = useState('')
+
+
+
+/*   const [errors , setErrors] = useState({})
   const [values, setValues] = useState({
     username:'',
     password:''
@@ -38,10 +45,22 @@ const LoginForm = () => {
   const handleInput=(event) =>{
     setValues(prev =>({...prev, [event.target.name]:[event.target.value]}))
   }
-
-  const handleSubmit=(event) =>{
+ */
+  function handleSubmit(event) {
     event.preventDefault();
-    setErrors(validation(values))
+    
+    axios.post("http://localhost:3000/api/login", { username, password })
+      .then(res => {
+        console.log(res);
+        // Assuming your backend returns a success message
+        if (res.data.Login) {
+          // Redirect to the home page
+          navigate('/');
+        } else {
+          alert("Invalid details")
+        }
+      })
+      .catch(err => alert(`Invalid Details ${err.response}`));
   }
 
 
@@ -112,16 +131,17 @@ const LoginForm = () => {
                   <Typography htmlFor="standard-adornment-password" sx = {{color:  "#FFFFFD", opacity: "50%"}}>Username</Typography>
                   <Input
                     id="standard-basic"
-                    onChange={handleInput}
+                    onChange={e => setUsername(e.target.value)}
                     name='username'
                   />
+                 
                   
             </FormControl>
                 
             <FormControl sx={{ m: 0, width: '40ch',input : { color: 'white'} }} variant="standard">
               <Typography htmlFor="standard-adornment-password" sx = {{color : "#FFFFFD", opacity: "50%"}}>Password</Typography>
               <Input
-                onChange={handleInput}
+                onChange={e => setPassword(e.target.value)}
                 name='password'
                 id="standard-adornment-password"
                 type={showPassword ? 'text' : 'password'}
@@ -138,6 +158,7 @@ const LoginForm = () => {
                   </InputAdornment>
                   }
                 />
+                  
             </FormControl>
             <Typography><a href="#" style = {{ color: "#FFFFFD" , opacity: "50%"}}> Forgot Password? </a> </Typography>
             <StyledButton variant="contained" sx ={{mt : 3, width: '40ch', backgroundColor: "#08A9E9" , borderRadius: "15px"}} onClick={handleSubmit}>Login</StyledButton>

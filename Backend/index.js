@@ -1,5 +1,6 @@
 import express from 'express';
 import { initialize } from './queriesDB.js';
+import {validation} from './validations/userValidation.js'
 import cors from 'cors'
 import mysql from 'mysql';
 
@@ -18,20 +19,20 @@ app.use(cors())
  */
 
 
-/*
-const db = mysql.createConnection({
+
+/* const db = mysql.createConnection({
     host: "db4free.net",
     user: "rajatmit",
     password: "rajat@123",
     database: "myinventory"
-});*/
-
-const db = mysql.createConnection({
+}); */
+  
+ const db = mysql.createConnection({
     host: 'localhost', // Your local MySQL server host
     user: 'root', // Your MySQL username
     password: 'root', // Your MySQL password
     database: 'pcbuilder', // Your database name
-}); 
+});   
 
 db.connect((err) => {
     if (err) {
@@ -44,11 +45,21 @@ db.connect((err) => {
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
 });
+
+
+
+
 app.get('/', (req, res) => {
     res.send('Hello from my server!');
   });
+  app.post('/api/validate', (req, res) => {
+    const userInput = req.body;
+    const validationResults = validation(userInput);
+    res.json(validationResults);
+  });
 
   initialize(app, db)
+  
   
 
 

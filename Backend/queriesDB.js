@@ -2,9 +2,11 @@
 // w1s1TXWFmtVPlZdk :-password
 //'mongodb+srv://rajatrathaurmatrix:w1s1TXWFmtVPlZdk@pc-builder-cluster1.vte5idg.mongodb.net/?retryWrites=true&w=majority'
 import { Router } from "express";
-
+import express from 'express'
+import jwt from 'jsonwebtoken'
 export function initialize(app, db) {
- 
+    app.use(express.json());
+
 
     app.get('/api/GPU', (req, res) => {
         const sql = 'SELECT * FROM gpu';  // Fetching from the gpu table
@@ -155,6 +157,47 @@ export function initialize(app, db) {
             res.json(results);
         });
     });
+
+    app.post('/api/signup', (req, res) => {
+        const sql = 'INSERT INTO users (`name`, `email`, `username`, `password`, `mobile_number`) VALUES (?, ?, ?, ?, ?)';
+        const values = [
+            req.body.name,
+            req.body.email,
+            req.body.username,
+            req.body.password,
+            req.body.mobile_number
+        ];
+    
+        db.query(sql, values, (err, data) => {
+            if (err) {
+                console.error(err);
+                return res.status(500).json({ error: 'Internal Server Error' });
+            }
+            return res.json(data);
+        });
+
+
+    });
+    app.post('/api/login', (req , res)=>{
+        
+        const sql = "SELECT * FROM users WHERE username = ? AND password = ?";
+
+        db.query(sql, [req.body.username,
+            req.body.password] ,(err, data)=>{
+            if(err) return res.json("Login Failed");
+            if(data.length > 0){
+                const uid= data[0].uid
+                const token = jwt.sign({uid}, "jwtSecretKey", {expiresIn :500})
+                return res.json({Login:true, token, data})
+            }else {
+                    return res.json('No user found')
+                }
+            
+        
+
+        })
+
+    })
     
 }
 
