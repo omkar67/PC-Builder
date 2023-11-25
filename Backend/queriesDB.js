@@ -197,6 +197,7 @@ export function initialize(app, db) {
 
         })
 
+
     });
     app.post('/api/proceedToCart', (req, res) => {
         const sql = 'INSERT INTO orders (`cpu_id`, `gpu_id`, `moboid`, `case_id`, `ram_id`,`storage_id`,`user_id`,`psu_id`) VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
@@ -220,16 +221,45 @@ export function initialize(app, db) {
         });
       });
 
-    app.get('/api/getUserID/:username', (req, res) => {
-        const sql = 'SELECT uid FROM users WHERE username = ?';
-    
-        db.query(sql, [req.params.username], (err, results) => {
-            if (err) {
-                return res.status(500).json({ error: err.message });
-            }
-            res.json(results);
-        });
+   
+
+   app.get('/api/getUser', (req, res) => {
+    const userId = req.params.uid;
+    const sql = 'SELECT * FROM users ';
+
+    db.query(sql, [userId], (err, results) => {
+        if (err) {
+            return res.status(500).json({ error: err.message });
+        }
+        res.json(results);
     });
+});
+
+app.get('/api/orders', (req, res) => {
+    const orderId = req.params.orderid;
+    const sql = 'SELECT * FROM orders ';
+
+    db.query(sql, [orderId], (err, results) => {
+        if (err) {
+            return res.status(500).json({ error: err.message });
+        }
+        res.json(results);
+    });
+});
+app.get('/api/getUserID/:username', (req, res) => {
+    const sql = 'SELECT uid FROM users WHERE username = ?';
+
+    db.query(sql, [req.params.username], (err, results) => {
+        if (err) {
+            return res.status(500).json({ error: err.message });
+        }
+        res.json(results);
+    });
+});
+
+
+  
+
     
 }
 
