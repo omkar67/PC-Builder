@@ -16,6 +16,7 @@ import Case from "../pages/Case"
 import Motherboard from '../pages/Motherboard';
 import PSU from '../pages/PSU';
 import GPU from '../pages/GPU';
+import Checkout from '../pages/Checkout'
 
 
 const routes = [
@@ -78,7 +79,10 @@ const routes = [
     {
         path:"/GPU",
         component: GPU,
-    },
+    },{
+        path:"/Checkout",
+        component: Checkout,
+    }
 
     
 

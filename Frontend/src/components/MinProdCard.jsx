@@ -25,15 +25,15 @@ export default function MinProductCard(props) {
     <ThemeProvider theme={theme}>
       <Box
         sx={{
-          width: '120%',
-          maxWidth: '900px',
+          width:'700px',
+          maxWidth: '700px',
           maxHeight:'150px',
           position: 'relative',
           borderRadius: '20px',
           overflow: 'hidden',
           color: 'white',
           backgroundColor: 'rgba(0,0,0,0.4)',
-          margin: '0rem',
+          margin: '5px',
           marginLeft:'10px',
           height:'100%'
           
