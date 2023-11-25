@@ -13,6 +13,10 @@ import LoginImage from '../Images/LoginImage.jpg'
 import { Link } from 'react-router-dom';
 import axios from 'axios'
 import { useNavigate  } from 'react-router-dom';
+import { setLogin } from '../redux/actions';
+import { useDispatch } from 'react-redux';
+
+
 const StyledButton = styled(Button)({
   // Add your custom styles here
   backgroundColor: 'blue',
@@ -32,6 +36,7 @@ const theme = createTheme({
 
 const LoginForm = () => {
 const navigate = useNavigate();
+const dispatch = useDispatch()
 const [username , setUsername] = useState('')
 const [password , setPassword] = useState('')
 
@@ -46,22 +51,8 @@ const [password , setPassword] = useState('')
     setValues(prev =>({...prev, [event.target.name]:[event.target.value]}))
   }
  */
-  function handleSubmit(event) {
-    event.preventDefault();
-    
-    axios.post("http://localhost:3000/api/login", { username, password })
-      .then(res => {
-        console.log(res);
-        // Assuming your backend returns a success message
-        if (res.data.Login) {
-          // Redirect to the home page
-          navigate('/');
-        } else {
-          alert("Invalid details")
-        }
-      })
-      .catch(err => alert(`Invalid Details ${err.response}`));
-  }
+
+  
 
 
   document.body.style.margin = '0'
@@ -89,10 +80,28 @@ const [password , setPassword] = useState('')
     }
   `;
 
-  
+  function handleSubmit(event) {
+    event.preventDefault();
+    
+    axios.post("http://localhost:3000/api/login", { username, password })
+      .then(res => {
+        console.log(res);
+        // Assuming your backend returns a success message
+        if (res.data.Login) {
+          // Redirect to the home page
+          dispatch(setLogin(username))
+          navigate('/');
+        } else {
+          alert("Invalid details")
+        }
+      })
+      .catch(err => alert(`Invalid Details ${err.response}`));
+  }
   return (
     <>
     <ThemeProvider theme = {theme}>
+      
+    
     <meta name="viewport" content="initial-scale=1, width=device-width" />
       {/* Code for the Login Page */}
       <Box className="container"

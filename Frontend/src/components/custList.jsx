@@ -253,6 +253,9 @@ export default function CustList() {
                 marginLeft: '0vw',
                 width: '7vw',
                 marginRight: '5.5vw',
+                marginTop:'3.5vw',
+                marginLeft:'3vw',
+        
               }}
             >
               CPU
@@ -313,11 +316,11 @@ export default function CustList() {
             variant="h4"
             component="div"
             sx={{ mt: '2vw', fontSize: '1.5vw' }}
-            style={{marginLeft:'2vw',width:'15.5vw'}}
+            style={{marginLeft:'0.5vw',width:'15.5vw',marginRight:'0vw',marginTop:'3.5vw'}}
           >
             MOTHERBOARD
           </Typography>
-          <MinProductCard name={mobodata[0]?.name} price={mobodata[0]?.price} image={mobodata[0]?.image} CompName={'MOBO'}/>
+          <MinProductCard name={mobodata[0]?.name} price={mobodata[0]?.price} image={mobodata[0]?.image} CompName={'MOBO'} style={{maxwidth:'100px'}}/>
           </Stack>
           </Grid>
     )}
@@ -374,7 +377,7 @@ export default function CustList() {
                       variant="h4"
                       component="div"
                       sx={{ mt: '2vw', fontSize: '1.5vw' }}
-                      style={{marginLeft:'2vw',width:'8vw'}}
+                      style={{width:'8vw',marginRight:'5.5vw',marginLeft:'2vw',marginTop:'3.5vw'}}
                     >
                       STORAGE
                     </Typography>
@@ -436,7 +439,7 @@ export default function CustList() {
                       variant="h4"
                       component="div"
                       sx={{ mt: '2vw', fontSize: '2vw' }}
-                      style={{marginLeft:'2vw',width:'5vw'}}
+                      style={{marginLeft:'4vw',width:'5vw',marginRight:'6.5vw',marginTop:'3.5vw'}}
                     >
                       RAM
                     </Typography>
@@ -500,7 +503,7 @@ export default function CustList() {
                       variant="h4"
                       component="div"
                       sx={{ mt: '2vw', fontSize: '2vw' }}
-                      style={{marginLeft:'2vw',width:'5vw',marginRight:'5vw',marginTop:'3vh'}}
+                      style={{marginLeft:'4vw',width:'5vw',marginRight:'6.5vw',marginTop:'3.5vw'}}
                      
                     >
                       GPU
@@ -565,8 +568,8 @@ export default function CustList() {
                       gutterBottom
                       variant="h4"
                       component="div"
-                      sx={{ mt: '2vw', fontSize: '1.5vw' }}
-                      style={{marginLeft:'2vw',width:'13vw'}}
+                      sx={{ mt: '2vw', fontSize: '1.5vw',width:'13vw' }}
+                      style={{marginLeft:'2vw',width:'5vw',marginRight:'0.5vw',marginTop:'3.5vw',width:'13vw'}}
                     >
                       POWER SUPPLY
                     </Typography>
@@ -629,7 +632,7 @@ export default function CustList() {
             variant="h4"
             component="div"
             sx={{ mt: '2vw', fontSize: '2vw' }}
-            style={{marginLeft:'2vw',width:'7vw'}}
+            style={{marginLeft:'2vw',width:'7vw',marginRight:'3vw',marginTop:'3.5vw'}}
           >
             CASE
           </Typography>

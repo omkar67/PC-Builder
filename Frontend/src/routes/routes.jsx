@@ -16,10 +16,16 @@ import Case from "../pages/Case"
 import Motherboard from '../pages/Motherboard';
 import PSU from '../pages/PSU';
 import GPU from '../pages/GPU';
+
+import Checkout from '../pages/Checkout'
+
+
+
 import customers from '../../Admin/customers';
 import orders from '../../Admin/orders';
 import products from '../../Admin/products';
 import home from '../../Admin/home';
+
 const routes = [
     {
         path: '/',
@@ -80,6 +86,12 @@ const routes = [
     {
         path:"/GPU",
         component: GPU,
+
+    },{
+        path:"/Checkout",
+        component: Checkout,
+    }
+
     },
     {
         path:"/Admin",
@@ -98,6 +110,7 @@ const routes = [
         path:"/Admin/orders",
         component:orders
     }
+
 
 
     

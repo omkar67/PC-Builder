@@ -49,6 +49,9 @@ export const setMOBO = createAction('components/setMOBO', (value) => {
   export const setItem = createAction('components/setItem', (value) => ({
     payload: value,
   }));
+  export const setLogin = createAction('components/setLogin', (value) => ({
+    payload: value,
+  }));
 
 
 // Define similar actions for the other state variables

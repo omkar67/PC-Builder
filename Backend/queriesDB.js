@@ -197,7 +197,31 @@ export function initialize(app, db) {
 
         })
 
-    })
+
+    });
+    app.post('/api/proceedToCart', (req, res) => {
+        const sql = 'INSERT INTO orders (`cpu_id`, `gpu_id`, `moboid`, `case_id`, `ram_id`,`storage_id`,`user_id`,`psu_id`) VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
+        const values = [
+          req.body[0], // Assuming the array index corresponds to the correct order
+          req.body[1],
+          req.body[2],
+          req.body[3],
+          req.body[4],
+          req.body[5],
+          req.body[6],
+          req.body[7],
+        ];
+      
+        db.query(sql, values, (err, data) => {
+          if (err) {
+            console.error(err);
+            return res.status(500).json({ error: 'Internal Server Error' });
+          }
+          return res.json(data);
+        });
+      });
+
+   
 
    app.get('/api/getUser', (req, res) => {
     const userId = req.params.uid;
@@ -235,6 +259,7 @@ app.get('/api/getUserID/:username', (req, res) => {
 
 
   
+
     
 }
 

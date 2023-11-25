@@ -11,7 +11,8 @@ const initialState = {
   Storage: null,
   PSU: null,
   manufacturer:null,
-  item:null
+  item:null,
+  login:null,
 };
 
 const componentsReducer = createReducer(initialState, (builder) => {
@@ -42,6 +43,9 @@ const componentsReducer = createReducer(initialState, (builder) => {
     })
     .addCase(actions.setItem, (state, action) => {
       state.item = action.payload;
+    })
+    .addCase(actions.setLogin, (state, action) => {
+      state.login = action.payload;
     });
   // Add similar cases for the other state variables
 });
