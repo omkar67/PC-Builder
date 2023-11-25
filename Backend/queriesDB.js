@@ -198,6 +198,43 @@ export function initialize(app, db) {
         })
 
     })
+
+   app.get('/api/getUser', (req, res) => {
+    const userId = req.params.uid;
+    const sql = 'SELECT * FROM users ';
+
+    db.query(sql, [userId], (err, results) => {
+        if (err) {
+            return res.status(500).json({ error: err.message });
+        }
+        res.json(results);
+    });
+});
+
+app.get('/api/orders', (req, res) => {
+    const orderId = req.params.orderid;
+    const sql = 'SELECT * FROM orders ';
+
+    db.query(sql, [orderId], (err, results) => {
+        if (err) {
+            return res.status(500).json({ error: err.message });
+        }
+        res.json(results);
+    });
+});
+app.get('/api/getUserID/:username', (req, res) => {
+    const sql = 'SELECT uid FROM users WHERE username = ?';
+
+    db.query(sql, [req.params.username], (err, results) => {
+        if (err) {
+            return res.status(500).json({ error: err.message });
+        }
+        res.json(results);
+    });
+});
+
+
+  
     
 }
 

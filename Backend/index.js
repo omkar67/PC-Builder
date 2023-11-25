@@ -20,19 +20,19 @@ app.use(cors())
 
 
 
-const db = mysql.createConnection({
+/* const db = mysql.createConnection({
     host: "db4free.net",
     user: "rajatmit",
     password: "rajat@123",
     database: "myinventory"
-});
+}); */
   
-/*  const db = mysql.createConnection({
+ const db = mysql.createConnection({
     host: 'localhost', // Your local MySQL server host
     user: 'root', // Your MySQL username
     password: 'root', // Your MySQL password
     database: 'pcbuilder', // Your database name
-});    */
+});   
 
 db.connect((err) => {
     if (err) {
