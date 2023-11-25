@@ -28,7 +28,8 @@ const theme = createTheme({
   typography:{
     fontFamily: [ 'Poppins', 'sans-serif'
     ].join(',')
-  }
+  },
+  backgroundImage: `url(${LoginImage})`
 }
 )
 
@@ -57,7 +58,7 @@ const [password , setPassword] = useState('')
 
   document.body.style.margin = '0'
   document.body.style.padding = '0px'
-  document.body.style.backgroundImage = `url(${LoginImage})`
+
   document.body.style.backgroundSize = "cover"
   document.body.style.backgroundRepeat = "no-repeat"
   
@@ -122,6 +123,7 @@ const [password , setPassword] = useState('')
             alignItems: 'stretch',
             alignContent: 'stretch',
             padding : '0px',
+            backgroundImage : `url(${LoginImage})`
           }}
       >
 
