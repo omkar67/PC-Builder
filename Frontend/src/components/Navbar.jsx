@@ -22,9 +22,21 @@ import ListItemText from '@mui/material/ListItemText';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { Link } from 'react-router-dom';
-
+import { useLocation } from 'react-router-dom';
 
 function Navbar() {
+  const location = useLocation();
+
+  // Check if the current route is /customizePC
+  const isCustomizePCRoute = location.pathname === '/Admin' ;
+  const isCustomizePCRoute1 = location.pathname === '/Admin/orders' ;
+  const isCustomizePCRoute2 = location.pathname === '/Admin/products' ;
+  const isCustomizePCRoute3 = location.pathname === '/Admin/customers' ;
+
+  // Conditionally render the footer based on the route
+  if (isCustomizePCRoute||isCustomizePCRoute1||isCustomizePCRoute2||isCustomizePCRoute3) {
+    return null; // Do not render the footer for /customizePC route
+  }
   const [open, setOpen] = React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
 

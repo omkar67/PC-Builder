@@ -105,7 +105,7 @@ const Cart = () => {
      
     }else{
                 console.log(loginState)
-                const values = [cpudata[0]?.id, mobodata[0]?.id, casedata[0]?.id, ramdata[0]?.id, storedata[0]?.id, userID, psudata[0]?.id];
+                const values = [cpudata[0]?.id,gpudata[0]?.id, mobodata[0]?.id, casedata[0]?.id, ramdata[0]?.id, storedata[0]?.id, userID, psudata[0]?.id];
 
           fetch('http://localhost:3000/api/proceedToCart', {
             method: 'POST',
@@ -127,6 +127,7 @@ const Cart = () => {
             .catch(error => {
               console.error('Fetch error:', error);
             });
+            nav('/Checkout')
 
     }
   };

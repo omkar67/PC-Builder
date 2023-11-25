@@ -92,7 +92,7 @@ const routes = [
         component: Checkout,
     }
 
-    },
+    ,
     {
         path:"/Admin",
         component:home,
