@@ -82,7 +82,14 @@ const [password , setPassword] = useState('')
 
   function handleSubmit(event) {
     event.preventDefault();
-    
+    const hardcodedAdminUsername = 'admin'; 
+    const hardcodedAdminPassword = 'admin'; 
+    if (username === hardcodedAdminUsername && password === hardcodedAdminPassword) {
+      // If the entered credentials match the hardcoded admin credentials
+      // Dispatch your action to set login state
+      navigate('/Admin'); // Redirect to the admin route
+    } else {
+  
     axios.post("http://localhost:3000/api/login", { username, password })
       .then(res => {
         console.log(res);
@@ -96,7 +103,7 @@ const [password , setPassword] = useState('')
         }
       })
       .catch(err => alert(`Invalid Details ${err.response}`));
-  }
+  }}
   return (
     <>
     <ThemeProvider theme = {theme}>
