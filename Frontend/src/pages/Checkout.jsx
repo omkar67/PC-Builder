@@ -32,7 +32,8 @@ const OrderSummaryItem = ({ name, price }) => (
 );
 
 const Checkout = () => {
-  <Navbar/>
+  
+  
   
   const nav = useNavigate();
   const cpuState = useSelector((state) => state.components.CPU);
@@ -119,6 +120,8 @@ const Checkout = () => {
   };
 
   return (
+    <>
+    <Navbar/>
     <ThemeProvider theme={theme}>
       <div style={{ backgroundColor: '#373538', minHeight: '100vh', padding: '20px' }}>
       <Box sx={{ mt: 2 }}>
@@ -200,6 +203,7 @@ const Checkout = () => {
         </Button>
       </div>
     </ThemeProvider>
+    </>
   );
 };
 
