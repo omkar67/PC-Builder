@@ -17,7 +17,7 @@ const customizePC = () => {
   return (
   
     <>
-      
+      <Navbar/>
         <ThemeProvider theme={theme}>
         
             {/* Background image container */}

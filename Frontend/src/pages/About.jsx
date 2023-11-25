@@ -3,9 +3,11 @@ import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
-
+import Navbar from '../components/Navbar';
 function AboutUs() {
   return (
+    <>
+    <Navbar/>
     <Container sx={{ background: '#CBC3E3', padding: '24px' }}>
       <Typography variant="h3" gutterBottom>
         About Us
@@ -61,6 +63,7 @@ function AboutUs() {
         We are committed to providing you with top-notch PCs and exceptional customer service. Your satisfaction is our priority.
       </Typography>
     </Container>
+    </>
   );
 }
 

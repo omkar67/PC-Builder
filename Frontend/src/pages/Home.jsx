@@ -53,6 +53,7 @@ const cardData = [
 ];
 const GuideSection = () => {
   return (
+   
     <Box padding={4} bgcolor="black" color="cyan">
           <Typography variant="h4" gutterBottom align="center">
               How to Build Your PC
@@ -100,8 +101,9 @@ const GuideSection = () => {
 const Home = () => {
   const classes = StyledCard;
   return (
+ 
     <>
-    
+       <Navbar/>
     <Box bgcolor="black" color="white" style={{ minHeight: '100vh' }}>
       <div>
         <Carousel

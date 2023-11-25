@@ -18,7 +18,7 @@ import Drawer from '@mui/material/Drawer';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
-
+import { useSelector } from 'react-redux';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { Link } from 'react-router-dom';
@@ -28,15 +28,11 @@ function Navbar() {
   const location = useLocation();
 
   // Check if the current route is /customizePC
-  const isCustomizePCRoute = location.pathname === '/Admin' ;
-  const isCustomizePCRoute1 = location.pathname === '/Admin/orders' ;
-  const isCustomizePCRoute2 = location.pathname === '/Admin/products' ;
-  const isCustomizePCRoute3 = location.pathname === '/Admin/customers' ;
+  
 
+  const loginState = useSelector((state)=>state.components.login)
   // Conditionally render the footer based on the route
-  if (isCustomizePCRoute||isCustomizePCRoute1||isCustomizePCRoute2||isCustomizePCRoute3) {
-    return null; // Do not render the footer for /customizePC route
-  }
+
   const [open, setOpen] = React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
 
@@ -152,19 +148,25 @@ function Navbar() {
           </IconButton>
           </Link>
 
-          <IconButton color="inherit" onClick={handleMenuOpen}>
-            <AccountCircleIcon />
-          </IconButton>
-          <Menu
-            anchorEl={anchorEl}
-            keepMounted
-            open={Boolean(anchorEl)}
-            onClose={handleMenuClose}
-          >
-            <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-            <MenuItem onClick={handleMenuClose}>Settings</MenuItem>
-            <MenuItem onClick={handleMenuClose}>Logout</MenuItem>
-          </Menu>
+          {loginState === null ? (
+           <Button component={Link} to="/login " variant = "outlined" > Login </Button>
+          ) : (
+            <>
+              <IconButton color="inherit" onClick={handleMenuOpen}>
+                <AccountCircleIcon />
+              </IconButton>
+              <Menu
+                anchorEl={anchorEl}
+                keepMounted
+                open={Boolean(anchorEl)}
+                onClose={handleMenuClose}
+              >
+                <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
+                <MenuItem onClick={handleMenuClose}>Settings</MenuItem>
+                <MenuItem onClick={handleMenuClose}>Logout</MenuItem>
+              </Menu>
+            </>
+          )}
 
 
 

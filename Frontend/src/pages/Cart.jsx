@@ -11,6 +11,7 @@ import { Stack, margin } from '@mui/system';
 
 
 const Cart = () => {
+
  
   const nav = useNavigate();
   const cpuState = useSelector((state) => state.components.CPU);
