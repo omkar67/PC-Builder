@@ -147,7 +147,7 @@ const Cart = () => {
             </Box>
             </>
         ) : (   
-            <Box sx={{width:'100%',backgroundColor:'#373538',height:'100%',minHeight:'85vh'}}>
+            <Box sx={{width:'100%',height:'100%',minHeight:'85vh'}}>
             <Typography variant="h4" gutterBottom style={{color:'white',fontSize:'5vh',marginTop:'',fontFamily:['Montserrat','Poppins']}}>
             <ShoppingCartIcon style={{marginLeft:'40%',color:'white',height:'5vh',width:'auto',marginTop:'20px'}} /> My Cart
             </Typography>
