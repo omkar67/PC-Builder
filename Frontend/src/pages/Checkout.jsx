@@ -23,11 +23,10 @@ const theme = createTheme({
 const OrderSummaryItem = ({ name, price }) => (
   <ListItem style={{
     background: 'linear-gradient(90deg, hsla(287, 40%, 29%, 1) 0%, hsla(263, 65%, 35%, 1) 100%)',
-    margin:'15px',maxWidth: '700px', maxHeight: '100px',borderRadius:'15px'}}>
-    <Stack direction="row" spacing={2}>
-      <Typography style={{ color: 'white',fontSize:'20px',overflow:'clip'  }}>{name}</Typography>
-      <Typography style={{ color: 'white',fontSize:'20px',marginLeft:'5%' }}>{price}</Typography>
-    </Stack>
+    margin:'15px',Width: '800px', maxHeight: '400px',borderRadius:'15px'}}>
+    
+      <Typography style={{ color: 'white',fontSize:'20px',marginRight:'15%'}}>{name}</Typography>
+      <Typography style={{ color: 'white',fontSize:'20px' }}>{price}</Typography>
   </ListItem>
 );
 

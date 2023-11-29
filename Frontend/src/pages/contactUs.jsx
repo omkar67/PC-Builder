@@ -6,6 +6,7 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Snackbar from '@mui/material/Snackbar';
 import Navbar from '../components/Navbar';
+import NewNavBar from '../components/NewNavBar';
 const ContactUs = () => {
   const [formData, setFormData] = useState({ name: '', email: '', phone: '', message: '' });
   const [openSnackbar, setOpenSnackbar] = useState(false);
@@ -30,7 +31,7 @@ const ContactUs = () => {
 
   return (
     <>
-    <Navbar/>
+    <NewNavBar/>
     <Container sx={{ background: '#CBC3E3', padding: '100px', borderRadius: '50px', boxShadow: '10px 10px 10px rgba(0,0,0,0.1)' }}>
       <Typography variant="h4" gutterBottom>
       <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQu2bJ4otqfysRRdD0vGgU_jqFI_I4OSsZK5Q&usqp=CAU' style={{width:"100%", height: "100%"}} />

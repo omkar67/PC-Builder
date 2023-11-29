@@ -10,6 +10,7 @@ import { setPSU } from "../redux/actions";
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from "react-router-dom";
 import { useGame } from "../context/Filter";
+import NewNavBar from '../components/NewNavBar';
 const PSU = () => {
   const dispatch = useDispatch();
   const nav = useNavigate();
@@ -104,6 +105,7 @@ const PSU = () => {
   return (
     <>
     <ThemeProvider theme={theme}>
+      <NewNavBar></NewNavBar>
         <style>
         {`
           body {

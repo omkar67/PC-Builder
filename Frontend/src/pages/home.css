@@ -1,20 +1,41 @@
+
+
 .slide-content {
     position: relative;
+    background-color:#221031 ;
+
   }
-  
+
+  body {
+   background-color:#373538;
+  }
   .carousel-image {
-    width: 1550px;
-    height: 600px;
+    width: 100%;
+    height:100% ;
+
+    overflow: clip;
+    object-fit: cover;
+    object-position: center;
+    
+    
   }
-  
+  .guide-box {
+    font-size: 55px;
+
+  }
   .overlay-text {
     position: absolute;
-    top: 30%; 
-    left: 20%;
+    top: 40%; 
+    left: 25%;
     transform: translate(-50%);
     color: white;
     text-align: left;
     font-size: 30px;
+    background-color: rgba(0,0,0,0.7);
+    width:900px;
+    padding: 2%;
+    font-family: 'Poppins';
+    border-radius: 15px;
   }
   
   /* Additional styling for the button if needed */
@@ -22,20 +43,33 @@
     display: inline-block; /* Changed from block to inline-block */
     margin-top: 10px;
     padding: 10px 15px;
-    background-color: blue;
+    background-color: #4c1f93;
     border: none;
     color: white;
     cursor: pointer;
+
   }
   
   /* Style for the right button */
   .overlay-text .right-btn {
-    background-color: red; /* Change this to your preferred color */
-    margin-left: 10px; /* Creates some spacing between the two buttons */
+    background-color: #4c1f93 ; /* Change this to your preferred color */
+    margin-left: 10px;
+    height: 10vh;
+    width: auto; 
+    font-family: 'Poppins';
+    font-size: 3vh;
+    border-radius: 30px;
+    font-style: bold;
   }
   
   /* If you want to customize the left button separately */
   .overlay-text .left-btn {
-    background-color: blue; /* Change this if needed */
+    background-color: #bb84ec;
+    height: 10vh;
+    width: auto; 
+    font-family:'Poppins';
+    font-size: 3vh;
+    border-radius: 30px;
   }
   
+ 
