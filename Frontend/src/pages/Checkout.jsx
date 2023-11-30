@@ -91,11 +91,11 @@ const Checkout = () => {
       })
       .then(responseData => {
         console.log(responseData);
-        alert('Sucess!!')
+        alert('U have Successfully placed your order ')
       })
       .catch(error => {
         console.error('Error:', error);
-        alert('failure')
+        alert('Failure')
       });
   };
   
