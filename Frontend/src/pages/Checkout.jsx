@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
-import Avatar from '@mui/material/Avatar';
 import {
   Typography,
   Box,
@@ -15,7 +14,6 @@ import {
 } from '@mui/material';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { Stack } from '@mui/system';
-import Logo from '../Images/Logo.png'
 
 const theme = createTheme({
   typography: {
@@ -24,16 +22,13 @@ const theme = createTheme({
 });
 const OrderSummaryItem = ({ name, price }) => (
   <ListItem style={{
-    background: '#880085',
-    margin:'15px',maxWidth: '1200px', maxHeight: '400px',borderRadius:'15px'}}>
-      <Stack direction={'row' } spacing={5}>
-      <Typography style={{ color: 'white',fontSize:'40px',overflow:'auto ',marginRight:'0%',maxWidth:'1000px'}}>{name}</Typography>
-      <Typography style={{ color: 'white',fontSize:'45px',paddingleft:'25px' ,margintop:'25px'}}>{price}</Typography>
-      </Stack>
+    background: 'linear-gradient(90deg, hsla(287, 40%, 29%, 1) 0%, hsla(263, 65%, 35%, 1) 100%)',
+    margin:'15px',Width: '800px', maxHeight: '400px',borderRadius:'15px'}}>
+    
+      <Typography style={{ color: 'white',fontSize:'20px',marginRight:'15%'}}>{name}</Typography>
+      <Typography style={{ color: 'white',fontSize:'20px' }}>{price}</Typography>
   </ListItem>
 );
-
- 
 
 const Checkout = () => {
   <Navbar/>
@@ -46,7 +41,6 @@ const Checkout = () => {
   const CaseState = useSelector((state) => state.components.Case)
   const PSUState = useSelector((state) => state.components.PSU)
   const StorageState = useSelector((state) => state.components.Storage)
-  const loginState = useSelector((state) => state.components.login)
   const [cpudata,setCPUdata]=useState([])
   const [gpudata,setGPUdata]=useState([])
   const [psudata,setPSUdata]=useState([])
@@ -55,50 +49,6 @@ const Checkout = () => {
   const [mobodata,setMOBOdata]=useState([])
   const [storedata,setStoredata]=useState([])
   const [totalPrice, setTotalPrice] = useState([]);
-  const [address, setAddress] = useState(null);
-  const [phone, setPhone] = useState(null);
-  const [pin,setPin]=useState(null)
-
-  const handleAddressChange = (event) => {
-    setAddress(event.target.value);
-  };
-  const handlePhoneChange = (event) => {
-    setPhone(event.target.value);
-  };
-  const handlePinChange = (event) => {
-    setPin(event.target.value);
-  };
-  const handlePayment = () => {
-    const data = {
-      address: address,
-  
-      pin_code: pin,
-      username:loginState
-    };
-  
-    fetch('http://localhost:3000/api/makePayment', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(data),
-    })
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        return response.json();
-      })
-      .then(responseData => {
-        console.log(responseData);
-        alert('U have Successfully placed your order ')
-      })
-      .catch(error => {
-        console.error('Error:', error);
-        alert('Failure')
-      });
-  };
-  
   
 
   useEffect(() => {
@@ -162,102 +112,70 @@ const Checkout = () => {
     loadData();
   }, [cpuState, gpuState, PSUState, RAMState, CaseState, MOBOState, StorageState]);
   const [paymentOptions, setPaymentOptions] = useState(['Credit Card', 'PayPal', 'Other']);
-  const handlePayment_option = () => {
+  const handlePayment = () => {
   
     console.log(`Payment of ₹${totalPrice} made via ${selectedPayment}`);
-  };
-  const ImageIcon = () => {
-    return (
-      
-      <Avatar alt="Your Image" src={Logo} style={{height:'100px',width:'400px',marginLeft:'0px'}} onClick={()=>{nav('/')}} />
-     
-    );
   };
 
   return (
     <ThemeProvider theme={theme}>
-      
       <div style={{ backgroundColor: '#373538', minHeight: '100vh', padding: '20px' }}>
-      
-        <Stack direction={'row'} marginTop='15px'>
-          <Typography variant="h6" sx={{ color: 'white', marginBottom: '5px',fontSize:'80px',marginTop:'15px' }}>
+      <Box sx={{ mt: 2 }}>
+          <Typography variant="h6" sx={{ color: 'white', marginBottom: '5px',fontSize:'50px' }}>
             Order Summary
           </Typography>
-        </Stack>
-      <Box sx={{ mt: 0.5 }}>
-          <List style={{marginLeft:'30%',marginTop:'0%'}}>
-          <ListItem style={{backgroundColor:'rgba(0,0,0,0.6)',margin:'15px',maxWidth: '1200px', maxHeight: '100px',borderRadius:'20px'}}>
+          <List style={{marginLeft:'30%'}}>
+          <ListItem style={{backgroundColor:'rgba(0,0,0,0.6)',margin:'15px',maxWidth: '700px', maxHeight: '100px',borderRadius:'20px'}}>
     <Stack direction="row" spacing={2}>
-      <Typography style={{ color: 'white', fontSize:'70px' }}>Name</Typography>
-      <Typography style={{ color: 'white', maxWidth: '700px', maxHeight: '100px',fontSize:'70px',marginLeft:'26vw' }}>Price</Typography>
+      <Typography style={{ color: 'white', fontSize:'30px' }}>Name</Typography>
+      <Typography style={{ color: 'white', maxWidth: '700px', maxHeight: '100px',fontSize:'30px',marginLeft:'25vw' }}>Price</Typography>
     </Stack>
   </ListItem>
           <OrderSummaryItem name={cpudata[0]?.name} price={cpudata[0]?.price} />
-          <OrderSummaryItem name={gpudata[0]?.name} price={cpudata[0]?.price} />
-          <OrderSummaryItem name={mobodata[0]?.name} price={mobodata[0]?.price} />
-          <OrderSummaryItem name={ramdata[0]?.name} price={ramdata[0]?.price} />
-          <OrderSummaryItem name={casedata[0]?.name} price={casedata[0]?.price} />
-          <OrderSummaryItem name={psudata[0]?.name} price={psudata[0]?.price} />
-          <OrderSummaryItem name={storedata[0]?.name} price={storedata[0]?.price} />
+          <OrderSummaryItem name={gpudata[0]?.name} price={gpudata[0]?.price} />
+          <OrderSummaryItem name={mobodata[0]?.name} price={gpudata[0]?.price} />
+          <OrderSummaryItem name={ramdata[0]?.name} price={gpudata[0]?.price} />
+          <OrderSummaryItem name={casedata[0]?.name} price={gpudata[0]?.price} />
+          <OrderSummaryItem name={psudata[0]?.name} price={gpudata[0]?.price} />
+          <OrderSummaryItem name={storedata[0]?.name} price={gpudata[0]?.price} />
 
           </List>
-          <Typography variant="subtitle1" sx={{ color: 'white', marginTop: '5px',fontSize:'70px',marginLeft:'40%',backgroundColor:'#4c1f93 ',maxWidth:'500px',padding:'15px', borderRadius:'10px',padding:'1.5%' }}>
+          <Typography variant="subtitle1" sx={{ color: 'white', marginTop: '5px',fontSize:'50px',marginLeft:'25%',backgroundColor:'#4c1f93 ',maxWidth:'500px',padding:'15px', borderRadius:'10px' }}>
             Total: ₹{totalPrice}
           </Typography>
         </Box>
-        <div className='Details' style={{marginLeft:'12%',marginTop:'2%'}}>
-            <Typography variant="h5" sx={{ color: 'white', marginBottom: '10px',fontSize:'50px' }}>
+        <div className='Details'>
+            <Typography variant="h5" sx={{ color: 'white', marginBottom: '10px' }}>
               Enter Your Details
             </Typography>
             <TextField
               id="outlined-multiline-static"
               label="Address"
               multiline
-             
-              onChange={handleAddressChange}  
-              rows={3}
-              defaultValue=" "
+              rows={4}
+              defaultValue="Default Value"
               InputLabelProps={{
-                style: { color: 'white',fontSize:'40px',marginLeft:'' }, 
+                style: { color: 'white' }, // change the label color
               }}
               InputProps={{
-                style: { color: 'white',fontSize:'20px',marginTop:'25px' }, 
+                style: { color: 'white' }, // change the input text color
               }}
-              style={{ backgroundColor: '#373538', marginTop: '15px', height: 'auto',width:'700px' }}
-            />
-             <TextField
-              id="outlined-multiline-static"
-              label=" Pin Code "
-              multiline
-              rows={1}
-              defaultValue=" "
-              onChange={handlePinChange}
-              InputLabelProps={{
-                style: { color: 'white',fontSize:'40px',marginLeft:'' },
-              }}
-              InputProps={{
-                style: { color: 'white',fontSize:'20px',marginTop:'35px' },
-                inputProps: {
-                  pattern: "[0-9]*", 
-                  inputMode: "numeric", 
-                }
-              }}
-              style={{ backgroundColor: '#373538', marginTop: '25px', height: 'auto',width:'700px',marginLeft:'20px' }}
+              style={{ backgroundColor: '#373538', marginTop: '15px', height: 'auto' }}
             />
             <TextField
-              label="Select Payment Method"
               select
+              label="Select Payment Method"
+              
               InputLabelProps={{
-                style: { color: 'white',fontSize:'40px' },
+                style: { color: 'white' },
               }}
               InputProps={{
-                style: { color: 'White',fontSize:'40px' },
+                style: { color: 'White' },
               }}
-              style={{ backgroundColor: '#373538', marginTop: '10px', height: 'auto', width: '100%' ,maxWidth:'600px',fontSize:'40px',marginLeft:'30px',marginTop:'2%',borderColor:'white'}}
+              style={{ backgroundColor: '#373538', marginTop: '10px', height: 'auto', width: '100%' ,maxWidth:'500px'}}
             >
-            
               {paymentOptions.map((option) => (
-                <MenuItem key={option} value={option} style={{fontSize:'40px'}}>
+                <MenuItem key={option} value={option}>
                   {option}
                 </MenuItem>
               ))}
@@ -270,13 +188,11 @@ const Checkout = () => {
           color="primary"
           onClick={handlePayment}
           style={{
-            height: '200px',
-            marginTop: '3%',
-            borderRadius: '30px',
+            height: '40px',
+            marginTop: '20px',
+            borderRadius: '5px',
             backgroundColor: '#4c1f93',
-            padding:'50px',
-            fontSize: '60px',
-            marginLeft:'25%'
+            fontSize: '16px',
           }}
         >
           Make Payment
