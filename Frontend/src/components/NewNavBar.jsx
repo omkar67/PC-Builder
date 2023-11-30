@@ -48,7 +48,7 @@ function NewNavBar() {
 
       </style>
 
-      <Container maxWidth="xl" style={{marginLeft:'20px'}}>
+      <Container maxWidth="xl" style={{marginLeft:'20vw'}}>
         <Toolbar disableGutters style={{justifyContent:'space-between'}}>
           <MenuItem  onClick={()=>{nav('/')}}>
           <IconButton sx={{ display: { xs: 'none', md: 'flex' } }} >
@@ -68,7 +68,7 @@ function NewNavBar() {
               letterSpacing: '.3rem',
               color: 'white',
               textDecoration: 'none',
-              fontSize:'40px',
+              fontSize:'4vw',
               marginLeft:'5px',
               
             }}
@@ -89,7 +89,7 @@ function NewNavBar() {
             color: 'white',
             textDecoration: 'none',
            
-            fontSize:'30px',
+            fontSize:'3vw',
             marginRight:'25'
             
           }}
@@ -109,7 +109,7 @@ function NewNavBar() {
             color: 'white',
             textDecoration: 'none',
             
-            fontSize:'30px',
+            fontSize:'3vw',
             
             
           }}
@@ -130,7 +130,7 @@ function NewNavBar() {
             color: 'white',
             textDecoration: 'none',
          
-            fontSize:'30px'
+            fontSize:'3vw'
           }}
           >
             Login
@@ -154,7 +154,7 @@ function NewNavBar() {
               color: 'white',
               textDecoration: 'none',
            
-              fontSize:'30px'
+              fontSize:'3vw'
             }}
             >
               Logout
@@ -193,7 +193,7 @@ function NewNavBar() {
             letterSpacing: '.3rem',
             color: 'white',
             textDecoration: 'none',
-            fontSize:'30px'
+            fontSize:'3vw'
           }}
           >
             Contact Us

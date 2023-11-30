@@ -12,7 +12,7 @@
   .carousel-image {
     width: 100%;
     height:100% ;
-
+    max-height: 90vh;
     overflow: clip;
     object-fit: cover;
     object-position: center;
@@ -25,14 +25,14 @@
   }
   .overlay-text {
     position: absolute;
-    top: 30%; 
+    top: 25%; 
     left: 25%;
     transform: translate(-50%);
     color: white;
     text-align: left;
-    font-size: 30px;
+   
     background-color: rgba(0,0,0,0.7);
-    width:900px;
+    max-width:40vw;
     padding: 2%;
     font-family: 'Poppins';
     border-radius: 15px;
@@ -54,22 +54,22 @@
   .overlay-text .right-btn {
     background-color: #4c1f93 ; /* Change this to your preferred color */
     margin-left: 10px;
-    height: 10vh;
+    height: 5vh;
     width: auto; 
     font-family: 'Poppins';
-    font-size: 3vh;
-    border-radius: 30px;
+    font-size: 2vh;
+    border-radius: 10px;
     font-style: bold;
   }
   
   /* If you want to customize the left button separately */
   .overlay-text .left-btn {
     background-color: #bb84ec;
-    height: 10vh;
+    height: 5vh;
     width: auto; 
     font-family:'Poppins';
-    font-size: 3vh;
-    border-radius: 30px;
+    font-size: 2vh;
+    border-radius: 10px;
   }
   
  
