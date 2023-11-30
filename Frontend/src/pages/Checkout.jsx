@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
+
+import MinProductCard from '../components/MinProdCard';
 import {
   Typography,
   Box,
@@ -15,11 +17,8 @@ import {
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { Stack } from '@mui/system';
 
-const theme = createTheme({
-  typography: {
-    fontFamily: 'poppins, montserrat, sans-serif',
-  },
-});
+
+
 const OrderSummaryItem = ({ name, price }) => (
   <ListItem style={{
     background: 'linear-gradient(90deg, hsla(287, 40%, 29%, 1) 0%, hsla(263, 65%, 35%, 1) 100%)',
@@ -32,7 +31,11 @@ const OrderSummaryItem = ({ name, price }) => (
 );
 
 const Checkout = () => {
-  
+  const [theme, setTheme] = useState(createTheme({
+    typography: {
+      fontFamily: 'poppins, montserrat, sans-serif',
+    },
+  }));
   
   
   const nav = useNavigate();
@@ -47,7 +50,7 @@ const Checkout = () => {
   const [gpudata,setGPUdata]=useState([])
   const [psudata,setPSUdata]=useState([])
   const [ramdata,setRAMdata]=useState([])
-  const [casedata,setCASEdata]=useState([])
+  const [casedata,setCasedata]=useState([])
   const [mobodata,setMOBOdata]=useState([])
   const [storedata,setStoredata]=useState([])
   const [totalPrice, setTotalPrice] = useState([]);
@@ -84,7 +87,7 @@ const Checkout = () => {
         if (CaseState !== null) {
           const res5 = await fetch(`http://localhost:3000/api/getCase/${CaseState}`);
           const data5 = await res5.json();
-          setCASEdata(data5);
+          setCasedata(data5);
           price += parseInt(data5[0]?.price || 0);
         }
         if (MOBOState !== null) {
@@ -137,11 +140,11 @@ const Checkout = () => {
   </ListItem>
           <OrderSummaryItem name={cpudata[0]?.name} price={cpudata[0]?.price} />
           <OrderSummaryItem name={gpudata[0]?.name} price={gpudata[0]?.price} />
-          <OrderSummaryItem name={mobodata[0]?.name} price={gpudata[0]?.price} />
-          <OrderSummaryItem name={ramdata[0]?.name} price={gpudata[0]?.price} />
-          <OrderSummaryItem name={casedata[0]?.name} price={gpudata[0]?.price} />
-          <OrderSummaryItem name={psudata[0]?.name} price={gpudata[0]?.price} />
-          <OrderSummaryItem name={storedata[0]?.name} price={gpudata[0]?.price} />
+          <OrderSummaryItem name={mobodata[0]?.name} price={mobodata[0]?.price} />
+          <OrderSummaryItem name={ramdata[0]?.name} price={ramdata[0]?.price} />
+          <OrderSummaryItem name={casedata[0]?.name} price={casedata[0]?.price} />
+          <OrderSummaryItem name={psudata[0]?.name} price={psudata[0]?.price} />
+          <OrderSummaryItem name={storedata[0]?.name} price={storedata[0]?.price} />
 
           </List>
           <Typography variant="subtitle1" sx={{ color: 'white', marginTop: '5px',fontSize:'50px',marginLeft:'25%',backgroundColor:'#4c1f93 ',maxWidth:'500px',padding:'15px', borderRadius:'10px' }}>
