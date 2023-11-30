@@ -48,7 +48,7 @@ function NewNavBar() {
 
       </style>
 
-      <Container maxWidth="xl" style={{marginLeft:'20vw'}}>
+      <Container maxWidth="xl" style={{marginLeft:'1vw'}}>
         <Toolbar disableGutters style={{justifyContent:'space-between'}}>
           <MenuItem  onClick={()=>{nav('/')}}>
           <IconButton sx={{ display: { xs: 'none', md: 'flex' } }} >
