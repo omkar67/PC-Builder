@@ -58,17 +58,19 @@ export default function CustList() {
   const PSUState = useSelector((state) => state.components.PSU)
   const StorageState = useSelector((state) => state.components.Storage)
   const itemState = useSelector((state) => state.components.items)
-  const [cpudata,setCPUdata]=useState([])
-  const [gpudata,setGPUdata]=useState([])
-  const [psudata,setPSUdata]=useState([])
-  const [ramdata,setRAMdata]=useState([])
-  const [casedata,setCASEdata]=useState([])
-  const [mobodata,setMOBOdata]=useState([])
-  const [storedata,setStoredata]=useState([])
+  const [cpudata,setCPUdata]=useState([]);
+  const [gpudata,setGPUdata]=useState([]);
+  const [psudata,setPSUdata]=useState([]);
+  const [ramdata,setRAMdata]=useState([]);
+  const [casedata,setCASEdata]=useState([]);
+  const [mobodata,setMOBOdata]=useState([]);
+  const [storedata,setStoredata]=useState([]); 
+  const [totalPrice, setTotalPrice] = useState([]);
 
-  useEffect(() => {
+   useEffect(() => {
     async function loadData() {
       try {
+        let price=0
         if (cpuState != null) {
           const res1 = await fetch(`http://localhost:3000/api/getCPU/${cpuState}`);
           const data1 = await res1.json();
@@ -78,6 +80,7 @@ export default function CustList() {
           const res2 = await fetch(`http://localhost:3000/api/getGPU/${gpuState}`);
           const data2 = await res2.json();
           setGPUdata(data2);
+          
         }
         if (PSUState !== null) {
           const res3 = await fetch(`http://localhost:3000/api/getPSU/${PSUState}`);
@@ -88,34 +91,38 @@ export default function CustList() {
           const res4 = await fetch(`http://localhost:3000/api/getRAM/${RAMState}`);
           const data4 = await res4.json();
           setRAMdata(data4);
+  
+          price += parseInt(data4[0]?.price || 0);
+          console.log(data4)
         }
         if (CaseState !== null) {
           const res5 = await fetch(`http://localhost:3000/api/getCase/${CaseState}`);
           const data5 = await res5.json();
           setCASEdata(data5);
+          price += parseInt(data5[0]?.price || 0);
         }
         if (MOBOState !== null) {
           const res6 = await fetch(`http://localhost:3000/api/getMOBO/${MOBOState}`);
           const data6 = await res6.json();
           setMOBOdata(data6);
+          price += parseInt(data6[0]?.price || 0);
+          console.log(data6)
         }
         if (StorageState !== null) {
           const res7 = await fetch(`http://localhost:3000/api/getStorage/${StorageState}`);
           const data7 = await res7.json();
           setStoredata(data7);
+          price += parseInt(data7[0]?.price || 0);
+          console.log(data7)
         }
-
-        // All data loaded, you can perform any callback here
-        console.log('All data loaded:', {
-          cpudata,
-          gpudata,
-          psudata,
-          ramdata,
-          casedata,
-          mobodata,
-          storedata,
-        });
-
+        if (loginState !== null) {
+          const res = await fetch(`http://localhost:3000/api/getUserID/${loginState}`);
+          const data = await res.json();
+          setUserID(data[0]?.uid);
+        }
+        setTotalPrice(price)
+        console.log(price)
+        
       } catch (error) {
         console.log(error);
       }

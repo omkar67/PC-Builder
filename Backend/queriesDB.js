@@ -256,6 +256,21 @@ app.get('/api/getUserID/:username', (req, res) => {
         res.json(results);
     });
 });
+app.post('/api/makePayment', (req, res) => {
+    const { address, pin_code, username } = req.body;
+  
+    const sql = 'UPDATE users SET `address` = ?, `pin_code` = ? WHERE username = ?';
+    const values = [address, pin_code, username];
+  
+    db.query(sql, values, (err, data) => {
+      if (err) {
+        console.error('Error updating data:', err);
+        return res.status(500).json({ error: 'Error updating data in the database' });
+      }
+      return res.json(data);
+    });
+  });
+  
 
 
   
