@@ -10,7 +10,7 @@ import Paper from '@mui/material/Paper';
 import { useSelector, useDispatch } from 'react-redux';
 import { setGPU } from "../redux/actions";
 import { useNavigate } from 'react-router-dom';
-
+import NewNavBar from "../components/NewNavBar";
 //
 import { useGame } from "../context/Filter";
 
@@ -112,6 +112,7 @@ const GPU = () => {
   return (
     <>
     <ThemeProvider theme={theme}>
+      <NewNavBar/>
         <style>
         {`
           body {

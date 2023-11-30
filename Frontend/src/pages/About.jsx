@@ -4,10 +4,11 @@ import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import Navbar from '../components/Navbar';
+import NewNavBar from '../components/NewNavBar';
 function AboutUs() {
   return (
     <>
-    <Navbar/>
+    <NewNavBar/>
     <Container sx={{ background: '#CBC3E3', padding: '24px' }}>
       <Typography variant="h3" gutterBottom>
         About Us

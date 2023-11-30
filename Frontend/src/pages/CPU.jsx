@@ -9,7 +9,7 @@ import Paper from '@mui/material/Paper';
 import { useSelector, useDispatch } from 'react-redux';
 import { setCPU } from "../redux/actions";
 import { useNavigate } from "react-router-dom";
-// import { useSelector } from 'react-redux';
+import NewNavBar from "../components/NewNavBar";
 
 //
 import { useGame } from "../context/Filter";
@@ -137,7 +137,7 @@ const CPU = () => {
   return (
     <>
       <ThemeProvider theme={theme}>
-
+      <NewNavBar/>
 
         <style>
           {`
@@ -161,7 +161,7 @@ const CPU = () => {
           />
           <div style={{}}>
 
-            <Grid container spacing={3} columnSpacing={3} rowSpacing={2} rowGap={2}>
+            <Grid container spacing={3} columnSpacing={1.5} rowSpacing={2} rowGap={5} marginTop={'15px'} marginLeft={'10px'}>
               {calculateRange().map((cpu, index) => (
                 <Grid item xs={12} sm={6} md={4} key={index}>
                   <ProductCard
