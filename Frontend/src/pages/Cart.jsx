@@ -124,7 +124,7 @@ const Cart = () => {
             })
             .then(data => {
               console.log(data);
-              
+              alert('Registered successfully');
             })
             .catch(error => {
               console.error('Fetch error:', error);
