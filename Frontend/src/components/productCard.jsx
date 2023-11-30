@@ -10,10 +10,11 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 
 const theme = createTheme({
   typography: {
-    fontFamily: 'Your Desired Font, sans-serif', // Replace 'Your Desired Font' with the actual font you want to use
+    fontFamily: 'Montserrat, sans-serif',
+    fontWeight:'bold',
   },
   marginLeft: '2vw',
-  height: "380px"
+  height: "500px"
 });
 
 export default function ProductCard(props) {
@@ -23,7 +24,7 @@ export default function ProductCard(props) {
         sx={{
           width: '100%',
           maxWidth: '750px',
-          maxHeight:'750px',
+          maxHeight:'900px',
           position: 'relative',
           borderRadius: '20px',
           overflow: 'hidden',
@@ -38,7 +39,7 @@ export default function ProductCard(props) {
         {/* Background image container */}
         <div
           style={{
-            backgroundImage: 'url("data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBwgHBgkIBwgKCgkLDRYPDQwMDRsUFRAWIB0iIiAdHx8kKDQsJCYxJx8fLT0tMTU3Ojo6Iys/RD84QzQ5OjcBCgoKDQwNGg8PGjclHyU3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3N//AABEIAHEA4gMBIgACEQEDEQH/xAAYAAEBAQEBAAAAAAAAAAAAAAABAgAGBf/EABkQAQEBAQEBAAAAAAAAAAAAAAABETESIf/EABsBAQEBAQEBAQEAAAAAAAAAAAMBAgAHBAYF/8QAGBEBAQEBAQAAAAAAAAAAAAAAAAIRARL/2gAMAwEAAhEDEQA/APJZmeiv1zMzOczHDiM9oSGRWGRNFViQ4YZE0NWJFSGQ4zoKsQmRUiaKrTIqQyHE0NWMMhkVGdDViQyGQ4miqxhkVIZGdBVjDIZFSIKrTIqQyFnQ1YxUhMTvQ1YxjhTWPbn2aKx/Qeh9oYcMhkTRVYkVhw4mhqxhkVIcZ0NWJDIZDiaKrGKkMOM96GrGGQyGRNDViRWGQyJoasSGQyKkZ0NWJDIcMTRVYxWHDjPehqxhwyGRA1YkMipDIgasYZFSHEDVpxlM5j256QyKwyPv16JVjDisMZ0NWmRWNipEDVjDIcOJoasSKwyGRnRVYkMhkViaGrEhkMVIzoasYcbFSODViQ4ZFSM6GrTIqQyHE0VWMMisLIasYZDhxNDVtjSKkMiaGrGHDisZ0NWnGVhdrHtzuKxsVI+96J2xhw4U0NWMVIcMjOiqxIZDhxA1YVhkOJoasSGQyKkTQ1acVIZDIzoasSKwyGRNDViRUjYZE0VWMVDIZGdDVjDIrCmhqxhkMhkTvQ1YkVI2KxnQ1Yw4ZFYneiq0heMmj9ueww4ZH9DXolWMOKkMjPQ1Yw4qQyIGrTipDIqRNFVpkVIcOM6GrEhwnE6GrEhkVIZE0NWMMipDIzoasSHDisTRVaZFYZDImh7YhhkPlkNWMMipDImhqxhkU0jOhq2wyfVZGxA1YwnKztZ9uewyKwyPv16HViQyHDImhqxhhxUjOhq04qQyGRNDViQyKkMiaKrGGRWGM6GrTiocMiaGrGKjSKkTQ1acVIZFYzoatOKkMhkTRVYkOGGRnQ1YOKkOIGrTipDIrE0VWmRWMyC73vWZmcjwcMisMj79egdtMipDIqRnvQ1aZDhxUiaGrBkOGRnRVYw4rDI7Q1YkMhkVIzoatMipCYyGrGKxpFYgqsSEyGRNDVjDipDiBqxIZDhxnQ9seVSMyaPtazMzmWZmc5mZnOeLFMz7X7rrTqmZBUTGZA0qFmQNGFmQNKhhZjoaE6sMgqKozIGiYWQPTFTjMgaNaMyC6zMyJxmZnOZmZzmZmc5//9k=")',
+            backgroundColor:'#7b68ee',
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             width:'100%',
@@ -60,7 +61,7 @@ export default function ProductCard(props) {
                   alt="test img here"
                   style={{ marginTop: '1vw',width: '100%', height: 'auto', maxWidth: '150px'  }}
                 />
-                <Typography gutterBottom variant="h4" component="div" style={{ marginTop: '2vw', marginLeft: '0.5vw', fontSize: '1.5vw' }} sx={{ mt: '1.125rem', width: '100%', }}>
+                <Typography gutterBottom variant="h4" component="div" style={{ marginTop: '2vw', marginLeft: '0.5vw', fontSize: '1.5vw',fontFamily:'Poppins' }} sx={{ mt: '1.125rem', width: '100%', }}>
                   {props.name}
                 </Typography>
               </Stack>
@@ -77,20 +78,20 @@ export default function ProductCard(props) {
         </Box>
         <Divider variant="middle" color="white" />
         <Box sx={{ m: '2%', width: '20vw' }}>
-          <Typography gutterBottom variant="body1">
+          <Typography gutterBottom variant="body1" style={{fontSize:'35px',fontWeight:'bold'}}>
             Key features are
           </Typography>
           <Stack style={{ display: 'flex', flexWrap: 'wrap' }} direction={'row'}>
-            <Chip label={props.feat1} sx={{ backgroundColor: 'rgba(0,0,0,0.6)', color: 'white', fontSize: '1rem', marginRight: '0.5rem' }} />
-            <Chip label={props.feat2} sx={{ backgroundColor: 'rgba(0,0,0,0.6)', color: 'white', fontSize: '1rem', marginRight: '0.5rem' }} />
-            <Chip label={props.feat3} sx={{ backgroundColor: 'rgba(0,0,0,0.6)', color: 'white', fontSize: '1rem', marginRight: '0.5rem' }} />
-            <Chip label={props.feat4} sx={{ backgroundColor: 'rgba(0,0,0,0.6)', color: 'white', fontSize: '1rem', marginRight: '0.5rem' }} />
-            <Chip label={props.feat5} sx={{ backgroundColor: 'rgba(0,0,0,0.6)', color: 'white', fontSize: '1rem', marginRight: '0.5rem' }} />
-            <Chip label={props.brand} sx={{ backgroundColor: 'rgba(0,0,0,0.6)', color: 'white', fontSize: '1rem', marginRight: '0.5rem',marginTop:'0.5rem' }} />
+            <Chip label={props.feat1} sx={{ backgroundColor: 'rgba(0,0,0,0.6)', color: 'white', fontSize: '2rem', marginRight: '0.5rem' ,height:'100%' ,marginTop:'0.5rem'}} />
+            <Chip label={props.feat2} sx={{ backgroundColor: 'rgba(0,0,0,0.6)', color: 'white', fontSize: '2rem', marginRight: '0.5rem',height:'100%' ,marginTop:'0.5rem'}} />
+            <Chip label={props.feat3} sx={{ backgroundColor: 'rgba(0,0,0,0.6)', color: 'white', fontSize: '2rem', marginRight: '0.5rem' ,height:'100%',marginTop:'0.5rem'}} />
+            <Chip label={props.feat4} sx={{ backgroundColor: 'rgba(0,0,0,0.6)', color: 'white', fontSize: '2rem', marginRight: '0.5rem' ,height:'100%',marginTop:'0.5rem'}} />
+            <Chip label={props.feat5} sx={{ backgroundColor: 'rgba(0,0,0,0.6)', color: 'white', fontSize: '2rem', marginRight: '0.5rem' ,height:'100%',marginTop:'0.5rem'}} />
+            <Chip label={props.brand} sx={{ backgroundColor: 'rgba(0,0,0,0.6)', color: 'white', fontSize: '2rem', marginRight: '0.5rem',marginTop:'0.5rem',height:'100%' }} />
           </Stack>
         </Box>
-        <Box sx={{ mt: '2rem', ml: '1%', mb: '1.5rem', maxHeight:'50px',maxWidth:'200px' }}>
-          <Button sx={{ backgroundColor: '#6600CC', color: 'white', borderRadius: '10px', fontSize: '1.5rem' }} onClick={() => props.updateFunct(props.id)}>Add to Build</Button>
+        <Box sx={{ mt: '2rem', ml: '1%', mb: '1.5rem', maxHeight:'200px',maxWidth:'400px' }}>
+          <Button sx={{ backgroundColor: '#6600CC', color: 'white', borderRadius: '10px', fontSize: '2rem',height:'100px' }} onClick={() => props.updateFunct(props.id)}>Add to Build</Button>
         </Box>
       </Box>
     </ThemeProvider>

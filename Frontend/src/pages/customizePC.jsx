@@ -6,6 +6,7 @@ import Typography from '@mui/material/Typography';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 
 import Navbar from '../components/Navbar';
+import NewNavBar from '../components/NewNavBar';
 const theme = createTheme({
   typography: {
     fontFamily: 'poppins, montserrat, sans-serif', // Replace with your desired font
@@ -17,7 +18,7 @@ const customizePC = () => {
   return (
   
     <>
-      <Navbar/>
+       
         <ThemeProvider theme={theme}>
         
             {/* Background image container */}
@@ -32,6 +33,7 @@ const customizePC = () => {
           }
         `}
            </style>
+           <NewNavBar/>
             
               <Typography variant="h1" style={{ fontSize: '5vw', textAlign: 'center',color:'white',marginTop:'2vh',backgroundColor:'rgba(0,0,0,0.7)',width:'45vw',alignItems:'center',marginLeft:'27.5vw',borderRadius:'2vw' }}>
                 <b>System Builder</b>

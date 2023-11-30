@@ -11,6 +11,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { setRAM } from "../redux/actions";
 import { useNavigate } from "react-router-dom";
 import { useGame } from "../context/Filter";
+import NewNavBar from '../components/NewNavBar';
 const RAM = () => {
   const dispatch = useDispatch();
   const nav = useNavigate();
@@ -111,6 +112,7 @@ const RAM = () => {
   return (
     <>
     <ThemeProvider theme={theme}>
+        <NewNavBar/>
         <style>
         {`
           body {

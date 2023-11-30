@@ -44,6 +44,7 @@ const contentStyle = {
   alignItems: 'center',
   backgroundColor: 'rgba(93, 46, 170, 0.2)',
   color: 'white',
+  borderRadius:'15px'
 };
 
 export default function CustList() {
@@ -249,7 +250,7 @@ export default function CustList() {
           </Stack>
         </Grid>
       ) : (
-        <Grid item xs style={{ marginTop: '0.5vw' }}>
+        <Grid item xs style={{ marginTop: '1vw' }}>
           <Stack direction="row" spacing={'0.5vw'}>
             <Typography
               gutterBottom
@@ -260,7 +261,7 @@ export default function CustList() {
                 marginLeft: '0vw',
                 width: '7vw',
                 marginRight: '5.5vw',
-                marginTop:'3.5vw',
+                marginTop:'1.5vw',
                 marginLeft:'3vw',
         
               }}
@@ -323,7 +324,7 @@ export default function CustList() {
             variant="h4"
             component="div"
             sx={{ mt: '2vw', fontSize: '1.5vw' }}
-            style={{marginLeft:'0.5vw',width:'15.5vw',marginRight:'0vw',marginTop:'3.5vw'}}
+            style={{marginLeft:'0vw',width:'15.5vw',marginRight:'0vw',marginTop:'1.5vw'}}
           >
             MOTHERBOARD
           </Typography>
@@ -377,14 +378,14 @@ export default function CustList() {
                   </Stack>
                 </Grid>
           ):(
-            <Grid item xs style={{marginTop:'.5vw',}}>
+            <Grid item xs style={{marginTop:'1vw',}}>
                   <Stack direction="row"spacing={'0.5vw'}>
                     <Typography
                       gutterBottom
                       variant="h4"
                       component="div"
                       sx={{ mt: '2vw', fontSize: '1.5vw' }}
-                      style={{width:'8vw',marginRight:'5.5vw',marginLeft:'2vw',marginTop:'3.5vw'}}
+                      style={{width:'8vw',marginRight:'5.5vw',marginLeft:'2vw',marginTop:'1.5vw'}}
                     >
                       STORAGE
                     </Typography>
@@ -439,14 +440,14 @@ export default function CustList() {
                   </Stack>
                 </Grid>
 ):(
-  <Grid item xs style={{marginTop:'.5vw',}}>
+  <Grid item xs style={{marginTop:'1vw',}}>
                   <Stack direction="row"spacing={'0.5vw'}>
                     <Typography
                       gutterBottom
                       variant="h4"
                       component="div"
                       sx={{ mt: '2vw', fontSize: '2vw' }}
-                      style={{marginLeft:'4vw',width:'5vw',marginRight:'6.5vw',marginTop:'3.5vw'}}
+                      style={{marginLeft:'4vw',width:'5vw',marginRight:'6.5vw',marginTop:'1.5vw'}}
                     >
                       RAM
                     </Typography>
@@ -503,14 +504,14 @@ export default function CustList() {
                   </Stack>
                 </Grid>
                 ):(
-                  <Grid item xs style={{marginTop:'.5vw',}}>
+                  <Grid item xs style={{marginTop:'1vw',}}>
                   <Stack direction="row"spacing={'0.5vw'}>
                     <Typography
                       gutterBottom
                       variant="h4"
                       component="div"
                       sx={{ mt: '2vw', fontSize: '2vw' }}
-                      style={{marginLeft:'4vw',width:'5vw',marginRight:'6.5vw',marginTop:'3.5vw'}}
+                      style={{marginLeft:'4vw',width:'5vw',marginRight:'6.5vw',marginTop:'1.5vw'}}
                      
                     >
                       GPU
@@ -526,7 +527,7 @@ export default function CustList() {
 }
                 {/* Power Supply - 6  */}
   {PSUState===null?(
-                <Grid item xs style={{marginTop:'.5vw',}}>
+                <Grid item xs style={{marginTop:'1vw',}}>
                   <Stack direction="row"spacing={'0.5vw'}>
                     <Typography
                       gutterBottom
@@ -569,14 +570,14 @@ export default function CustList() {
                   </Stack>
                 </Grid>
   ):(
-    <Grid item xs style={{marginTop:'.5vw',}}>
+    <Grid item xs style={{marginTop:'1vw',}}>
                   <Stack direction="row"spacing={'0.5vw'}>
                     <Typography
                       gutterBottom
                       variant="h4"
                       component="div"
                       sx={{ mt: '2vw', fontSize: '1.5vw',width:'13vw' }}
-                      style={{marginLeft:'2vw',width:'5vw',marginRight:'0.5vw',marginTop:'3.5vw',width:'13vw'}}
+                      style={{marginLeft:'2vw',width:'5vw',marginRight:'0.5vw',marginTop:'1.5vw',width:'13vw'}}
                     >
                       POWER SUPPLY
                     </Typography>
@@ -589,7 +590,7 @@ export default function CustList() {
 
   {/* CASE - 7  */}
       { CaseState===null?( 
-                <Grid item xs style={{marginTop:'.5vw',}}>
+                <Grid item xs style={{marginTop:'1vw',}}>
                   <Stack direction="row"spacing={'0.5vw'}>
                     <Typography
                       gutterBottom
@@ -632,14 +633,14 @@ export default function CustList() {
                   </Stack>
                 </Grid>
       ):(
-        <Grid item xs style={{marginTop:'.5vw',}}>
+        <Grid item xs style={{marginTop:'1vw',}}>
         <Stack direction="row"spacing={'0.5vw'}>
           <Typography
             gutterBottom
             variant="h4"
             component="div"
             sx={{ mt: '2vw', fontSize: '2vw' }}
-            style={{marginLeft:'2vw',width:'7vw',marginRight:'3vw',marginTop:'3.5vw'}}
+            style={{marginLeft:'3.5vw',width:'7vw',marginRight:'5vw',marginTop:'1.5vw'}}
           >
             CASE
           </Typography>
@@ -647,7 +648,7 @@ export default function CustList() {
         </Stack>
         </Grid>
       )}
-                <Grid item xs style={{marginTop:'0vw',backgroundColor:'#4c1f93',borderRadius:'5vw',marginLeft:'4vw',marginTop:'30px'}}>
+                <Grid item xs style={{marginTop:'50px',backgroundColor:'#4c1f93',borderRadius:'5vw',marginLeft:'4vw',marginBottom:'50px',padding:'15px',paddingBottom:'1.2vw'}}>
                   <Stack direction="row"spacing={'0.5vw'} style={{marginTop:'1vw'}}>
                     <Typography
                       gutterBottom
@@ -701,7 +702,8 @@ export default function CustList() {
                       }}
                       style={{marginLeft:'10vw'}}
                     >
-                     ₹ {
+                      ₹
+                       {
                         (() => {
                           const p1 = parseFloat(cpudata[0]?.price) || 0;
                           const p2 = parseFloat(mobodata[0]?.price) || 0;

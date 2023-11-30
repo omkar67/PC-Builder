@@ -43,12 +43,12 @@ const signUpPage = () => {
       typography:{
         fontFamily: [ 'Poppins', 'sans-serif'
         ].join(',')
-      }
+      },
+      backgroundImage:`url(${SignUpImage})`
     }
   )
   document.body.style.margin = '0'
   document.body.style.padding = '0px'
-  document.body.style.backgroundImage = `url(${SignUpImage})`
   document.body.style.backgroundSize = "cover"
   document.body.style.backgroundRepeat = "no-repeat"
   
@@ -75,6 +75,7 @@ const signUpPage = () => {
             alignItems: 'flex-start',
             alignContent: 'flex-end',
             padding : '0px',
+            backgroundImage:`url(${SignUpImage})`
           }}>
 
 

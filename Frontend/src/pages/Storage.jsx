@@ -10,6 +10,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { setStorage } from "../redux/actions";
 import { useNavigate } from "react-router-dom";
 import { useGame } from "../context/Filter";
+import NewNavBar from '../components/NewNavBar';
 const Storage = () => {
   const dispatch = useDispatch();
   const nav = useNavigate();
@@ -109,7 +110,9 @@ const Storage = () => {
   
   return (
     <>
+  
     <ThemeProvider theme={theme}>
+    <NewNavBar></NewNavBar>
         <style>
         {`
           body {

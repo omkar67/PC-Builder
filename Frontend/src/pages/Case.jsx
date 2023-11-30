@@ -10,6 +10,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { setCase } from "../redux/actions";
 import { useNavigate } from "react-router-dom";
 import { useGame } from "../context/Filter";
+import NewNavBar from '../components/NewNavBar';
 const Case = () => {
   const dispatch = useDispatch();
   const nav = useNavigate();
@@ -111,6 +112,7 @@ const Case = () => {
     return (
       <>
       <ThemeProvider theme={theme}>
+        <NewNavBar/>
           <style>
           {`
             body {

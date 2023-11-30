@@ -10,6 +10,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { setMOBO } from "../redux/actions";
 import { useNavigate } from "react-router-dom";
 import { useGame } from "../context/Filter";
+import NewNavBar from '../components/NewNavBar';
 const Motherboard = () => {
   const dispatch = useDispatch();
   const nav = useNavigate();
@@ -110,6 +111,7 @@ const Motherboard = () => {
     return (
       <>
       <ThemeProvider theme={theme}>
+        <NewNavBar></NewNavBar>
           <style>
           {`
             body {

@@ -1,18 +1,26 @@
 import React from 'react';
 import img1 from '../Images/img1.jpg';
 import img2 from '../Images/img2.jpg';
-import img15 from '../Images/img15.jpg';
-import img11 from '../Images/img11.jpg';
+import img3 from '../Images/img3.jpg';
+import img4 from '../Images/img4.jpg';
 import img5 from '../Images/img5.jpg';
 import img6 from '../Images/img6.jpg';
 import img7 from '../Images/img7.jpg';
+import img8 from '../Images/img8.jpg';
+import img9 from '../Images/img9.jpg';
+import img10 from '../Images/img10.jpg';
+import img11 from '../Images/img11.jpg';
+import img12 from '../Images/img1.jpg';
+import img13 from '../Images/img13.jpg';
+import img14 from '../Images/img14.jpg';
+import img15 from '../Images/img15.jpg';
 import Carousel from "nuka-carousel";
 import './home.css'
 import { Link } from 'react-router-dom';
-import { Card, CardContent, CardMedia, Typography, Box, Grid } from '@mui/material';
+import { Card, CardContent, CardMedia, Typography, Box, Grid,Button } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import Navbar from '../components/Navbar';
-
+import NewNavBar from '../components/NewNavBar';
 
 const StyledCard = styled(Card)(({ theme }) => ({
   height: '400px',
@@ -32,163 +40,158 @@ const StyledCard = styled(Card)(({ theme }) => ({
 }));
 
 const mediaStyles = {
-  height: 240  // Increase the image height
+  height: 500,  // Increase the image height
+  fontFamily:'Poppins',
+  fontHeight:'15px'
 };
 const cardData = [
   {
     title: "Nimble ",
-    description: "Designed for day to day task and light editing and casual gaming. Perfect for the casual user",
-    image: img1
+    description: " Whether you're handling routine assignments, making quick edits, or indulging in occasional gaming sessions, this device strikes the perfect balance ensuring a smooth and enjoyable computing experience.",
+    image: img10,
+    headcolor:'#9bfde5',
+    bgcolor:'#027e5f'
   },
   {
     title: "Edge",
-    description: "Designed for mild to heavy editing and gaming . Perfect for the user that needs that extra intensity from their PC",
-    image: img6
+    description: "Tailored for tasks ranging from mild to heavy editing and gaming demands,this PC is purpose-built to meet the demands of users who require robust capabilities. It's the perfect solution for those who value both power and precision.",
+    image: img4,
+    headcolor:'#fda081',
+    bgcolor:'#b02e03'
   },
   {
     title: "Titan",
-    description: "Designed to handle any editing or game you throw at it. Made for the user that demands the absolute zenith performance from their PC",
-    image: img7
+    description: "Crafted to effortlessly tackle any editing project or game with unparalleled performance, this device is tailor-made for users who demand nothing short of the absolute zenith in PC capabilities.",
+    image: img13,
+    headcolor:'#e01f49',
+    bgcolor:'	 #700f24'
   }
 ];
 const GuideSection = () => {
   return (
-   
-    <Box padding={4} bgcolor="black" color="cyan">
-          <Typography variant="h4" gutterBottom align="center">
+   <div className='guide-Box'>
+    <Box padding={4}  color="white" bgcolor='rgba(64, 0, 128,0.7)' style={{ }}>
+          <Typography className='guide-box' variant="h4" gutterBottom align="center" style={{fontFamily:['Montserrat','Poppins'], fontWeight:'bold',fontSize:'50px'}}>
               How to Build Your PC
           </Typography>
-          <Typography variant="h6" gutterBottom>
+          <Typography variant="h6" gutterBottom style={{fontFamily:['Montserrat','Poppins'],fontWeight:'bold',fontSize:'40px'}}>
               1. Preparations
           </Typography>
-          <Typography variant="body1" paragraph>
+          <Typography variant="body1" paragraph style={{fontFamily:['Montserrat','Poppins'],fontSize:'33px'}}>
               Before starting, ensure you have all the necessary components: motherboard, processor (CPU), RAM, graphics card (GPU), power supply unit (PSU), storage (HDD/SSD), and any additional components like coolers or Wi-Fi cards.
           </Typography>
-          <Typography variant="h6" gutterBottom>
+          <Typography variant="h6" gutterBottom style={{fontFamily:['Montserrat','Poppins'],fontSize:'40px',fontWeight:'bold'}}>
               2. Build the Motherboard
           </Typography>
-          <Typography variant="body1" paragraph>
+          <Typography variant="body1" paragraph style={{fontFamily:['Montserrat','Poppins'],fontSize:'33px'}}>
               Start by installing the CPU, RAM, and GPU onto the motherboard. Also, attach any coolers or fans you have for the CPU.
           </Typography>
-          <Typography variant="h6" gutterBottom>
+          <Typography variant="h6" gutterBottom style={{fontFamily:['Montserrat','Poppins'],fontSize:'40px',fontWeight:'bold'}}>
               3. Prep the Case
           </Typography>
-          <Typography variant="body1" paragraph>
+          <Typography variant="body1" paragraph style={{fontFamily:['Montserrat','Poppins'],fontSize:'33px'}}>
               Lay down your case and start mounting the power supply. Ensure that the location of your cables makes sense for where the motherboard will sit.
           </Typography>
-          <Typography variant="h6" gutterBottom>
+          <Typography variant="h6" gutterBottom style={{fontFamily:['Montserrat','Poppins'],fontSize:'40px',fontWeight:'bold'}}>
               4. Install the Motherboard
           </Typography>
-          <Typography variant="body1" paragraph>
+          <Typography variant="body1" paragraph style={{fontFamily:['Montserrat','Poppins'],fontSize:'33px'}}>
               Carefully place the motherboard into the case and screw it in place. Make sure it's aligned correctly with the I/O ports.
           </Typography>
-          <Typography variant="h6" gutterBottom>
+          <Typography variant="h6" gutterBottom style={{fontFamily:['Montserrat','Poppins'],fontSize:'40px',fontWeight:'bold'}}>
               5. Connect Components
           </Typography>
-          <Typography variant="body1" paragraph>
+          <Typography variant="body1" paragraph style={{fontFamily:['Montserrat','Poppins'],fontSize:'33px'}}>
               Begin connecting your components to the power supply and the motherboard. This includes hard drives, SSDs, and any optical drives.
           </Typography>
-          <Typography variant="h6" gutterBottom>
+          <Typography variant="h6" gutterBottom style={{fontFamily:['Montserrat','Poppins'],fontSize:'40px',fontWeight:'bold'}}>
               6. Power Up
           </Typography>
-          <Typography variant="body1" paragraph>
+          <Typography variant="body1" paragraph style={{fontFamily:['Montserrat','Poppins'],fontSize:'33px'}}>
               Once everything is connected, power up your machine. If everything is set up correctly, you should see the boot screen. Install your preferred operating system, and you're good to go!
           </Typography>
       </Box>
+      </div>
   )
 }
+const CustomPrevButton = ({ previousSlide }) => (
+  <div style={{ position: 'absolute', top: '50%', left: '15px' }}>
+    <Button onClick={previousSlide} variant="contained" style={{backgroundColor:'rgba(0,0,0,0.7)',fontSize:'50px',width:'50px',paddingLeft:'5px',height:'70px', fontFamily:'Poppins' }}>
+    {'<'}
+    </Button>
+  </div>
+);
+
+const CustomNextButton = ({ nextSlide }) => (
+  <div style={{ position: 'absolute', top: '50%', right: '15px', transform: 'translateY(-50%)',}}>
+    <Button onClick={nextSlide} variant="contained" style={{backgroundColor:'rgba(0,0,0,0.7)',fontSize:'50px',width:'50px',paddingLeft:'5px',height:'70px', fontFamily:'Poppins' }}>
+    {'>'}
+    </Button>
+  </div>
+);
 
 const Home = () => {
   const classes = StyledCard;
+  
+
   return (
  
     <>
-       <Navbar/>
+       <NewNavBar/>
     <Box bgcolor="black" color="white" style={{ minHeight: '100vh' }}>
       <div>
-        <Carousel
+          <Carousel
           autoplay={true}
-          autoplayInterval={3000}
+          autoplayInterval={10000}
           wrapAround={true}
+          style={{ maxHeight: '1400px' }}
+          renderCenterLeftControls={({ previousSlide }) => <CustomPrevButton previousSlide={previousSlide} />}
+          renderCenterRightControls={({ nextSlide }) => <CustomNextButton nextSlide={nextSlide} />}
         >
-          <div className="slide-content">
-            <img src={img1} alt="Slide 1" className="carousel-image" />
-            <div className="overlay-text">
-              <p>Welcome to VirtuTech pc's</p>
-              <p>Allow Us to be your gateway <br />to PC Building and Buying</p>
-              <Link to="/customizePC">
-                <button className="left-btn">Start Building</button>
-              </Link>
-              <Link to="/prebuiltPC">
-                <button className="right-btn">Pre-Builts</button>
-              </Link>
-            </div>
+          
+          <div className="slide-content" >
+            <img src={img12} alt="Slide 1" className="carousel-image" />
+              
           </div>
 
           {/* You can repeat this structure for each image */}
           <div className="slide-content">
             <img src={img2} alt="Slide 2" className="carousel-image" />
-            <div className="overlay-text">
-              <p>Welcome to VirtuTech pc's</p>
-              <p>Allow Us to be your gateway <br />to PC Building and Buying</p>
-              <Link to="/customizePC">
-                <button className="left-btn">Start Building</button>
-              </Link>
-              <Link to="/prebuiltPC">
-                <button className="right-btn">Pre-Builts</button>
-              </Link>
-            </div>
+           
           </div>
 
           <div className="slide-content">
             <img src={img15} alt="Slide 3" className="carousel-image" />
-            <div className="overlay-text">
-              <p>Welcome to VirtuTech pc's</p>
-              <p>Allow Us to be your gateway <br />to PC Building and Buying</p>
-              <Link to="/customizePC">
-                <button className="left-btn">Start Building</button>
-              </Link>
-              <Link to="/prebuiltPC">
-                <button className="right-btn">Pre-Builts</button>
-              </Link>
-            </div>
+           
           </div>
 
           <div className="slide-content">
             <img src={img11} alt="Slide 4" className="carousel-image" />
-            <div className="overlay-text">
-              <p>Welcome to VirtuTech pc's</p>
-              <p>Allow Us to be your gateway <br />to PC Building and Buying</p>
-              <Link to="/customizePC">
-                <button className="left-btn">Start Building</button>
-              </Link>
-              <Link to="/prebuiltPC">
-                <button className="right-btn">Pre-Builts</button>
-              </Link>
-            </div>
+          
           </div>
 
           <div className="slide-content">
-            <img src={img5} alt="Slide 5" className="carousel-image" />
-            <div className="overlay-text">
-              <p>Welcome to VirtuTech pc's</p>
-              <p>Allow Us to be your gateway <br />to PC Building and Buying</p>
+            <img src={img9} alt="Slide 5" className="carousel-image"  />
+           
+          </div>
+        </Carousel>
+        <div className="overlay-text">
+              <Typography style={{fontSize:'75px',fontFamily:['Montserrat'],fontWeight:'bold'}}>Welcome to <br/><Typography style={{fontSize:'75px',fontFamily:['Montserrat'],fontWeight:'bold',color:'#bb84ec'}}>VirtuTech</Typography>   PC's</Typography>
+              <Typography style={{fontSize:'50px',fontFamily:['Montserrat']}}>Allow Us to be your gateway <br />Into PC Building and Buying</Typography>
               <Link to="/customizePC">
-                <button className="left-btn">Start Building</button>
+                <button className="left-btn" style={{backgroundColor:'#bb84ec',marginTop:'30px'}}>Start Building</button>
               </Link>
               <Link to="/prebuiltPC">
                 <button className="right-btn">Pre-Builts</button>
               </Link>
             </div>
-          </div>
-        </Carousel>
         <div>
 
           {/* Your Carousel code here... */}
 
           {/* Random Text Section */}
-          <div style={{ padding: '20px' }}>
-            <Typography variant="h5" gutterBottom>
+          <div style={{ padding: '20px', backgroundColor:'#373538', fontFamily:'Poppins'}}>
+            <Typography variant="h5" gutterBottom style={{ fontFamily:'Montserrat', fontSize:'40px'}}>
               Look at previous customer build to
 
               help guide yourself through this
@@ -202,30 +205,32 @@ const Home = () => {
 
 
             </Typography>
-            <Typography variant="body1">
-              We have 3 broad categories for the Builds
+            <Typography variant="body1" style={{ fontFamily:'Montserrat',fontSize:'40px',fontWeight:'bold'}}>
+              We have 3 broad categories for our Builds
 
-
-              Choose as per your needs and wants
+              <br/>
+              <Typography style={{ fontFamily:'Montserrat',fontSize:'55px',fontWeight:'bold'}}>
+              Pick as per your need 
+              </Typography>
             </Typography>
           </div>
 
           {/* Cards Section */}
           {/* Cards Section */}
-          <Grid container spacing={4} style={{ padding: '20px' }}>
+          <Grid container spacing={4} style={{ padding: '20px',backgroundColor:'#373538',minHeight:'500px' }}>
             {cardData.map((card, index) => (
               <Grid item xs={12} sm={6} md={4} key={index}>
-                <StyledCard>
+                <StyledCard style={{backgroundColor:card.bgcolor ,color:'white',height:'850px',width:'800px',marginLeft:'55px'}}>
                   <CardMedia
                     style={mediaStyles}
                     image={card.image}
                     title={`Image for ${card.title}`}
                   />
-                  <CardContent>
-                    <Typography gutterBottom variant="h6" component="div">
+                  <CardContent style={{ fontFamily:'Poppins',color:'white'}}>
+                    <Typography gutterBottom variant="h6" component="div" style={{ fontFamily:'Poppins' ,color:card.headcolor,fontSize:'40px'}}>
                       {card.title}
                     </Typography>
-                    <Typography variant="body2" color="textSecondary" component="p">
+                    <Typography variant="body2" color="white" component="p" style={{ fontFamily:'Poppins',fontSize:'30px'}}>
                       {card.description}
                     </Typography>
                   </CardContent>

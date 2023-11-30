@@ -7,6 +7,7 @@ import { useState,useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import MinProductCard from '../components/MinProdCard';
 import { Stack, margin } from '@mui/system';
+import NewNavBar from '../components/NewNavBar';
 
 
 
@@ -123,7 +124,7 @@ const Cart = () => {
             })
             .then(data => {
               console.log(data);
-              alert('Registered successfully');
+              
             })
             .catch(error => {
               console.error('Fetch error:', error);
@@ -135,6 +136,7 @@ const Cart = () => {
     return (
         itemState === null ? (
             <>
+            <NewNavBar></NewNavBar>
             <Box sx={{width:'100%',backgroundColor:'#373538',height:'100%',minHeight:'85vh'}}>
             <Typography variant="h4" gutterBottom style={{color:'white',fontSize:'5vh',marginTop:'',fontFamily:['Montserrat','Poppins']}}>
             <ShoppingCartIcon style={{marginLeft:'40%',color:'white',height:'5vh',width:'auto',marginTop:'20px'}} /> My Cart
@@ -147,12 +149,14 @@ const Cart = () => {
             </Button>
             </Box>
             </>
-        ) : (   
+        ) : (  
+            <>
+            <NewNavBar></NewNavBar> 
             <Box sx={{width:'100%',height:'100%',minHeight:'85vh'}}>
             <Typography variant="h4" gutterBottom style={{color:'white',fontSize:'5vh',marginTop:'',fontFamily:['Montserrat','Poppins']}}>
             <ShoppingCartIcon style={{marginLeft:'40%',color:'white',height:'5vh',width:'auto',marginTop:'20px'}} /> My Cart
             </Typography>
-            <div style={{marginLeft:'25%'}}>
+            <div style={{marginLeft:'27%'}}>
             <Stack direction="column">
             <MinProductCard name={cpudata[0]?.name} price={cpudata[0]?.price} image={cpudata[0]?.image} CompName={'CPU'} style={{margin:'25px'}}/>
             <MinProductCard name={mobodata[0]?.name} price={mobodata[0]?.price} image={mobodata[0]?.image} CompName={'MOBO'}/>
@@ -163,7 +167,7 @@ const Cart = () => {
             <MinProductCard  name={casedata[0]?.name} price={casedata[0]?.price} image={casedata[0]?.image} CompName={'Case'}/>
             </Stack>
             <Stack >
-            <Box style={{backgroundColor:'#b2a2ff',maxWidth:'850px',marginLeft:'2%',marginTop:'2%',borderRadius:'30px'}}>
+            <Box style={{backgroundColor:'#b2a2ff',maxWidth:'1150px',marginLeft:'2%',marginTop:'2%',borderRadius:'30px'}}>
                     <Typography variant="subtitle1" gutterBottom  style={{fontFamily:['Montserrat','Poppins'],color:'white',marginTop:'1%',fontSize:'2.5vw',marginLeft:'15%',color:'#291c67'}}>
                       Your Total is ₹ {
                         (() => {
@@ -180,6 +184,7 @@ const Cart = () => {
                     }
                     </Typography>
                     </Box>
+              
                  
     <Button
       sx={{
@@ -188,12 +193,12 @@ const Cart = () => {
         color: 'black',
         borderRadius: '1vw',
         height: '4vw',
-        fontSize: '2.5vw',
+        fontSize: '2vw',
         marginTop: '1vw',
         marginBottom:'1vw',
         maxWidth:'750px'
       }}
-      style={{marginLeft:'5%',width:'auto',fontFamily:['Montserrat','Poppins'],color:'white'}}
+      style={{marginLeft:'12.5%',width:'auto',fontFamily:['Montserrat','Poppins'],color:'white'}}
       onClick={handleBuy}
     >
       Proceed to Buy 
@@ -203,6 +208,7 @@ const Cart = () => {
 
               </div>
             </Box>
+    </>
         )
     );
 }
