@@ -220,7 +220,7 @@ const Home = () => {
           <Grid container spacing={4} style={{ padding: '20px',backgroundColor:'#373538',minHeight:'500px' }}>
             {cardData.map((card, index) => (
               <Grid item xs={12} sm={6} md={4} key={index}>
-                <StyledCard style={{backgroundColor:card.bgcolor ,color:'white',height:'850px',width:'800px',marginLeft:'55px'}}>
+                <StyledCard style={{backgroundColor:card.bgcolor ,color:'white',height:'850px',width:'800px'}}>
                   <CardMedia
                     style={mediaStyles}
                     image={card.image}
