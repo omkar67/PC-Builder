@@ -18,7 +18,7 @@ const NavBar2 = () => {
   const nav = useNavigate(); // Move useNavigate inside the functional component
 
   return (
-    <AppBar position="static" style={{backgroundColor:'#373538'}}>
+    <AppBar position="static" style={{backgroundColor:'#4c1f93'}}>
       <Toolbar className={classes.toolbar}>
         <Button className={classes.button} color="inherit" onClick={() => nav('/Admin')}>
           Home

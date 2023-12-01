@@ -69,6 +69,9 @@ const Checkout = () => {
     setPin(event.target.value);
   };
   const handlePayment = () => {
+    if (isNaN(pin)) {
+      alert("Pin must be valid number.");
+    }
     const data = {
       address: address,
   
@@ -92,10 +95,12 @@ const Checkout = () => {
       .then(responseData => {
         console.log(responseData);
         alert('U have Successfully placed your order ')
+        alert('U will now be redircted to home')
+        nav('/')
       })
       .catch(error => {
         console.error('Error:', error);
-        alert('Failure')
+        
       });
   };
   

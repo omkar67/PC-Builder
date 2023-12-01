@@ -28,28 +28,28 @@ const CustomersTable = () => {
 
   return (
     <TableContainer component={Paper}>
-      <Table>
+      <Table style={{fontSize:'1vh',fontFamily:'Poppins',color:'black'}}  >
         <TableHead>
           <TableRow>
-            <TableCell>CID</TableCell>
-            <TableCell>Name</TableCell>
-            <TableCell>Mobile Number</TableCell>
-            <TableCell>Pin Code</TableCell>
-            <TableCell>Address</TableCell>
-            <TableCell>Email</TableCell>
-            <TableCell>Username</TableCell>
+            <TableCell style={{fontSize:'2vh',fontFamily:'Poppins',color:'black'}}>CID</TableCell>
+            <TableCell style={{fontSize:'2vh',fontFamily:'Poppins',color:'black'}}>Name</TableCell>
+            <TableCell style={{fontSize:'2vh',fontFamily:'Poppins',color:'black'}}>Mobile Number</TableCell>
+            <TableCell style={{fontSize:'2vh',fontFamily:'Poppins',color:'black'}}>Pin Code</TableCell>
+            <TableCell style={{fontSize:'2vh',fontFamily:'Poppins',color:'black'}}>Address</TableCell>
+            <TableCell style={{fontSize:'2vh',fontFamily:'Poppins',color:'black'}}>Email</TableCell>
+            <TableCell style={{fontSize:'2vh',fontFamily:'Poppins',color:'black'}}>Username</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {customers?.map((customer) => (
             <TableRow key={customer.uid}>
-              <TableCell>{customer.uid}</TableCell>
-              <TableCell>{customer.name}</TableCell>
-              <TableCell>{customer.mobile_number}</TableCell>
-              <TableCell>{customer.pin_code}</TableCell>
-              <TableCell>{customer.address}</TableCell>
-              <TableCell>{customer.email}</TableCell>
-              <TableCell>{customer.username}</TableCell>
+              <TableCell style={{fontSize:'2vh',fontFamily:'Poppins',color:'black'}}>{customer.uid}</TableCell>
+              <TableCell style={{fontSize:'2vh',fontFamily:'Poppins',color:'black'}}>{customer.name}</TableCell>
+              <TableCell style={{fontSize:'2vh',fontFamily:'Poppins',color:'black'}}>{customer.mobile_number}</TableCell>
+              <TableCell style={{fontSize:'2vh',fontFamily:'Poppins',color:'black'}}>{customer.pin_code}</TableCell>
+              <TableCell style={{fontSize:'2vh',fontFamily:'Poppins',color:'black'}}>{customer.address}</TableCell>
+              <TableCell style={{fontSize:'2vh',fontFamily:'Poppins',color:'black'}}>{customer.email}</TableCell>
+              <TableCell style={{fontSize:'2vh',fontFamily:'Poppins',color:'black'}}>{customer.username}</TableCell>
             </TableRow>
           ))}
         </TableBody>

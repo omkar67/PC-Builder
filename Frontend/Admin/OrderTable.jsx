@@ -28,32 +28,40 @@ const OrderTable = () => {
 
   return (
     <TableContainer component={Paper}>
+       <style>{`
+            @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+      body {
+        margin: 0;
+        padding: 0;
+        background-color: white;
+      `}</style>
       <Table>
         <TableHead>
           <TableRow>
-            <TableCell>Order ID</TableCell>
-            <TableCell>CPU ID</TableCell>
-            <TableCell>GPU ID</TableCell>
-            <TableCell>MOBO ID</TableCell>
-            <TableCell>CASE ID</TableCell>
-            <TableCell>RAM ID</TableCell>
-            <TableCell>STORAGE ID</TableCell>
-            <TableCell>USER ID</TableCell>
-            <TableCell>PSU ID</TableCell>
+            <TableCell style={{fontSize:'2vh',fontFamily:'Poppins',color:'black'}}>Order ID</TableCell>
+            <TableCell style={{fontSize:'2vh',fontFamily:'Poppins',color:'black'}}>CPU ID</TableCell>
+            <TableCell style={{fontSize:'2vh',fontFamily:'Poppins',color:'black'}}>GPU ID</TableCell>
+            <TableCell style={{fontSize:'2vh',fontFamily:'Poppins',color:'black'}}>MOBO ID</TableCell>
+            <TableCell style={{fontSize:'2vh',fontFamily:'Poppins',color:'black'}}>CASE ID</TableCell>
+            <TableCell style={{fontSize:'2vh',fontFamily:'Poppins',color:'black'}}>RAM ID</TableCell>
+            <TableCell style={{fontSize:'2vh',fontFamily:'Poppins',color:'black'}}> STORAGE ID</TableCell>
+            <TableCell style={{fontSize:'2vh',fontFamily:'Poppins',color:'black'}}>USER ID</TableCell>
+            <TableCell style={{fontSize:'2vh',fontFamily:'Poppins',color:'black'}}>PSU ID</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {customers?.map((customer) => (
             <TableRow key={customer.orderid}>
-              <TableCell>{customer.orderid}</TableCell>
-              <TableCell>{customer.cpu_id}</TableCell>
-              <TableCell>{customer.gpu_id}</TableCell>
-              <TableCell>{customer.moboid}</TableCell>
-              <TableCell>{customer.case_id}</TableCell>
-              <TableCell>{customer.ram_id}</TableCell>
-              <TableCell>{customer.storage_id}</TableCell>
-              <TableCell>{customer.user_id}</TableCell>
-              <TableCell>{customer.psu_id}</TableCell>
+              <TableCell style={{fontSize:'2vh',fontFamily:'Poppins',color:'black'}}>{customer.orderid}</TableCell>
+              <TableCell style={{fontSize:'2vh',fontFamily:'Poppins',color:'black'}}>{customer.cpu_id}</TableCell>
+              <TableCell style={{fontSize:'2vh',fontFamily:'Poppins',color:'black'}}>{customer.gpu_id}</TableCell>
+              <TableCell style={{fontSize:'2vh',fontFamily:'Poppins',color:'black'}}>{customer.moboid}</TableCell>
+              <TableCell style={{fontSize:'2vh',fontFamily:'Poppins',color:'black'}}>{customer.case_id}</TableCell>
+              <TableCell style={{fontSize:'2vh',fontFamily:'Poppins',color:'black'}}>{customer.ram_id}</TableCell>
+              <TableCell style={{fontSize:'2vh',fontFamily:'Poppins',color:'black'}}>{customer.storage_id}</TableCell>
+              <TableCell style={{fontSize:'2vh',fontFamily:'Poppins',color:'black'}}>{customer.user_id}</TableCell>
+              <TableCell style={{fontSize:'2vh',fontFamily:'Poppins',color:'black'}}>{customer.psu_id}</TableCell>
             </TableRow>
           ))}
         </TableBody>
