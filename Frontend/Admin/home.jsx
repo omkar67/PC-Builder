@@ -83,12 +83,20 @@ const Home = () => {
 
   return (
     <ThemeProvider theme={theme}>
+      <style>{`
+            @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+      body {
+        margin: 0;
+        padding: 0;
+        background-color: white;
+      `}</style>
       <NavBar2 />
-      <div style={{backgroundColor:'#373538'}}
+      <div style={{backgroundColor:'white'}}
       >
-      <Typography style={{fontFamily:['Montserrat','Poppins'],fontSize:'40px',padding:'2.5%',color:'#bb84ec',backgroundColor: '#373538'}}> Welcome  Admin :) </Typography>
+      <Typography style={{fontFamily:['Montserrat','Poppins'],fontSize:'40px',padding:'2.5%',color:'#bb84ec',backgroundColor: 'white'}}> Welcome  Admin :) </Typography>
       </div>
-      <div style={{ display: 'flex', flexWrap: 'wrap', backgroundColor: '#373538' }}>
+      <div style={{ display: 'flex', flexWrap: 'wrap', backgroundColor:'white' }}>
         <ResponsiveContainer width="45%" height={300}>
           <LineChart data={lineChartData}>
             <CartesianGrid strokeDasharray="3 3" />

@@ -171,11 +171,11 @@ const Home = () => {
             </div>
           </Carousel>
           <div className="overlay-text">
-                        <Typography style={{ fontSize: '3vw', fontFamily: ['Montserrat'], fontWeight: 'bold' }}>
+                        <Typography style={{ fontSize: '3vw', fontFamily: ['Montserrat','Poppins'], fontWeight: 'bold' }}>
                           Welcome to <br />
-                          <Typography style={{ fontSize: '3vw', fontFamily: ['Montserrat'], fontWeight: 'bold', color: '#bb84ec' }}>VirtuTech</Typography>   PC's
+                          <Typography style={{ fontSize: '3vw', fontFamily: ['Montserrat','Poppins'], fontWeight: 'bold', color: '#bb84ec' }}>VirtuTech</Typography>   PC's
                         </Typography>
-                        <Typography style={{ fontSize: '2vw', fontFamily: ['Montserrat'] }}>
+                        <Typography style={{ fontSize: '2vw', fontFamily: ['Montserrat','Poppins'] }}>
                           Allow Us to be your gateway <br />
                           Into PC Building and Buying
                         </Typography>
@@ -191,13 +191,13 @@ const Home = () => {
 
           {/* Random Text Section */}
           <div style={{ padding: '20px', backgroundColor: '#373538', fontFamily: 'Poppins' }}>
-            <Typography variant="h5" gutterBottom style={{ fontFamily: 'Montserrat', fontSize: '2vh' }}>
+            <Typography variant="h5" gutterBottom style={{ fontFamily: ['Montserrat','Poppins'], fontSize: '2vh' }}>
               Look at previous customer build to help guide yourself through this world which may seem complicated, the builds have been categorized as per performance and goals
             </Typography>
-            <Typography variant="body1" style={{ fontFamily: 'Montserrat', fontSize: '2vh', fontWeight: 'bold' }}>
+            <Typography variant="body1" style={{ fontFamily: ['Montserrat','Poppins'], fontSize: '2vh', fontWeight: 'bold' }}>
               We have 3 broad categories for our Builds
               <br />
-              <Typography style={{ fontFamily: 'Montserrat', fontSize: '3vh', fontWeight: 'bold' }}>
+              <Typography style={{ fontFamily: ['Montserrat','Poppins'], fontSize: '3vh', fontWeight: 'bold' }}>
                 Pick as per your need
               </Typography>
             </Typography>

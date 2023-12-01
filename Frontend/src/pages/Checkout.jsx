@@ -69,6 +69,9 @@ const Checkout = () => {
     setPin(event.target.value);
   };
   const handlePayment = () => {
+    if (isNaN(pin)) {
+      alert("Pin must be valid number.");
+    }
     const data = {
       address: address,
   
@@ -95,7 +98,7 @@ const Checkout = () => {
       })
       .catch(error => {
         console.error('Error:', error);
-        alert('Failure')
+        
       });
   };
   

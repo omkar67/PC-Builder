@@ -1,210 +1,183 @@
-import * as React from 'react';
+import React from 'react';
 import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-import Menu from '@mui/material/Menu';
-import MenuIcon from '@mui/icons-material/Menu';
-import Container from '@mui/material/Container';
-import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
-import Tooltip from '@mui/material/Tooltip';
-import MenuItem from '@mui/material/MenuItem';
-import AdbIcon from '@mui/icons-material/Adb';
-import { useNavigate } from 'react-router-dom';
+import IconButton from '@mui/material/IconButton';
+import MenuIcon from '@mui/icons-material/Menu';
+import TextField from '@mui/material/TextField';
+import InputAdornment from '@mui/material/InputAdornment';
+import SearchIcon from '@mui/icons-material/Search';
 import Logo from '../Images/Logo.png'
-import { useSelector,useDispatch } from 'react-redux';
-import { setLogin } from '../redux/actions';
+import Box from '@mui/material/Box';
+import '../App.css';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import { useState } from 'react';
+import Drawer from '@mui/material/Drawer';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemText from '@mui/material/ListItemText';
+import { useSelector } from 'react-redux';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import { Link } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
+
 function NewNavBar() {
-  const dispatch=useDispatch()
-  const loginState = useSelector((state)=>state.components.login)
-    const nav = useNavigate();
-    const ImageIcon = () => {
-      return (
-        <Avatar alt="Your Image" src={Logo} style={{height:'100px'}} />
-      );
-    };
-  return (
-    <AppBar position="fixed" style={{backgroundColor:'#4c1f93',borderRadius:'15px',position:'relative'}}>
-      <style>{`
-            @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+  const location = useLocation();
 
-      body {
-        margin: 0;
-        padding: 0;
-      }
-
-      .customTypography {
-        font-family: 'Montserrat','Roboto','Poppins', sans-serif;
-        font-weight: bold;
-        color: white;
-        text-decoration: none;
-        font-size: 30px;
-        font-style: thin;
-}`
-}
-        `
-
-      </style>
-
-      <Container maxWidth="xl" style={{marginLeft:'1vw'}}>
-        <Toolbar disableGutters style={{justifyContent:'space-between'}}>
-          <MenuItem  onClick={()=>{nav('/')}}>
-          <IconButton sx={{ display: { xs: 'none', md: 'flex' } }} >
-            <ImageIcon/>
-          <Typography
-            className="customTypography"
-            variant="h6"
-            noWrap
-            component="a"
-            href="#app-bar-with-responsive-menu"
-           
-            sx={{
-              mr: 2,
-              display: { xs: 'none', md: 'flex' },
-             
-              fontWeight: 200,
-              letterSpacing: '.3rem',
-              color: 'white',
-              textDecoration: 'none',
-              fontSize:'4vw',
-              marginLeft:'5px',
-              
-            }}
-          >
-            VirtuTech 
-          </Typography>
-          </IconButton>
-          </MenuItem>
-          <MenuItem style={{marginLeft:'7.5%',marginRight:'7.5%'}} onClick={()=>{nav('/customizePC')}}>
-          <Typography
-           className="customTypography"
-          sx={{
-            mr: 2,
-            display: { xs: 'none', md: 'flex' },
-          
-            fontWeight: 200,
-            letterSpacing: '.3rem',
-            color: 'white',
-            textDecoration: 'none',
-           
-            fontSize:'3vw',
-            marginRight:'25'
-            
-          }}
-          >
-            Build PC
-          </Typography>
-          </MenuItem>
-          <MenuItem style={{marginLeft:'7.5%',marginRight:'7.5%'}} onClick={()=>{nav('/Cart')}}>
-          <Typography
-           className="customTypography"
-          sx={{
-            mr: 2,
-            display: { xs: 'none', md: 'flex' },
-    
-            fontWeight: 200,
-            letterSpacing: '.3rem',
-            color: 'white',
-            textDecoration: 'none',
-            
-            fontSize:'3vw',
-            
-            
-          }}
-          >
-             Cart 
-          </Typography>
-          </MenuItem>
-          {loginState === null ?(
-          <MenuItem style={{marginLeft:'7.5%',marginRight:'7.5%'}} onClick={()=>{nav('/login')}}>
-          <Typography
-           className="customTypography"
-          sx={{
-            mr: 2,
-            display: { xs: 'none', md: 'flex' },
-            
-            fontWeight: 100,
-            letterSpacing: '.3rem',
-            color: 'white',
-            textDecoration: 'none',
-         
-            fontSize:'3vw'
-          }}
-          >
-            Login
-          </Typography>
-          </MenuItem>
-          ):(
-            <MenuItem style={{marginLeft:'7.5%',marginRight:'7.5%'}} onClick={()=>
-            {
-            dispatch(setLogin(null))  
-            window.location.reload(); 
-            }}
-            >
-            <Typography
-             className="customTypography"
-            sx={{
-              mr: 2,
-              display: { xs: 'none', md: 'flex' },
-              
-              fontWeight: 100,
-              letterSpacing: '.3rem',
-              color: 'white',
-              textDecoration: 'none',
-           
-              fontSize:'3vw'
-            }}
-            >
-              Logout
-            </Typography>
-            </MenuItem>
-          )
-
-        }
-          <MenuItem style={{marginLeft:'7.5%',marginRight:'7.5%'}} onClick={()=>{ 
-            nav('/signup')}}>
-          <Typography
-           className="customTypography"
-          sx={{
-            mr: 2,
-            display: { xs: 'none', md: 'flex' },
-         
-            fontWeight: 100,
-            letterSpacing: '.3rem',
-            color: 'white',
-            textDecoration: 'none',
-            
-            fontSize:'30px'
-          }}
-          >
-            Signup
-          </Typography>
-          </MenuItem>
-          <MenuItem style={{marginLeft:'7.5%',marginRight:'7.5%'}} onClick={()=>{ 
-            nav('/contactUs')}}>
-          <Typography
-           className="customTypography"
-          sx={{
-            mr: 2,
-            display: { xs: 'none', md: 'flex' },
-            fontWeight: 100,
-            letterSpacing: '.3rem',
-            color: 'white',
-            textDecoration: 'none',
-            fontSize:'3vw'
-          }}
-          >
-            Contact Us
-          </Typography>
-          </MenuItem>
-          
+  // Check if the current route is /customizePC
   
-          
+
+  const loginState = useSelector((state)=>state.components.login)
+  // Conditionally render the footer based on the route
+
+  const [open, setOpen] = React.useState(false);
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const handleDrawerOpen = () => {
+    setOpen(true);
+  };
+
+  const handleDrawerClose = () => {
+    setOpen(false);
+  };
+  const handleMenuOpen = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleMenuClose = () => {
+    setAnchorEl(null);
+  };
+
+  return (
+    <div>
+      <AppBar position="static" sx={{ backgroundColor: '#373538' , position:"relative" , zIndex: "33" ,fontFamily: "poppins",fontSize:'3vh' }}>
+        <Toolbar>
+          <IconButton edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }} onClick={handleDrawerOpen}>
+            <MenuIcon />
+          </IconButton>
+
+          <Drawer anchor="left" open={open} onClose={handleDrawerClose}
+            PaperProps={{
+              sx: {
+                backgroundColor: '#373538', // Set the background color of the drawer's Paper component
+                color: '#BB84EC' ,
+                fontFamily: "poppins",
+                fontSize:'3vh'    // Optional: If you want text inside the drawer to be white
+              },
+              style:{fontFamily: "poppins",fontSize:'3vh'}
+            }}>
+            <Box
+              sx={{
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'center', // Center items vertically in the column
+                alignItems: 'center',     // Center items horizontally
+                height: '100%'            // Take full height of the drawer
+              }}
+            >
+              <List>
+                <ListItem ListItemButton component={Link} to="/" style={{ color: 'inherit', textDecoration: 'none',fontFamily: "poppins",fontSize:'3vh'}} onClick={handleDrawerClose}>
+                  <ListItemText primary="Home" style={{fontFamily: "poppins",fontSize:'3vh'}} />
+                </ListItem>
+
+            
+
+                <ListItem component={Link} to="/customizePC" style={{ color: 'inherit', textDecoration: 'none',fontFamily: "poppins",fontSize:'3vh'}} onClick={handleDrawerClose}>
+                  <ListItemText primary="Build PC" style={{fontFamily: "poppins",fontSize:'3vh'}} />
+                </ListItem>
+
+
+                <ListItem ListItemButton  component={Link} to="/About" style={{ color: 'inherit', textDecoration: 'none',fontFamily: "poppins",fontSize:'3vh'}} onClick={handleDrawerClose}>
+                  <ListItemText primary="About Us" style={{fontFamily: "poppins",fontSize:'3vh'}}/>
+                </ListItem>
+               
+
+                <ListItem ListItemButton component={Link} to="/contactUs" style={{ color: 'inherit', textDecoration: 'none',fontFamily: "poppins",fontSize:'3vh'}} onClick={handleDrawerClose}>
+                  <ListItemText primary="Contact Us" style={{fontFamily: "poppins",fontSize:'3vh'}}/>
+                </ListItem>
+              </List>
+
+
+            </Box>
+          </Drawer>
+
+
+
+          {/* Centered Box containing both the logo and the text */}
+          <Box display="flex" justifyContent="center" alignItems="center" flexGrow={1}>
+            <img src={Logo} alt="Virtue Tech Logo" style={{ height: '6vh', marginRight: '0px' }} />
+            <Typography variant="h6" component="div" sx={{ color: '#BB84EC', fontFamily: "poppins",fontSize:'3vh' }}>
+              VirtuTech
+            </Typography>
+          </Box>
+
+          <TextField
+            variant="outlined"
+            size="small"
+            placeholder="Search..."
+            sx={{
+
+              marginRight: 4,
+              backgroundColor: '#f5f5f5',
+              borderRadius: '50px',  // Set this to give it fully rounded ends
+              '&:hover': { backgroundColor: '#e0e0e0' },
+              '& .MuiOutlinedInput-root': {
+                '& fieldset': {
+                  borderColor: '#f5f5f5',
+                  borderRadius: '50px'  // Ensure the border follows the same rounding
+                },
+                '&:hover fieldset': {
+                  borderColor: '#e0e0e0'
+                },
+                '&.Mui-focused fieldset': {
+                  borderColor: '#d0d0d0'
+                }
+              }
+            }}
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <SearchIcon />
+                </InputAdornment>
+              ),
+            }}
+          />
+          <Link to="/Cart" style={{ textDecoration: 'none', color: 'inherit' }}>
+          <IconButton color="inherit" sx={{ marginRight: 3 }}>
+            <ShoppingCartIcon />
+          </IconButton>
+          </Link>
+
+          {loginState === null ? (
+           <Button component={Link} to="/login " variant = "outlined" > Login </Button>
+          ) : (
+            <>
+              <IconButton color="inherit" onClick={handleMenuOpen}>
+                <AccountCircleIcon />
+              </IconButton>
+              <Menu
+                anchorEl={anchorEl}
+                keepMounted
+                open={Boolean(anchorEl)}
+                onClose={handleMenuClose}
+              >
+                <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
+                <MenuItem onClick={handleMenuClose}>Settings</MenuItem>
+                <MenuItem onClick={handleMenuClose}>Logout</MenuItem>
+              </Menu>
+            </>
+          )}
+
+
+
         </Toolbar>
-      </Container>
-    </AppBar>
+      </AppBar>
+    </div>
   );
 }
+
 export default NewNavBar;
+// <Button color="inherit" to="/login">Login</Button>

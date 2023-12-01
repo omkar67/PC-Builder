@@ -59,6 +59,14 @@ const products = () => {
   return (
     <ThemeProvider theme={theme}>
       <NavBar2 />
+      <style>{`
+            @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+      body {
+        margin: 0;
+        padding: 0;
+        background-color: white;
+      `}</style>
       <div style={{ padding: '20px', display: 'flex', gap: '20px' }}>
         <FormControl style={{ minWidth: '200px' }}>
           <InputLabel id="category-label">Select Category</InputLabel>
@@ -69,22 +77,22 @@ const products = () => {
             label="Select Category"
             onChange={handleCategoryChange}
           >
-            <MenuItem value="CPU">cpu</MenuItem>
-            <MenuItem value="GPU">gpu</MenuItem>
-            <MenuItem value="MOBO">Mother Board</MenuItem>
-            <MenuItem value="RAM">ram</MenuItem>
-            <MenuItem value="storage">storage</MenuItem>
-            <MenuItem value="PSU">psu</MenuItem>
-            <MenuItem value="case">pccase</MenuItem>
+            <MenuItem value="CPU" style={{fontSize:'2vh',fontFamily:'Poppins',color:'black'}}>CPU</MenuItem>
+            <MenuItem value="GPU" style={{fontSize:'2vh',fontFamily:'Poppins',color:'black'}}>GPU</MenuItem>
+            <MenuItem value="MOBO" style={{fontSize:'2vh',fontFamily:'Poppins',color:'black'}}>MotherBoard</MenuItem>
+            <MenuItem value="RAM" style={{fontSize:'2vh',fontFamily:'Poppins',color:'black'}}>RAM</MenuItem>
+            <MenuItem value="storage" style={{fontSize:'2vh',fontFamily:'Poppins',color:'black'}}>Storage</MenuItem>
+            <MenuItem value="PSU" style={{fontSize:'2vh',fontFamily:'Poppins',color:'black'}}>PSU</MenuItem>
+            <MenuItem value="case" style={{fontSize:'2vh',fontFamily:'Poppins',color:'black'}}>Case</MenuItem>
           </Select>
         </FormControl>
         <TableContainer component={Paper}>
           <Table>
             <TableHead>
               <TableRow>
-                <TableCell>Product Image</TableCell>
-                <TableCell>Product Name</TableCell>
-                <TableCell>Price</TableCell>
+                <TableCell style={{fontSize:'2vh',fontFamily:'Poppins',color:'black'}}>Product Image</TableCell>
+                <TableCell style={{fontSize:'2vh',fontFamily:'Poppins',color:'black'}}>Product Name</TableCell>
+                <TableCell style={{fontSize:'2vh',fontFamily:'Poppins',color:'black'}}>Price</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -98,8 +106,8 @@ const products = () => {
                     <TableCell>
                       <img src={product.image} alt={product.name} style={{ width: '50px', height: '50px' }} />
                     </TableCell>
-                    <TableCell>{product.name}</TableCell>
-                    <TableCell>Rs {product.price}</TableCell>
+                    <TableCell style={{fontSize:'2vh',fontFamily:'Poppins',color:'black'}}>{product.name}</TableCell>
+                    <TableCell style={{fontSize:'2vh',fontFamily:'Poppins',color:'black'}}>Rs {product.price}</TableCell>
                   </TableRow>
                 ))
               )}
