@@ -95,6 +95,8 @@ const Checkout = () => {
       .then(responseData => {
         console.log(responseData);
         alert('U have Successfully placed your order ')
+        alert('U will now be redircted to home')
+        nav('/')
       })
       .catch(error => {
         console.error('Error:', error);
