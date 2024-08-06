@@ -13,10 +13,10 @@ A web application that allows users to build a custom PC by selecting various co
 - **Backend**: Node.js, Express
 - **Database**: SQL
 - **State Management**: Redux
-![Website UI ](Frontend/UI-1.jpg)
+![Website UI ](Frontend/UI-1.png)
 
-![Website UI ](Frontend/UI-2.jpg)
+![Website UI ](Frontend/UI-2.png)
 
-![Website UI ](Frontend/UI-3.jpg)
+![Website UI ](Frontend/UI-3.png)
 
-![Website UI ](Frontend/UI-4.jpg)
+![Website UI ](Frontend/UI-4.png)
